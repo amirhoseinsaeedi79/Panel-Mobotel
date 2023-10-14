@@ -1,28 +1,74 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Topbar() {
-  const[menu,setMenu]=useState("hidden")
-  const[status,setStatus]=useState(false)
-  function menuHandler(){
+  const [menu, setMenu] = useState("hidden");
+  const [sidbarState, setSidbarState] = useState("flex");
+  const [status, setStatus] = useState(false);
+  const [sideStatus, setSideStatus] = useState(true);
+  const [proState, setProState] = useState("flex");
+  const [proStatus, setproStatus] = useState(true);
+  const [supState, setSupState] = useState("flex");
+  const [supStatus, setSupStatus] = useState(true);
+  const [ProIcone, setProIcone] = useState("M19.5 8.25l-7.5 7.5-7.5-7.5");
+  const [sidIcone, setSidIcone] = useState("M19.5 8.25l-7.5 7.5-7.5-7.5");
+  const [supIcone, setSupIcone] = useState("M19.5 8.25l-7.5 7.5-7.5-7.5");
+
+  function menuHandler() {
     if (status == false) {
-      setMenu("visible")
-      setStatus(true)     
-    }else{
-      setMenu("hidden")
-      setStatus(false)   
+      setMenu("visible");
+      setStatus(true);
+    } else {
+      setMenu("hidden");
+      setStatus(false);
     }
   }
-  function topmenuHandler(){
+  function topmenuHandler() {
     if (status == false) {
-      setMenu("visible")
-      setStatus(true)     
-    }else{
-      setMenu("hidden")
-      setStatus(false)   
+      setMenu("visible");
+      setStatus(true);
+    } else {
+      setMenu("hidden");
+      setStatus(false);
     }
   }
 
-  
+  function sidbarHandler() {
+    if (sideStatus == true) {
+      setSidIcone("M19.5 8.25l-7.5 7.5-7.5-7.5")
+      setSidbarState("hidden");
+      setSideStatus(false);
+    } else {
+      setSidIcone("M4.5 15.75l7.5-7.5 7.5 7.5")
+      setSidbarState("flex");
+      setSideStatus(true);
+    }
+  }
+
+  function prorHandler() {
+    if (proStatus == true) {
+      setProState("hidden");
+      setProIcone("M19.5 8.25l-7.5 7.5-7.5-7.5")
+      setproStatus(false);
+    } else {
+      setProState("flex");
+      setproStatus(true);
+      setProIcone("M4.5 15.75l7.5-7.5 7.5 7.5")
+    }
+  }
+
+  function supHandler() {
+    if (supStatus == true) {
+      setSupState("hidden");
+       setSupIcone("M19.5 8.25l-7.5 7.5-7.5-7.5")
+      setSupStatus(false);
+    } else {
+      setSupState("flex");
+      setSupIcone("M4.5 15.75l7.5-7.5 7.5 7.5")
+      setSupStatus(true);
+    }
+  }
+
   return (
     <>
       <div className="w-full h-[60px] border-b-[1px] border-gray-300 z-50">
@@ -33,7 +79,7 @@ export default function Topbar() {
             alt="logo"
           />
           <svg
-          onClick={topmenuHandler}
+            onClick={topmenuHandler}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -107,7 +153,9 @@ export default function Topbar() {
 
       {/* =====================================================================sidebar */}
 
-      <div className={`w-[265px] ${menu} h-full fixed top-0 md:top-[60px] md:flex right-0 border-l-[1px] bg-white border-gray-300 z-20`}>
+      <div
+        className={`w-[200px] ${menu} h-full flex flex-col fixed top-0 md:top-[60px] md:flex right-0 border-l-[1px] bg-white border-gray-300 z-20`}
+      >
         <div className="top md:hidden w-full h-[60px] flex flex-row-reverse items-center justify-between border-b-[1px] border-gray-300 px-3">
           <img
             className="w-[120px] h-12 mt-2 "
@@ -115,13 +163,13 @@ export default function Topbar() {
             alt="logo"
           />
           <svg
-          onClick={menuHandler}
+            onClick={menuHandler}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-9 h-9 text-bold "
+            className="w-7 h-7 text-bold "
           >
             <path
               strokeLinecap="round"
@@ -130,13 +178,197 @@ export default function Topbar() {
             />
           </svg>
         </div>
+        {/* ================================================================ items sidebar */}
+        <Link
+          to="/"
+          className="px-2 py-3 flex flex-row-reverse items-center hover:text-blue"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 mr-1 ml-1.5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+          <span className=" mr-1 text-[18px] vazir ">صفحه اصلی</span>
+        </Link>
+        <div className="w-full px-2 mb-3 cursor-pointer">
+          <div className="w-full flex flex-row-reverse justify-between  items-center">
+            <div
 
+              className="flex flex-row-reverse items-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 mr-1 ml-1.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
 
+              <span className="ml-36 mr-1 text-[18px] vazir">کاربران</span>
+            </div>
+          </div>
+          <ul
+            className={`flex flex-col items-start mr-4 mt-1 vazir text-[13px] text-gray-800 list-disc direction`}
+          >
+            <Link to="/AddUser" className="w-full">
+              <li className="w-full mt-1.5 mr-3 hover:text-blue">
+                افزودن کاربر
+              </li>
+            </Link>
+            <Link to="/RemoveUser" className="w-full">
+              <li className="w-full mt-1.5 mr-3 hover:text-blue">حذف کاربر</li>
+            </Link>
+            <Link to="/EditUser" className="w-full">
+              <li className="w-full mt-1.5 mr-3 hover:text-blue">
+                ویرایش کاربر
+              </li>
+            </Link>
+          </ul>
+        </div>
 
+        <div className="w-full px-2 mb-3 cursor-pointer">
+          <div className="w-full flex flex-row-reverse justify-between  items-center">
+            <div
+              className="flex flex-row-reverse items-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 mr-1 ml-1.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"
+                />
+              </svg>
 
+              <span className="ml-[123px] mr-1 text-[18px] vazir ">
+                محصولات
+              </span>
 
+            </div>
+          </div>
+          <ul
+            className={`flex flex-col items-start mr-4 mt-1 vazir text-[13px] text-gray-800 list-disc direction`}
+          >
+            <Link to="/AddProduct" className="w-full">
+              <li className="w-full mt-1.5 mr-3 hover:text-blue">
+                افزودن محصول
+              </li>
+            </Link>
+            <Link to="/RemoveProduct" className="w-full">
+              <li className="w-full mt-1.5 mr-3 hover:text-blue">حذف محصول</li>
+            </Link>
+            <Link to="/EditProduct" className="w-full">
+              <li className="w-full mt-1.5 mr-3 hover:text-blue">
+                ویرایش محصول
+              </li>
+            </Link>
+          </ul>
+        </div>
 
-        
+        <div className="w-full px-2 mb-3 ">
+          <div className="w-full flex flex-row-reverse justify-between  items-center">
+            <div
+
+              className="flex flex-row-reverse items-center "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 mr-1 ml-1.5  bold"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
+                />
+              </svg>
+
+              <span className="ml-[131px] mr-1 text-[19px] vazir ">
+                پشتیبانی
+              </span>
+            </div>
+          </div>
+          <ul
+            className={`flex flex-col items-start mr-4 mt-1 vazir text-[13px] text-gray-800 list-disc direction`}
+          >
+            <Link to="/Offers" className="w-full">
+              <li className="w-full mt-1.5 mr-3 hover:text-blue">
+                انتقادات و پشنهادات
+              </li>
+            </Link>
+            <Link to="/Ticket" className="w-full">
+              <li className="w-full mt-1.5 mr-3 hover:text-blue">تیکت ها</li>
+            </Link>
+          </ul>
+        </div>
+
+        <Link
+          to="/Orders"
+          className="px-2 mb-3 flex flex-row-reverse hover:text-blue "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 mr-1 ml-1.5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+            />
+          </svg>
+
+          <span className=" mr-1 text-[18px] vazir">سفارشات</span>
+        </Link>
+        <Link
+          to="/Comments"
+          className=" px-2 mb-3 flex flex-row-reverse hover:text-blue"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 mr-1 ml-1.5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"
+            />
+          </svg>
+
+          <span className=" mr-1 text-[18px] vazir ">نظرات</span>
+        </Link>
       </div>
     </>
   );

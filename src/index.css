@@ -27,5 +27,8 @@
         font-family:"Vazir";
         font-weight: bold;
       }
+      .direction{
+        direction: rtl;
+      }
   }
 
