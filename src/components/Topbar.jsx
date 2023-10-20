@@ -3,16 +3,24 @@ import { Link } from "react-router-dom";
 
 export default function Topbar() {
   const [menu, setMenu] = useState("hidden");
-  const [sidbarState, setSidbarState] = useState("flex");
   const [status, setStatus] = useState(false);
-  const [sideStatus, setSideStatus] = useState(true);
-  const [proState, setProState] = useState("flex");
-  const [proStatus, setproStatus] = useState(true);
-  const [supState, setSupState] = useState("flex");
-  const [supStatus, setSupStatus] = useState(true);
-  const [ProIcone, setProIcone] = useState("M19.5 8.25l-7.5 7.5-7.5-7.5");
-  const [sidIcone, setSidIcone] = useState("M19.5 8.25l-7.5 7.5-7.5-7.5");
-  const [supIcone, setSupIcone] = useState("M19.5 8.25l-7.5 7.5-7.5-7.5");
+  const [profileStatus, setProfileStatus] = useState(false);
+  const [profile, setProfile] = useState("hidden");
+
+  const [massageStatus, setMassageStatus] = useState(false);
+  const [massage, setMassage] = useState("hidden");
+
+  const [notficationStatus, setnotficationStatus] = useState(false);
+  const [notfication, setnotfication] = useState("hidden");
+
+  document.body.addEventListener("click", function outsideTopbar() {
+    setProfile("hidden");
+    setProfileStatus(false);
+    setMassage("hidden");
+    setMassageStatus(false);
+    setnotfication("hidden");
+    setnotficationStatus(false);
+  });
 
   function menuHandler() {
     if (status == false) {
@@ -33,59 +41,63 @@ export default function Topbar() {
     }
   }
 
-  function sidbarHandler() {
-    if (sideStatus == true) {
-      setSidIcone("M19.5 8.25l-7.5 7.5-7.5-7.5")
-      setSidbarState("hidden");
-      setSideStatus(false);
+  function profileHandler(e) {
+    e.stopPropagation();
+    if (profileStatus == false) {
+      setProfile("flex");
+      setProfileStatus(true);
+      setMassage("hidden");
+      setnotfication("hidden");
     } else {
-      setSidIcone("M4.5 15.75l7.5-7.5 7.5 7.5")
-      setSidbarState("flex");
-      setSideStatus(true);
+      setProfile("hidden");
+      setProfileStatus(false);
     }
   }
-
-  function prorHandler() {
-    if (proStatus == true) {
-      setProState("hidden");
-      setProIcone("M19.5 8.25l-7.5 7.5-7.5-7.5")
-      setproStatus(false);
+  function massageHandler(e) {
+    e.stopPropagation();
+    if (massageStatus == false) {
+      setMassage("flex");
+      setMassageStatus(true);
+      setProfile("hidden");
+      setnotfication("hidden");
     } else {
-      setProState("flex");
-      setproStatus(true);
-      setProIcone("M4.5 15.75l7.5-7.5 7.5 7.5")
+      setMassage("hidden");
+      setMassageStatus(false);
     }
   }
-
-  function supHandler() {
-    if (supStatus == true) {
-      setSupState("hidden");
-       setSupIcone("M19.5 8.25l-7.5 7.5-7.5-7.5")
-      setSupStatus(false);
+  function notficationHandler(e) {
+    e.stopPropagation();
+    if (notficationStatus == false) {
+      setnotfication("flex");
+      setnotficationStatus(true);
+      setProfile("hidden");
+      setMassage("hidden");
     } else {
-      setSupState("flex");
-      setSupIcone("M4.5 15.75l7.5-7.5 7.5 7.5")
-      setSupStatus(true);
+      setnotfication("hidden");
+      setnotficationStatus(false);
     }
   }
+  function statusProfile(e){
+    e.stopPropagation()
+   }
 
   return (
     <>
-      <div className="w-full h-[60px] border-b-[1px] border-gray-300 z-50">
+      <div className="w-full h-[60px] border-b-[1px] bg-white border-gray-300 z-50 shadow-md fixed">
         <div className=" px-2 flex flex-row-reverse justify-between ">
           <img
-            className="w-[120px] h-full mt-3 hidden md:flex"
+            className="w-[120px] h-full mt-3 hidden md:flex cursor-pointer"
             src="images/logo.jpg"
             alt="logo"
           />
           <svg
-            onClick={topmenuHandler}
+            onClick={() => topmenuHandler(event)}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-8 h-8 mt-3 visible md:hidden"
+            className="w-8 h-8 mt-3 visible md:hidden cursor-pointer"
           >
             <path
               strokeLinecap="round"
@@ -96,17 +108,98 @@ export default function Topbar() {
 
           <div className="flex flex-row items-center justify-center  mt-2">
             <img
-              className="rounded-full w-[40px] h-[40px]"
+              onClick={() => profileHandler(event)}
+              className="rounded-full w-[40px] h-[40px] cursor-pointer relative"
               src="images/profile.jpg"
               alt="profile"
             />
+            {/* ==================================================== profile */}
+
+            <div
+            onClick={()=>statusProfile(event)}
+              className={`w-[200px] h-[260px] vazir rounded-2xl ${profile} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
+            >
+              <div className="w-full flex-col-center ">
+                <img
+                  className="rounded-full w-[75px] h-[75px] cursor-pointer"
+                  src="images/profile.jpg"
+                  alt="profile"
+                />
+                <span className="">امیرحسین سعیدی</span>
+                <span className="text-[13px] px-2 pb-3">
+                  amirhosein-saeedi@gmail.com
+                </span>
+                <span className="w-full h-[1px] bg-gray-800"></span>
+              </div>
+              <div className="w-full pt-3 flex flex-col items-end pr-2 ">
+                <div className=" flex flex-row  cursor-pointer hover:text-blue ">
+                  <span className="mr-1 text-[15px]">پروفایل</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </div>
+                {/* ............... */}
+
+                <div className=" flex flex-row  cursor-pointer mt-2 hover:text-blue">
+                  <span className="mr-1 text-[15px]">ویرایش پروفایل</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                    />
+                  </svg>
+                </div>
+                {/* ............... */}
+
+                <div className=" flex flex-row  cursor-pointer mt-2 hover:text-blue">
+                  <span className="mr-1 text-[15px]">خروج</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* ==================================================== */}
+
             <svg
+              onClick={() => notficationHandler(event)}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 ml-3"
+              className="w-6 h-6 ml-3 cursor-pointer"
             >
               <path
                 strokeLinecap="round"
@@ -114,13 +207,23 @@ export default function Topbar() {
                 d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
               />
             </svg>
+
+            {/* ==================================================== notfication */}
+
+            <div
+              className={`w-[200px] h-[260px] vazir rounded-2xl ${notfication} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
+            ></div>
+
+            {/* ==================================================== */}
+
             <svg
+              onClick={() => massageHandler(event)}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 ml-3"
+              className="w-6 h-6 ml-3 cursor-pointer"
             >
               <path
                 strokeLinecap="round"
@@ -128,13 +231,21 @@ export default function Topbar() {
                 d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
               />
             </svg>
+            {/* ==================================================== massage */}
+
+            <div
+              className={`w-[200px] h-[260px] vazir rounded-2xl ${massage} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
+            ></div>
+
+            {/* ==================================================== */}
+
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 ml-3"
+              className="w-6 h-6 ml-3 cursor-pointer"
             >
               <path
                 strokeLinecap="round"
@@ -154,11 +265,11 @@ export default function Topbar() {
       {/* =====================================================================sidebar */}
 
       <div
-        className={`w-[200px] ${menu} h-full flex flex-col fixed top-0 md:top-[60px] md:flex right-0 border-l-[1px] bg-white border-gray-300 z-20`}
+        className={`w-[200px] ${menu} shadow-xl h-full flex flex-col fixed top-0 md:top-[60px] md:flex right-0 border-l-[1px] bg-white border-gray-300 z-50`}
       >
         <div className="top md:hidden w-full h-[60px] flex flex-row-reverse items-center justify-between border-b-[1px] border-gray-300 px-3">
           <img
-            className="w-[120px] h-12 mt-2 "
+            className="w-[100px] h-10 mt-2 "
             src="images/logo.jpg"
             alt="logo"
           />
@@ -201,10 +312,7 @@ export default function Topbar() {
         </Link>
         <div className="w-full px-2 mb-3 cursor-pointer">
           <div className="w-full flex flex-row-reverse justify-between  items-center">
-            <div
-
-              className="flex flex-row-reverse items-center"
-            >
+            <div className="flex flex-row-reverse items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -220,7 +328,7 @@ export default function Topbar() {
                 />
               </svg>
 
-              <span className="ml-36 mr-1 text-[18px] vazir">کاربران</span>
+              <span className=" mr-1 text-[18px] vazir">کاربران</span>
             </div>
           </div>
           <ul
@@ -244,9 +352,7 @@ export default function Topbar() {
 
         <div className="w-full px-2 mb-3 cursor-pointer">
           <div className="w-full flex flex-row-reverse justify-between  items-center">
-            <div
-              className="flex flex-row-reverse items-center"
-            >
+            <div className="flex flex-row-reverse items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -262,10 +368,7 @@ export default function Topbar() {
                 />
               </svg>
 
-              <span className="ml-[123px] mr-1 text-[18px] vazir ">
-                محصولات
-              </span>
-
+              <span className=" mr-1 text-[18px] vazir ">محصولات</span>
             </div>
           </div>
           <ul
@@ -289,10 +392,7 @@ export default function Topbar() {
 
         <div className="w-full px-2 mb-3 ">
           <div className="w-full flex flex-row-reverse justify-between  items-center">
-            <div
-
-              className="flex flex-row-reverse items-center "
-            >
+            <div className="flex flex-row-reverse items-center ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -308,7 +408,7 @@ export default function Topbar() {
                 />
               </svg>
 
-              <span className="ml-[131px] mr-1 text-[19px] vazir ">
+              <span className=" mr-1 text-[19px] vazir cursor-pointer">
                 پشتیبانی
               </span>
             </div>

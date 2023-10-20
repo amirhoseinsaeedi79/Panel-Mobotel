@@ -12,10 +12,9 @@ export default {
     extend: {
       colors:{
         blue:"#068fff",
-        orginal:'#f9fafb'
+        orginal:'#e3e9fa',
+        hover:'#5db5fc'
       }
-    
-
     },
   },
   plugins: [],

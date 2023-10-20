@@ -30,5 +30,11 @@
       .direction{
         direction: rtl;
       }
+      circle{
+        display: none;
+      }
+      .recharts-tooltip-label{
+        display: none;
+      }
   }
 
