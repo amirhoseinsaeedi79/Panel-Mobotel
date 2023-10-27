@@ -1,4 +1,4 @@
-let sale = [
+let Sales = [
     {
       name: 'Page A',
       uv: 4000,
@@ -42,4 +42,4 @@ let sale = [
       amt: 2100,
     },
   ];
-  export default sale
+  export default Sales

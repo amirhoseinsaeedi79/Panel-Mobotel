@@ -3,38 +3,75 @@
 @tailwind utilities;
 
 @font-face {
-    font-family:"Vazir";
-    src: url("../public/fonts/Vazir.woff") format("woff");
-  }
+  font-family: "Vazir";
+  src: url("../public/fonts/Vazir.woff") format("woff");
+}
 
-  @layer utilities {
-    .flex-row-center{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-      }
-      .flex-col-center{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-    .vazir{
-        font-family:"Vazir";
-      }
-      .vazir-bold{
-        font-family:"Vazir";
-        font-weight: bold;
-      }
-      .direction{
-        direction: rtl;
-      }
-      circle{
-        display: none;
-      }
-      .recharts-tooltip-label{
-        display: none;
-      }
+@layer utilities {
+  .flex-row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
-
+  .flex-col-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .vazir {
+    font-family: "Vazir";
+  }
+  .vazir-bold {
+    font-family: "Vazir";
+    font-weight: bold;
+  }
+  .direction {
+    direction: rtl;
+  }
+  circle {
+    display: none;
+  }
+  .recharts-tooltip-label {
+    display: none;
+  }
+  .error {
+    color: red;
+    margin-top: 10px;
+    font-family: "Vazir";
+    font-weight: 600;
+  }
+  .direction {
+    direction: rtl;
+  }
+  .bgimage {
+    background-image: url(../public/images/body_back4.png);
+    background-attachment: fixed;
+  }
+  .bgsidebar{
+    background-image: url(../public/images/sideBack3.jpg);
+    background-attachment: fixed;
+  }
+  .sky {
+    background: linear-gradient(
+      to right,
+      RGBA(6, 182, 212),
+      RGBA(34, 211, 238)
+    );
+  }
+  .Purple {
+    background: linear-gradient(
+      to right,
+      RGBA(139, 92, 246),
+      RGBA(167, 139, 250)
+    );
+  }
+  .blue {
+    background: linear-gradient(
+      to right,
+      RGBA(59, 130, 246),
+      RGBA(96, 165, 250)
+    );
+  }
+}

@@ -1,7 +1,23 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 export default function Topbar() {
+
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+  } = useForm();
+
+  function registerHandler(){
+    event => event.preventDefault()
+    reset();
+
+  }
+
+
   const [menu, setMenu] = useState("hidden");
   const [status, setStatus] = useState(false);
   const [profileStatus, setProfileStatus] = useState(false);
@@ -77,9 +93,9 @@ export default function Topbar() {
       setnotficationStatus(false);
     }
   }
-  function statusProfile(e){
-    e.stopPropagation()
-   }
+  function statusProfile(e) {
+    e.stopPropagation();
+  }
 
   return (
     <>
@@ -105,6 +121,9 @@ export default function Topbar() {
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
+          <div>
+            <form></form>
+          </div>
 
           <div className="flex flex-row items-center justify-center  mt-2">
             <img
@@ -116,7 +135,7 @@ export default function Topbar() {
             {/* ==================================================== profile */}
 
             <div
-            onClick={()=>statusProfile(event)}
+              onClick={() => statusProfile(event)}
               className={`w-[200px] h-[260px] vazir rounded-2xl ${profile} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
             >
               <div className="w-full flex-col-center ">
@@ -265,14 +284,10 @@ export default function Topbar() {
       {/* =====================================================================sidebar */}
 
       <div
-        className={`w-[200px] ${menu} shadow-xl h-full flex flex-col fixed top-0 md:top-[60px] md:flex right-0 border-l-[1px] bg-white border-gray-300 z-50`}
+        className={`w-[180px] ${menu}  shadow-xl h-full flex flex-col fixed top-0 md:top-[60px] md:flex right-0  bg-gray-800 text-white border-gray-300 z-50`}
       >
-        <div className="top md:hidden w-full h-[60px] flex flex-row-reverse items-center justify-between border-b-[1px] border-gray-300 px-3">
-          <img
-            className="w-[100px] h-10 mt-2 "
-            src="images/logo.jpg"
-            alt="logo"
-          />
+        <div className="top md:hidden w-full  flex flex-row items-center  px-3">
+          
           <svg
             onClick={menuHandler}
             xmlns="http://www.w3.org/2000/svg"
@@ -280,7 +295,7 @@ export default function Topbar() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-7 h-7 text-bold "
+            className="w-7 h-7 mt-2 text-bold text-white"
           >
             <path
               strokeLinecap="round"
@@ -289,10 +304,49 @@ export default function Topbar() {
             />
           </svg>
         </div>
+        <div className="w-full flex-col-center md:pt-5 ">
+          <img
+            className="rounded-full w-[60px] h-[60px] mx-auto border-[2px]"
+            src="images/profile.jpg"
+            alt="profile"
+          />
+          <span className="mt-2">امیرحسین سعیدی</span>
+          <span className="flex-row-center mt-1 text-gray-300 text-[13px]">
+            ادمین
+          </span>
+        </div>
+        <div>
+          <form  onSubmit={handleSubmit(registerHandler)}>
+            <div className="relative px-3 mt-3 ">
+              <button
+                type="submit"
+                className="flex absolute inset-y-0 left-2 items-center pl-3 "
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </button>
+              <input
+                type="text"
+                id="default-search"
+                {...register("email")}
+                className="block direction px-3 py-1.5 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="جستجو"
+                
+              />
+            </div>
+          </form>
+        </div>
         {/* ================================================================ items sidebar */}
         <Link
           to="/"
-          className="px-2 py-3 flex flex-row-reverse items-center hover:text-blue"
+          className="px-2 py-5 flex flex-row-reverse items-center hover:text-blue "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -308,11 +362,14 @@ export default function Topbar() {
               d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
             />
           </svg>
-          <span className=" mr-1 text-[18px] vazir ">صفحه اصلی</span>
+          <span className=" mr-1 text-[16px] vazir ">صفحه اصلی</span>
         </Link>
         <div className="w-full px-2 mb-3 cursor-pointer">
-          <div className="w-full flex flex-row-reverse justify-between  items-center">
-            <div className="flex flex-row-reverse items-center">
+          <Link
+            to="/User"
+            className="w-full flex flex-row-reverse justify-between  items-center hover:text-blue"
+          >
+            <div className="flex flex-row-reverse items-center ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -328,30 +385,15 @@ export default function Topbar() {
                 />
               </svg>
 
-              <span className=" mr-1 text-[18px] vazir">کاربران</span>
+              <span className=" mr-1 text-[16px] vazir">کاربران</span>
             </div>
-          </div>
-          <ul
-            className={`flex flex-col items-start mr-4 mt-1 vazir text-[13px] text-gray-800 list-disc direction`}
-          >
-            <Link to="/AddUser" className="w-full">
-              <li className="w-full mt-1.5 mr-3 hover:text-blue">
-                افزودن کاربر
-              </li>
-            </Link>
-            <Link to="/RemoveUser" className="w-full">
-              <li className="w-full mt-1.5 mr-3 hover:text-blue">حذف کاربر</li>
-            </Link>
-            <Link to="/EditUser" className="w-full">
-              <li className="w-full mt-1.5 mr-3 hover:text-blue">
-                ویرایش کاربر
-              </li>
-            </Link>
-          </ul>
+          </Link>
         </div>
-
-        <div className="w-full px-2 mb-3 cursor-pointer">
-          <div className="w-full flex flex-row-reverse justify-between  items-center">
+        <div className="w-full pt-2 px-2 mb-3 cursor-pointer">
+          <Link
+            to="/Product"
+            className="w-full flex flex-row-reverse justify-between items-center hover:text-blue "
+          >
             <div className="flex flex-row-reverse items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -368,30 +410,15 @@ export default function Topbar() {
                 />
               </svg>
 
-              <span className=" mr-1 text-[18px] vazir ">محصولات</span>
+              <span className=" mr-1 text-[16px] vazir ">محصولات</span>
             </div>
-          </div>
-          <ul
-            className={`flex flex-col items-start mr-4 mt-1 vazir text-[13px] text-gray-800 list-disc direction`}
-          >
-            <Link to="/AddProduct" className="w-full">
-              <li className="w-full mt-1.5 mr-3 hover:text-blue">
-                افزودن محصول
-              </li>
-            </Link>
-            <Link to="/RemoveProduct" className="w-full">
-              <li className="w-full mt-1.5 mr-3 hover:text-blue">حذف محصول</li>
-            </Link>
-            <Link to="/EditProduct" className="w-full">
-              <li className="w-full mt-1.5 mr-3 hover:text-blue">
-                ویرایش محصول
-              </li>
-            </Link>
-          </ul>
+          </Link>
         </div>
-
-        <div className="w-full px-2 mb-3 ">
-          <div className="w-full flex flex-row-reverse justify-between  items-center">
+        <div className="w-full pt-2 px-2 mb-3 ">
+          <Link
+            to="/Ticket"
+            className="w-full flex flex-row-reverse justify-between  items-center hover:text-blue"
+          >
             <div className="flex flex-row-reverse items-center ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -408,28 +435,15 @@ export default function Topbar() {
                 />
               </svg>
 
-              <span className=" mr-1 text-[19px] vazir cursor-pointer">
-                پشتیبانی
+              <span className=" mr-1 text-[16px] vazir cursor-pointer">
+                تیکت ها
               </span>
             </div>
-          </div>
-          <ul
-            className={`flex flex-col items-start mr-4 mt-1 vazir text-[13px] text-gray-800 list-disc direction`}
-          >
-            <Link to="/Offers" className="w-full">
-              <li className="w-full mt-1.5 mr-3 hover:text-blue">
-                انتقادات و پشنهادات
-              </li>
-            </Link>
-            <Link to="/Ticket" className="w-full">
-              <li className="w-full mt-1.5 mr-3 hover:text-blue">تیکت ها</li>
-            </Link>
-          </ul>
+          </Link>
         </div>
-
         <Link
           to="/Orders"
-          className="px-2 mb-3 flex flex-row-reverse hover:text-blue "
+          className="px-2 pt-2 mb-3 flex flex-row-reverse hover:text-blue "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -446,11 +460,11 @@ export default function Topbar() {
             />
           </svg>
 
-          <span className=" mr-1 text-[18px] vazir">سفارشات</span>
+          <span className=" mr-1 text-[16px] vazir">سفارشات</span>
         </Link>
         <Link
           to="/Comments"
-          className=" px-2 mb-3 flex flex-row-reverse hover:text-blue"
+          className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -467,8 +481,55 @@ export default function Topbar() {
             />
           </svg>
 
-          <span className=" mr-1 text-[18px] vazir ">نظرات</span>
+          <span className=" mr-1 text-[16px] vazir ">نظرات</span>
         </Link>
+  
+        {/* ================ */}
+        <Link
+          to="/Comments"
+          className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 mr-1 ml-1.5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+
+          <span className=" mr-1 text-[16px] vazir ">پروفایل</span>
+        </Link>
+        {/* ================ */}
+
+        <Link
+          to="/Comments"
+          className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 mr-1 ml-1.5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+            />
+          </svg>
+
+          <span className=" mr-1 text-[16px] vazir ">خروج از حساب</span>
+        </Link>
+        {/* ================ */}
       </div>
     </>
   );

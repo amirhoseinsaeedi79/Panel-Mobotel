@@ -1,17 +1,21 @@
 import {
   LineChart,
   Line,
-  BarChart,
   Tooltip,
-  Bar,
-  XAxis,
   ResponsiveContainer,
+  Area,
+  AreaChart,
+  CartesianGrid,
 } from "recharts";
 import Growth from "../data-Recharts/Growth";
+import Sales from "../data-Recharts/sale";
 import Users from "../data-Recharts/Users.jsx";
+// import BigChart from "../data-Recharts/BigChart.jsx";
 import More from ".././components/More.jsx";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import BestProduct from "../components/BestProduct";
+import LastTransactions from "../components/LastTransactions";
 
 export default function Home() {
   const [statuGrowth, setGrowth] = useState(false);
@@ -40,11 +44,11 @@ export default function Home() {
   });
 
   return (
-    <div className="bg-orginal pt-16 w-full md:w-[calc(100%_-_200px)] vazir ">
+    <div className="bgimage pt-16 w-full md:w-[calc(100%_-_180px)] vazir">
       <div className="container ">
         {/* =============================================================================growth */}
         <div className="3chart grid grid-rows-1 lg:grid-cols-3 ">
-          <div className=" bg-white  p-3 items-center mt-3 mx-3 rounded-xl shadow-lg">
+          <div className=" blue  p-3 items-center mt-3 mx-3 rounded-xl shadow-lg">
             <div className="flex flex-row justify-between items-center">
               <div ref={growth} className="relative">
                 <svg
@@ -77,20 +81,21 @@ export default function Home() {
                 <LineChart
                   width={130}
                   height={50}
-                  data={Growth}
+                  data={Sales}
                   margin={{ top: 5, right: 20, bottom: 0, left: 5 }}
                 >
                   <Line
                     type="monotone"
                     dataKey="uv"
-                    stroke="#068fff"
+                    stroke="#0f0f0f"
                     strokeWidth={2}
                   />
+                  <Tooltip />
                 </LineChart>
               </div>
-              <div className="flex flex-col-center">
+              <div className="flex flex-col-center text-black">
                 <span className="text-[25px] ">80.56%</span>
-                <div className="flex flex-row items-center text-green-500">
+                <div className="flex flex-row items-center vazir-bold text-black">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -111,11 +116,10 @@ export default function Home() {
             </div>
           </div>
           {/* =============================================================================growth */}
-          <div className="w- bg-white grid grid-cols-1 p-3 items-center mt-3 mx-3 rounded-xl shadow-lg">
+          <div className="sky grid grid-cols-1 p-3 items-center border-[2px] border-gray-300  mt-3 mx-3 rounded-xl shadow-lg">
             <div className="flex flex-row justify-between items-center">
-              <div  ref={sale} className="relative">
+              <div ref={sale} className="relative">
                 <svg
-                
                   onClick={() => {
                     setStatusSale(!statussale);
                   }}
@@ -142,18 +146,19 @@ export default function Home() {
             </div>
             <div className="flex flex-row items-center justify-between">
               <div className="mt-8">
-                <BarChart width={130} height={50} data={Growth}>
-                  <Bar
+                <LineChart width={130} height={50} data={Sales}>
+                  <Line
+                    type="monotone"
                     dataKey="uv"
-                    barSize={30}
-                    fill="#068fff"
+                    stroke="#0f0f0f"
                     strokeWidth={2}
                   />
-                </BarChart>
+                  <Tooltip />
+                </LineChart>
               </div>
               <div className="flex flex-col-center">
                 <span className="text-[25px] ">1,500</span>
-                <div className="flex flex-row items-center text-red-500">
+                <div className="flex flex-row items-center vazir-bold text-black">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -174,7 +179,7 @@ export default function Home() {
             </div>
           </div>
           {/* =============================================================================growth */}
-          <div className="bg-white grid grid-cols-1 p-3 items-center mt-3 mx-3 rounded-xl shadow-lg">
+          <div className="Purple grid grid-cols-1 p-3 items-center mt-3 mx-3 rounded-xl shadow-lg">
             <div className="flex flex-row justify-between items-center">
               <div ref={user} className="relative">
                 <svg
@@ -213,14 +218,15 @@ export default function Home() {
                   <Line
                     type="monotone"
                     dataKey="uv"
-                    stroke="#068fff"
+                    stroke="#0f0f0f"
                     strokeWidth={2}
                   />
+                  <Tooltip />
                 </LineChart>
               </div>
               <div className="flex flex-col-center">
                 <span className="text-[25px] ">952</span>
-                <div className="flex flex-row items-center text-green-500">
+                <div className="flex flex-row items-center text-black">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -235,31 +241,55 @@ export default function Home() {
                       d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
                     />
                   </svg>
-                  <span className="pt-1">9.9%</span>
+                  <span className="pt-1 vazir-bold">9.9%</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className=" h-[200px] lg:h-[400px] bg-white mx-3 md:mx-3 p-5 rounded-xl mt-5 shadow-lg">
-          <span className="w-full flex flex-row item-end justify-end text-[20px]">
+        <div className=" h-[190px] lg:h-[280px] bg-white mx-3 mb-5 md:mx-3   rounded-xl border-[2px] border-blue mt-5 shadow-lg">
+          <span className="w-full flex flex-row item-end justify-end text-[20px] px-2 pt-3 pb-2 vazir-bold">
             فروش ماهیانه
           </span>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart width={700} height={300} data={Growth}>
-              <Line
-                type="monotone"
-                dataKey="uv"
-                stroke="#068fff"
-                strokeWidth={3}
-              />
-              <XAxis dataKey="name" />
+          <ResponsiveContainer width="100%" height="75%">
+            <AreaChart width={730} height={250} data={Growth}>
+              <defs>
+                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#068fff" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#068fff" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="1 1" />
+
               <Tooltip />
-            </LineChart>
+              <Area
+                type="monotone"
+                dataKey="فروش"
+                stroke="#8884d8"
+                fillOpacity={1}
+                fill="url(#colorUv)"
+              />
+              <Area
+                type="monotone"
+                dataKey="pv"
+                stroke="#068fff"
+                fillOpacity={1}
+                fill="url(#colorPv)"
+              />
+            </AreaChart>
           </ResponsiveContainer>
         </div>
       </div>
-      {/* ================================================================ all charts */}
+      {/* ================================================================ end charts */}
+
+      <div className="mt-5 direction flex flex-col lg:flex-row container">
+        <BestProduct />
+        <LastTransactions />
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import AddProduct from './Pages/AddProduct.jsx'
-import AddUser from './Pages/AddUser.jsx'
+import Product from './Pages/Product.jsx'
+import User from './Pages/User.jsx'
 import Comments from './Pages/Comments.jsx'
 import EditProduct from './Pages/EditProduct.jsx'
 import EditUser from './Pages/EditUser.jsx'
@@ -11,8 +11,8 @@ import RemoveUser from './Pages/RemoveUser.jsx'
 import Ticket from './Pages/Ticket.jsx'
 let Routes =[
     { path:'/' , element:<Home/>},
-    { path:'/AddProduct' , element:<AddProduct/>},
-    { path:'/AddUser' , element:<AddUser/>},
+    { path:'/Product' , element:<Product/>},
+    { path:'/User' , element:<User/>},
     { path:'/Comments' , element:<Comments/>},
     { path:'/EditProduct' , element:<EditProduct/>},
     { path:'/EditUser' , element:<EditUser/>},
