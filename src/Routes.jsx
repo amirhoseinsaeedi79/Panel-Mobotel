@@ -4,11 +4,11 @@ import Comments from './Pages/Comments.jsx'
 import EditProduct from './Pages/EditProduct.jsx'
 import EditUser from './Pages/EditUser.jsx'
 import Home  from './Pages/Home.jsx'
-import Offers from './Pages/Offers.jsx'
 import Orders from './Pages/Orders.jsx'
 import RemoveProduct from './Pages/RemoveProduct.jsx'
 import RemoveUser from './Pages/RemoveUser.jsx'
 import Ticket from './Pages/Ticket.jsx'
+import Profile from './Pages/Profile.jsx'
 let Routes =[
     { path:'/' , element:<Home/>},
     { path:'/Product' , element:<Product/>},
@@ -16,7 +16,7 @@ let Routes =[
     { path:'/Comments' , element:<Comments/>},
     { path:'/EditProduct' , element:<EditProduct/>},
     { path:'/EditUser' , element:<EditUser/>},
-    { path:'/Offers' , element:<Offers/>},
+    { path:'/Profile' , element:<Profile/>},
     { path:'/Orders' , element:<Orders/>},
     { path:'/RemoveProduct' , element:<RemoveProduct/>},
     { path:'/RemoveUser' , element:<RemoveUser/>},

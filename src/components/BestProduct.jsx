@@ -47,7 +47,7 @@ export default function BestProduct() {
                 <tbody>
 
                   {bestProduct.map((item)=>(
-                    <tr key={item.id} className="bg-gray-100 vazir-bold ">
+                    <tr key={item.id} className="bg-gray-100 vazir-bold border-t-2  border-blue ">
                     <td className="px-6 mrl-5 py-4 whitespace-nowrap text-sm  text-gray-900">
                       {item.id}
                     </td>

@@ -1,5 +1,14 @@
+import { useEffect, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
+import AllContext from "../Context/Context";
+import RemoveModal from "../components/Modals/RemoveModal";
+import EditModal from "../components/Modals/EditModal";
+import InfoModal from "../components/Modals/InfoModal";
 export default function Product() {
+  const context = useContext(AllContext);
+  const [edit, setEdit] = useState();
+  const [info, setInfo] = useState();
+
   const {
     register,
     handleSubmit,
@@ -8,6 +17,20 @@ export default function Product() {
   } = useForm();
 
   function registerHandler() {}
+
+  async function editHandler(item) {
+    await setEdit(item);
+    context.Edit(true);
+  }
+  async function InfoHandler(item) {
+    await setInfo(item);
+    context.Info(true);
+  }
+
+  const test = [
+    { id: 1, name: "ایرپاد پرو", onvan: "admin" },
+    { id: 2, name: "هدفون مدل قدیم", onvan: "admin" },
+  ];
 
   return (
     <div className="w-full pt-24  md:w-[calc(100%_-_180px)]">
@@ -87,9 +110,7 @@ export default function Product() {
                   },
                 })}
               />
-              <div className="error ">
-                {errors.ctg && errors.ctg.message}
-              </div>
+              <div className="error ">{errors.ctg && errors.ctg.message}</div>
             </div>
             {/* ===================================================password */}
             <div className="flex flex-col items-center">
@@ -127,9 +148,7 @@ export default function Product() {
                   required: "وارد کردن کد محصول اجباریست",
                 })}
               />
-              <div className="error ">
-                {errors.code && errors.code.message}
-              </div>
+              <div className="error ">{errors.code && errors.code.message}</div>
             </div>
             {/* ===================================================rasteh */}
             <div className="flex flex-col items-center">
@@ -167,62 +186,118 @@ export default function Product() {
         <span className="text-[20px] md:text-[25px] vazir-bold flex-row-center">
           لیست محصولات
         </span>
-{/* ==================================================== */}
+        {/* ==================================================== */}
 
-<div className="flex flex-col vazir pt-5">
-  <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
-    <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
-      <div className="overflow-hidden  border-[2px] border-blue rounded-2xl">
-        <table className="min-w-full bg-white">
-          <thead className="bg-white border-b-[2px] blue border-blue ">
-            <tr>
-              <th scope="col" className="text-sm text-black pr-4 py-4 text-right max-w-[100px] ">
-               شماره
-              </th>
-              <th scope="col" className="text-sm text-black pr-14 py-4 text-right">
-                تصویر محصول
-              </th> 
-              <th scope="col" className="text-sm text-black px-6 py-4 text-right">
-                نام محصول
-              </th>
-              <th scope="col" className="text-sm text-black pr-10 py-4 text-right">
-                دسته بندی
-              </th>
-              <th scope="col" className="text-sm text-black pr-10 py-4 text-right">
-                
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="bg-gray-100 vazir-bold ">
-              <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">1</td>
-              <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                <img src="images/airpod1.jpg" alt="airpod1" className="w-[120px] h-[120px] rounded-xl" />
-              </td>
-              <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                ایرپاد 1  پرومکس
-              </td>
-              <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                09198642898
-              </td>
-              <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold pt-14">
+        <div className="flex flex-col vazir pt-5">
+          <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
+            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
+              <div className="overflow-hidden  border-[2px] border-blue rounded-2xl">
+                <table className="min-w-full bg-white">
+                  <thead className="bg-white border-b-[2px] blue border-blue ">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-4 py-4 text-right max-w-[100px] "
+                      >
+                        شماره
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-5 py-4 text-right"
+                      >
+                        تصویر محصول
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black px-6 py-4 text-right"
+                      >
+                        نام محصول
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-5 py-4 text-right"
+                      >
+                        دسته بندی
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-10 py-4 text-right"
+                      ></th>
+                    </tr>
+                  </thead>
+                  {test.map((item) => (
+                    <tbody key={item.id}>
+                      <tr className="bg-gray-100 vazir-bold ">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
+                          1
+                        </td>
+                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          <img
+                            src="images/airpod1.jpg"
+                            alt="airpod1"
+                            className="w-[100px] h-[60px] rounded-xl"
+                          />
+                        </td>
+                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          {item.name}
+                        </td>
+                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          هندزفری
+                        </td>
+                        <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold pt-7">
+                          <button
+                            onClick={() => context.Delete(true)}
+                            className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl"
+                          >
+                            حذف
+                          </button>
 
-                <button className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl">حذف</button>
-                <button className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl ml-5">ویرایش</button>
-                <button className="px-5 py-2 border-[2.5px] border-gray-500 text-gray-500  hover:bg-gray-500 hover:text-white rounded-xl ml-5">مشاهده</button>
-              </td>
-            </tr>  
-            
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                          <button
+                            onClick={() => editHandler(item)}
+                            className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl ml-5"
+                          >
+                            ویرایش
+                          </button>
+                          <button
+                            onClick={() => InfoHandler(item)}
+                            className="px-5 py-2 border-[2.5px] border-gray-500 text-gray-500  hover:bg-gray-500 hover:text-white rounded-xl ml-5"
+                          >
+                            مشاهده
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))}
+`                  {context.deleteModal && <RemoveModal />}
+                  {context.editeModal && <EditModal item={edit} />}`
+                  {context.infoModal && <InfoModal item={info} />}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
 
-{/* ==================================================== */}
-
+        {/* ==================================================== */}
       </div>
     </div>
   );

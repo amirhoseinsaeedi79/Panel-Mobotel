@@ -1,5 +1,5 @@
 
-export default function Offers() {
+export default function Profile() {
   return (
     <div>Offers</div>
   )

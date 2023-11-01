@@ -1,33 +1,42 @@
-import { useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import AllContext from "../Context/Context";
 
 export default function Topbar() {
+  const context = useContext(AllContext);
+  const { handleSubmit, register, reset } = useForm();
 
-
-  const {
-    handleSubmit,
-    register,
-    reset,
-  } = useForm();
-
-  function registerHandler(){
-    event => event.preventDefault()
+  function registerHandler() {
+    (event) => event.preventDefault();
     reset();
-
   }
-
+  function logoutHandler() {
+    context.login(false)
+  }
 
   const [menu, setMenu] = useState("hidden");
   const [status, setStatus] = useState(false);
   const [profileStatus, setProfileStatus] = useState(false);
   const [profile, setProfile] = useState("hidden");
-
   const [massageStatus, setMassageStatus] = useState(false);
   const [massage, setMassage] = useState("hidden");
-
   const [notficationStatus, setnotficationStatus] = useState(false);
   const [notfication, setnotfication] = useState("hidden");
+
+  const home = useRef();
+  const userr = useRef();
+  const products = useRef();
+  const tickets = useRef();
+  const orders = useRef();
+  const comments = useRef();
+  const profiles = useRef();
+
+  useEffect(() => {
+    home.current.addEventListener("click", () => {
+      home.current.classList.add("text-blue");
+    });
+  }, []);
 
   document.body.addEventListener("click", function outsideTopbar() {
     setProfile("hidden");
@@ -124,7 +133,6 @@ export default function Topbar() {
           <div>
             <form></form>
           </div>
-
           <div className="flex flex-row items-center justify-center  mt-2">
             <img
               onClick={() => profileHandler(event)}
@@ -136,7 +144,7 @@ export default function Topbar() {
 
             <div
               onClick={() => statusProfile(event)}
-              className={`w-[200px] h-[260px] vazir rounded-2xl ${profile} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
+              className={`w-[200px] h-[230px] vazir rounded-2xl ${profile} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
             >
               <div className="w-full flex-col-center ">
                 <img
@@ -152,7 +160,9 @@ export default function Topbar() {
               </div>
               <div className="w-full pt-3 flex flex-col items-end pr-2 ">
                 <div className=" flex flex-row  cursor-pointer hover:text-blue ">
-                  <span className="mr-1 text-[15px]">پروفایل</span>
+                  <Link to="/Profile" className="mr-1 text-[15px]">
+                    پروفایل + ویرایش
+                  </Link>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -169,28 +179,8 @@ export default function Topbar() {
                   </svg>
                 </div>
                 {/* ............... */}
-
                 <div className=" flex flex-row  cursor-pointer mt-2 hover:text-blue">
-                  <span className="mr-1 text-[15px]">ویرایش پروفایل</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                    />
-                  </svg>
-                </div>
-                {/* ............... */}
-
-                <div className=" flex flex-row  cursor-pointer mt-2 hover:text-blue">
-                  <span className="mr-1 text-[15px]">خروج</span>
+                  <span onClick={logoutHandler} className="mr-1 text-[15px]">خروج</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -208,9 +198,7 @@ export default function Topbar() {
                 </div>
               </div>
             </div>
-
             {/* ==================================================== */}
-
             <svg
               onClick={() => notficationHandler(event)}
               xmlns="http://www.w3.org/2000/svg"
@@ -226,15 +214,11 @@ export default function Topbar() {
                 d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
               />
             </svg>
-
             {/* ==================================================== notfication */}
-
             <div
               className={`w-[200px] h-[260px] vazir rounded-2xl ${notfication} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
             ></div>
-
             {/* ==================================================== */}
-
             <svg
               onClick={() => massageHandler(event)}
               xmlns="http://www.w3.org/2000/svg"
@@ -251,11 +235,9 @@ export default function Topbar() {
               />
             </svg>
             {/* ==================================================== massage */}
-
             <div
               className={`w-[200px] h-[260px] vazir rounded-2xl ${massage} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
             ></div>
-
             {/* ==================================================== */}
 
             <svg
@@ -284,10 +266,9 @@ export default function Topbar() {
       {/* =====================================================================sidebar */}
 
       <div
-        className={`w-[180px] ${menu}  shadow-xl h-full flex flex-col fixed top-0 md:top-[60px] md:flex right-0  bg-gray-800 text-white border-gray-300 z-50`}
+        className={`navlinks w-[180px] ${menu}  shadow-xl h-full flex flex-col fixed top-0 md:top-[60px] md:flex right-0  bg-gray-800 text-white border-gray-300 z-50`}
       >
         <div className="top md:hidden w-full  flex flex-row items-center  px-3">
-          
           <svg
             onClick={menuHandler}
             xmlns="http://www.w3.org/2000/svg"
@@ -316,7 +297,7 @@ export default function Topbar() {
           </span>
         </div>
         <div>
-          <form  onSubmit={handleSubmit(registerHandler)}>
+          <form onSubmit={handleSubmit(registerHandler)}>
             <div className="relative px-3 mt-3 ">
               <button
                 type="submit"
@@ -338,14 +319,14 @@ export default function Topbar() {
                 {...register("email")}
                 className="block direction px-3 py-1.5 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="جستجو"
-                
               />
             </div>
           </form>
         </div>
         {/* ================================================================ items sidebar */}
-        <Link
+        <NavLink
           to="/"
+          ref={home}
           className="px-2 py-5 flex flex-row-reverse items-center hover:text-blue "
         >
           <svg
@@ -363,9 +344,10 @@ export default function Topbar() {
             />
           </svg>
           <span className=" mr-1 text-[16px] vazir ">صفحه اصلی</span>
-        </Link>
+        </NavLink>
         <div className="w-full px-2 mb-3 cursor-pointer">
-          <Link
+          <NavLink
+            ref={userr}
             to="/User"
             className="w-full flex flex-row-reverse justify-between  items-center hover:text-blue"
           >
@@ -387,10 +369,11 @@ export default function Topbar() {
 
               <span className=" mr-1 text-[16px] vazir">کاربران</span>
             </div>
-          </Link>
+          </NavLink>
         </div>
         <div className="w-full pt-2 px-2 mb-3 cursor-pointer">
-          <Link
+          <NavLink
+            ref={products}
             to="/Product"
             className="w-full flex flex-row-reverse justify-between items-center hover:text-blue "
           >
@@ -412,10 +395,11 @@ export default function Topbar() {
 
               <span className=" mr-1 text-[16px] vazir ">محصولات</span>
             </div>
-          </Link>
+          </NavLink>
         </div>
         <div className="w-full pt-2 px-2 mb-3 ">
-          <Link
+          <NavLink
+            ref={tickets}
             to="/Ticket"
             className="w-full flex flex-row-reverse justify-between  items-center hover:text-blue"
           >
@@ -439,9 +423,10 @@ export default function Topbar() {
                 تیکت ها
               </span>
             </div>
-          </Link>
+          </NavLink>
         </div>
-        <Link
+        <NavLink
+          ref={orders}
           to="/Orders"
           className="px-2 pt-2 mb-3 flex flex-row-reverse hover:text-blue "
         >
@@ -461,8 +446,9 @@ export default function Topbar() {
           </svg>
 
           <span className=" mr-1 text-[16px] vazir">سفارشات</span>
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
+          ref={comments}
           to="/Comments"
           className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue"
         >
@@ -482,11 +468,12 @@ export default function Topbar() {
           </svg>
 
           <span className=" mr-1 text-[16px] vazir ">نظرات</span>
-        </Link>
-  
+        </NavLink>
+
         {/* ================ */}
-        <Link
-          to="/Comments"
+        <NavLink
+          ref={profiles}
+          to="/Profile"
           className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue"
         >
           <svg
@@ -505,12 +492,12 @@ export default function Topbar() {
           </svg>
 
           <span className=" mr-1 text-[16px] vazir ">پروفایل</span>
-        </Link>
+        </NavLink>
         {/* ================ */}
 
-        <Link
-          to="/Comments"
-          className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue"
+        <div
+         
+          className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -526,9 +513,8 @@ export default function Topbar() {
               d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
             />
           </svg>
-
-          <span className=" mr-1 text-[16px] vazir ">خروج از حساب</span>
-        </Link>
+          <span onClick={logoutHandler} className=" mr-1 text-[16px] vazir ">خروج از حساب</span>
+        </div>
         {/* ================ */}
       </div>
     </>

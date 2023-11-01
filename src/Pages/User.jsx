@@ -1,5 +1,11 @@
 import { useForm } from "react-hook-form";
+import RemoveModal from "../components/Modals/RemoveModal";
+import AllContext from "../Context/Context";
+import { useContext, useState } from "react";
+import EditUserModal from "../components/Modals/EditUserModal";
 export default function User() {
+  const [edit, setEdit] = useState();
+  const context = useContext(AllContext);
   const {
     register,
     handleSubmit,
@@ -8,6 +14,17 @@ export default function User() {
   } = useForm();
 
   function registerHandler() {}
+
+  async function editHandler(item) {
+    await setEdit(item);
+    context.EditUser(true);
+  }
+
+
+  const allUser=[
+    {id:1 , name:'amirhosein12',raste:'admin',phone:'09198642898',email:'amirhosein12@gmail.com'},
+    {id:2 , name:'niloofar256',raste:'admin',phone:'09165602898',email:'admin@gmail.com'},
+  ]
 
   return (
     <div className="w-full pt-24  md:w-[calc(100%_-_180px)]">
@@ -179,63 +196,110 @@ export default function User() {
         <span className="text-[20px] md:text-[25px] vazir-bold flex-row-center">
           لیست کاربران
         </span>
-{/* ==================================================== */}
+        {/* ==================================================== */}
 
-<div className="flex flex-col vazir pt-5">
-  <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
-    <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
-      <div className="overflow-hidden  border-[2px] border-blue rounded-2xl">
-        <table className="min-w-full bg-white">
-          <thead className="bg-white border-b-[2px] blue border-blue ">
-            <tr>
-              <th scope="col" className="text-sm text-black pr-4 py-4 text-right max-w-[100px] ">
-               شماره
-              </th>
-              <th scope="col" className="text-sm text-black pr-14 py-4 text-right">
-                نام کاربری
-              </th> 
-              <th scope="col" className="text-sm text-black px-6 py-4 text-right">
-                عنوان
-              </th>
-              <th scope="col" className="text-sm text-black pr-10 py-4 text-right">
-                شماره تماس
-              </th>
-              <th scope="col" className="text-sm text-black pr-10 py-4 text-right">
-                
-              </th>
+        <div className="flex flex-col vazir pt-5">
+          <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
+            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
+              <div className="overflow-hidden  border-[2px] border-blue rounded-2xl">
+                <table className="min-w-full bg-white">
+                  <thead className="bg-white border-b-[2px] blue border-blue ">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-4 py-4 text-right max-w-[100px] "
+                      >
+                        شماره
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-14 py-4 text-right"
+                      >
+                        نام کاربری
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-14 py-4 text-right"
+                      >
+                        ایمیل
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black px-6 py-4 text-right"
+                      >
+                        عنوان
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-10 py-4 text-right"
+                      >
+                        شماره تماس
+                      </th>
+                      <th
+                        scope="col"
+                        className="text-sm text-black pr-10 py-4 text-right"
+                      ></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {allUser.map((user) => (
+                      <tr key={user.id} className="bg-gray-100 vazir-bold ">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
+                          {user.id}
+                        </td>
+                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          {user.name}
+                        </td>
+                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          {user.email}
+                        </td>
+                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          {user.raste}
+                        </td>
+                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          {user.phone}
+                        </td>
+                        <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold">
+                          <button  onClick={() => context.Delete(true)} className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl">
+                            حذف
+                          </button>
+                          <button  onClick={() => editHandler(user)} className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl">
+                            ویرایش
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
 
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="bg-gray-100 vazir-bold ">
-              <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">1</td>
-              <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                amirhosein saeedi
-              </td>
-              <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                ادمین
-              </td>
-              <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                09198642898
-              </td>
-              <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold">
-
-                <button className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl">حذف</button>
-                <button className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl">ویرایش</button>
-              </td>
-            </tr>  
-            
-          </tbody>
-        </table>
+        {/* ==================================================== */}
       </div>
-    </div>
-  </div>
-</div>
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-{/* ==================================================== */}
-
-      </div>
+      {context.deleteModal && <RemoveModal />}
+      {context.editUserModal && <EditUserModal item={edit} />}
     </div>
   );
 }

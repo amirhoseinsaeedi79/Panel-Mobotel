@@ -119,7 +119,7 @@ export default function LastTransactions() {
                 {lastTransactions.map((item) => (
                   <tr
                     key={item.id}
-                    className={` vazir-bold border-t-2 bg-white border-black `}
+                    className={` vazir-bold border-t-2 bg-white border-blue `}
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
                       {item.id}

@@ -38,7 +38,7 @@
   }
   .error {
     color: red;
-    margin-top: 10px;
+    margin-top: 1px;
     font-family: "Vazir";
     font-weight: 600;
   }
@@ -74,4 +74,80 @@
       RGBA(96, 165, 250)
     );
   }
+  .modal{
+    background-color:rgba(0,0,0,0.5);
+  }
+
+   .navlinks a.active{
+    color: #068fff;
+  }
+
+  /* ============== */
+  .modal-parent {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:99999;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.60);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s;
+    font-family: "Vazir";
+
+
+}
+
+.modal-parent.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.delete-modal {
+    background-color: white;
+    padding: 50px;
+    text-align: center;
+    border: 2.5px solid #ff0101;
+    background: white;
+    border-radius: 25px;
+    
+}
+
+
+.delete-modal-btns {
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.delete-btn {
+    width: 30%;
+    margin-top: 30px;
+    font-size: 1.3rem;
+    padding: 10px 0;
+    border-radius: 15px;
+}
+
+.login {
+  background-image: url(../public/images/bgUser.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index:9;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: visible;
+
+}
+  
+
 }

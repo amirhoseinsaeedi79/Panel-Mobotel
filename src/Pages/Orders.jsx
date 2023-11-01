@@ -2,7 +2,7 @@ export default function Orders() {
   return (
     <div className="w-full pt-24 md:w-[calc(100%_-_200px)] direction vazir">
       <div className="w-full flex-row-center">
-        <span className="vazir-bold text-[25px]">تیکت های کاربران </span>
+        <span className="vazir-bold text-[25px]">سفارشات کاربران </span>
       </div>
       <div className="flex flex-col vazir pt-5">
         <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">

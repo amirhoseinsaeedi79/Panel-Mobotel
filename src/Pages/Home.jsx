@@ -6,11 +6,12 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  XAxis,
 } from "recharts";
 import Growth from "../data-Recharts/Growth";
 import Sales from "../data-Recharts/sale";
 import Users from "../data-Recharts/Users.jsx";
-// import BigChart from "../data-Recharts/BigChart.jsx";
+import BigChart from "../data-Recharts/BigChart.jsx";
 import More from ".././components/More.jsx";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
@@ -81,12 +82,12 @@ export default function Home() {
                 <LineChart
                   width={130}
                   height={50}
-                  data={Sales}
+                  data={Growth}
                   margin={{ top: 5, right: 20, bottom: 0, left: 5 }}
                 >
                   <Line
                     type="monotone"
-                    dataKey="uv"
+                    dataKey="میزان"
                     stroke="#0f0f0f"
                     strokeWidth={2}
                   />
@@ -115,7 +116,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* =============================================================================growth */}
+          {/* =============================================================================sale */}
           <div className="sky grid grid-cols-1 p-3 items-center border-[2px] border-gray-300  mt-3 mx-3 rounded-xl shadow-lg">
             <div className="flex flex-row justify-between items-center">
               <div ref={sale} className="relative">
@@ -178,7 +179,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* =============================================================================growth */}
+          {/* =============================================================================user */}
           <div className="Purple grid grid-cols-1 p-3 items-center mt-3 mx-3 rounded-xl shadow-lg">
             <div className="flex flex-row justify-between items-center">
               <div ref={user} className="relative">
@@ -247,12 +248,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className=" h-[190px] lg:h-[280px] bg-white mx-3 mb-5 md:mx-3   rounded-xl border-[2px] border-blue mt-5 shadow-lg">
+        <div className=" h-[190px] lg:h-[300px] bg-white mx-3 mb-5 md:mx-3 pr-  rounded-xl border-[2px] border-blue mt-5 shadow-lg">
           <span className="w-full flex flex-row item-end justify-end text-[20px] px-2 pt-3 pb-2 vazir-bold">
             فروش ماهیانه
           </span>
-          <ResponsiveContainer width="100%" height="75%">
-            <AreaChart width={730} height={250} data={Growth}>
+          <ResponsiveContainer width="100%" height="85%">
+            <AreaChart width={730} height={250} data={BigChart}>
               <defs>
                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#068fff" stopOpacity={0.8} />
@@ -264,11 +265,11 @@ export default function Home() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="1 1" />
-
+              <XAxis dataKey="name" />
               <Tooltip />
               <Area
                 type="monotone"
-                dataKey="فروش"
+                dataKey="تراکنش"
                 stroke="#8884d8"
                 fillOpacity={1}
                 fill="url(#colorUv)"
