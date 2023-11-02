@@ -12,6 +12,7 @@ export default function Login() {
   function registerHandler(data) {
     (event) => event.preventDefault();
     if (data.name == "amirhosein12345" && data.password == "amir12345") {
+      localStorage.setItem('login',data.name)
       context.login(true)
       toast.success("به پنل خود خوش آمدید", {
         position: "top-center",
@@ -40,7 +41,7 @@ export default function Login() {
   return (
   <>
   {!context.islogin ? (
-        <div className="login ">
+        <div className="login w-[100%] h-[100vh]">
         <div className="rounded-xl bg-gray-800 bg-opacity-20 px-16 py-10 mx-20 shadow-lg backdrop-blur-md max-sm:px-6 border-2 border-blue ">
           <div className=" text-center flex flex-row justify-center vazir-bold">
             <span className=" text-white text-[60px]">MOBO</span>

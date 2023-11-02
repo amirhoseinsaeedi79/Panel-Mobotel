@@ -267,9 +267,8 @@ export default function Product() {
                         </td>
                       </tr>
                     </tbody>
-                  ))}
-`                  {context.deleteModal && <RemoveModal />}
-                  {context.editeModal && <EditModal item={edit} />}`
+                  ))}                 {context.deleteModal && <RemoveModal />}
+                  {context.editeModal && <EditModal item={edit} />}
                   {context.infoModal && <InfoModal item={info} />}
                 </table>
               </div>

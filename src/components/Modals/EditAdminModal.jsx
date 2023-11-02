@@ -2,25 +2,21 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import AllContext from "../../Context/Context";
 import ReactDOM from "react-dom";
-
-export default function EditUserModal(item) {
-  const context = useContext(AllContext);
-
+export default function EditAdminModal() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  function registerHandler() {}
-
   function exitHandler() {
-    context.EditUser(false);
+    context.showProfileAdmin(false);
   }
+  const context = useContext(AllContext);
+  function registerHandler() {}
 
   return ReactDOM.createPortal(
     <div className="modal-parent active direction">
-      <div className="w-[98%] md:w-[90%] lg:w-[60%]  flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1  ">
+      <div className="w-[98%] md:w-[349px]  flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1">
         <div className=" py-2 blue rounded-t-lg">
           <svg
             onClick={exitHandler}
@@ -37,28 +33,21 @@ export default function EditUserModal(item) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h3 className="text-[22px] vazir-bold md:pr-9 pr-3  text-gray-800">
-            ویرایش کاربر{" "}
+          <h3 className="text-[22px] vazir-bold md:pr-5 pr-3  text-gray-800">
+            ویرایش پروفایل{" "}
           </h3>
         </div>
         <form
           onSubmit={handleSubmit(registerHandler)}
-          className="md:px-10 px-3 py-3"
+          className="md:px-10 px-3 py-3  "
         >
-          {/* ===========================name */}
-          <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
-            <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
-                نام قبلی :
-              </label>
-              {/* <span className="text-lg ">{item.item.name}</span> */}
-            </div>
+          <div className="w-full flex flex-col  items-end  text-center">
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[18px] min-w-[75px]"
+                className="vazir-bold text-[18px] min-w-[30px]"
               >
-                نام جدید :
+                نام :
               </label>
               <div className="mr-2.5 flex flex-col">
                 <input
@@ -67,6 +56,10 @@ export default function EditUserModal(item) {
                   className=" mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
                   {...register("name", {
                     required: "وارد کردن نام اجباریست",
+                    minLength: {
+                      value: 8,
+                      message: "طول نام وارد شده کمتراز 8 کارکتر است",
+                    },
                   })}
                 />
                 <div className="error ">
@@ -74,21 +67,13 @@ export default function EditUserModal(item) {
                 </div>
               </div>
             </div>
-          </div>
-          {/* ===========================price */}
-          <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
-            <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
-                ایمیل قبلی :
-              </label>
-              {/* <span className="text-lg ">{item.item.email}</span> */}
-            </div>
+            {/* ============== */}
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#email"
-                className="vazir-bold text-[18px] min-w-[95px] "
+                className="vazir-bold text-[18px] min-w-[52px] "
               >
-                ایمیل جدید :
+                ایمیل :
               </label>
               <div className="mr-2.5 flex flex-col">
                 <input
@@ -104,50 +89,13 @@ export default function EditUserModal(item) {
                 </div>
               </div>
             </div>
-          </div>
-          {/* =========================== */}
-
-          <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
-            <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
-                عنوان قبلی :
-              </label>
-              {/* <span className="text-lg ">{item.item.raste}</span> */}
-            </div>
-            <div className="md:mr-3 flex flex-row items-baseline ">
-              <label
-                htmlFor="#raste"
-                className="vazir-bold text-[18px] min-w-[105px]"
-              >
-                عنوان جدید :
-              </label>
-              <div className="flex flex-col">
-                <input
-                  id="raste"
-                  type="text"
-                  className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
-                  {...register("raste", {
-                    required: "وارد کردن عنوان اجباریست",
-                  })}
-                />
-                <div className="error ">{errors.raste && errors.raste.message}</div>
-              </div>
-            </div>
-          </div>
-          {/* =========================== */}
-          <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
-            <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
-                شماره تماس قبلی :
-              </label>
-              {/* <span className="text-lg ">{item.item.phone} </span> */}
-            </div>
+            {/* ============== */}
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#phone"
-                className="vazir-bold text-[18px] min-w-[143px]"
+                className="vazir-bold text-[18px] min-w-[100px]"
               >
-                شماره تماس جدید :
+                شماره تماس :
               </label>
               <div className="flex flex-col mr-2.5">
                 <input
@@ -156,6 +104,14 @@ export default function EditUserModal(item) {
                   className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
                   {...register("phone", {
                     required: "وارد کردن شماره تماس اجباریست",
+                    minLength: {
+                      value: 11,
+                      message: "طول شماره وارد شده کمتراز11 کارکتر است",
+                    },
+                    maxLength: {
+                      value: 11,
+                      message: "طول شماره وارد شده صحیح نیست ",
+                    },
                   })}
                 />
                 <div className="error ">
@@ -163,19 +119,11 @@ export default function EditUserModal(item) {
                 </div>
               </div>
             </div>
-          </div>
-          {/* =========================== */}
-          <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
-            <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
-                رمز عبور قبلی :
-              </label>
-              {/* <span className="text-lg ">{item.item.password} </span> */}
-            </div>
+            {/* ============== */}
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#password"
-                className="vazir-bold text-[18px] min-w-[110px]"
+                className="vazir-bold text-[18px] min-w-[109px]"
               >
                 رمز عبور جدید :
               </label>
@@ -185,7 +133,11 @@ export default function EditUserModal(item) {
                   type="password"
                   className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
                   {...register("password", {
-                    required: "وارد کردن رمزعبور اجباریست",
+                    required: "وارد کردن رمز عبور اجباریست",
+                    minLength: {
+                      value: 8,
+                      message: "طول رمز وارد شده کمتراز8 کارکتر است",
+                    },
                   })}
                 />
                 <div className="error ">
@@ -193,9 +145,29 @@ export default function EditUserModal(item) {
                 </div>
               </div>
             </div>
+            {/* ============== */}
+            <div className="md:mr-3 flex flex-row items-baseline ">
+              <label
+                htmlFor="#image"
+                className="vazir-bold text-[18px] min-w-[93px]"
+              >
+                تصویر نمایه :
+              </label>
+              <div className="flex flex-col mr-2.5">
+                <input
+                  id="image"
+                  type="file"
+                  className="w-10/12 mb-1 text-black py-1 px-2  focus:outline-none rounded-xl "
+                  {...register("image", {
+                    required: "وارد کردن عکس اجباریست",
+                  })}
+                />
+                <div className="error ">
+                  {errors.image && errors.image.message}
+                </div>
+              </div>
+            </div>
           </div>
-
-          {/* ===========================image */}
           <div className="flex-row-center">
             <button className="max-w-[120px] px-6 py-1.5 hover:text-blue text-md vazir-bold rounded-xl border-[3px] border-blue mt-3 np">
               ارسال
@@ -203,6 +175,7 @@ export default function EditUserModal(item) {
           </div>
         </form>
       </div>
-    </div>,document.getElementById("modals-parent")
+    </div>,
+    document.getElementById("modals-parent")
   );
 }

@@ -12,15 +12,14 @@ export default function Topbar() {
     reset();
   }
   function logoutHandler() {
-    context.login(false)
+    localStorage.clear();
+    context.login(false);
   }
 
   const [menu, setMenu] = useState("hidden");
   const [status, setStatus] = useState(false);
   const [profileStatus, setProfileStatus] = useState(false);
   const [profile, setProfile] = useState("hidden");
-  const [massageStatus, setMassageStatus] = useState(false);
-  const [massage, setMassage] = useState("hidden");
   const [notficationStatus, setnotficationStatus] = useState(false);
   const [notfication, setnotfication] = useState("hidden");
 
@@ -41,8 +40,6 @@ export default function Topbar() {
   document.body.addEventListener("click", function outsideTopbar() {
     setProfile("hidden");
     setProfileStatus(false);
-    setMassage("hidden");
-    setMassageStatus(false);
     setnotfication("hidden");
     setnotficationStatus(false);
   });
@@ -71,23 +68,10 @@ export default function Topbar() {
     if (profileStatus == false) {
       setProfile("flex");
       setProfileStatus(true);
-      setMassage("hidden");
       setnotfication("hidden");
     } else {
       setProfile("hidden");
       setProfileStatus(false);
-    }
-  }
-  function massageHandler(e) {
-    e.stopPropagation();
-    if (massageStatus == false) {
-      setMassage("flex");
-      setMassageStatus(true);
-      setProfile("hidden");
-      setnotfication("hidden");
-    } else {
-      setMassage("hidden");
-      setMassageStatus(false);
     }
   }
   function notficationHandler(e) {
@@ -96,7 +80,6 @@ export default function Topbar() {
       setnotfication("flex");
       setnotficationStatus(true);
       setProfile("hidden");
-      setMassage("hidden");
     } else {
       setnotfication("hidden");
       setnotficationStatus(false);
@@ -110,11 +93,12 @@ export default function Topbar() {
     <>
       <div className="w-full h-[60px] border-b-[1px] bg-white border-gray-300 z-50 shadow-md fixed">
         <div className=" px-2 flex flex-row-reverse justify-between ">
-          <img
+          <Link
+            to="/"
             className="w-[120px] h-full mt-3 hidden md:flex cursor-pointer"
-            src="images/logo.jpg"
-            alt="logo"
-          />
+          >
+            <img src="images/logo.jpg" alt="logo" />
+          </Link>
           <svg
             onClick={() => topmenuHandler(event)}
             xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +128,7 @@ export default function Topbar() {
 
             <div
               onClick={() => statusProfile(event)}
-              className={`w-[200px] h-[230px] vazir rounded-2xl ${profile} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
+              className={`w-[210px] h-[230px] vazir rounded-2xl ${profile} flex-col pt-3 absolute bg-white border-[3px] border-indigo-300 shadow-lg top-[60px] left-[10px]`}
             >
               <div className="w-full flex-col-center ">
                 <img
@@ -160,7 +144,7 @@ export default function Topbar() {
               </div>
               <div className="w-full pt-3 flex flex-col items-end pr-2 ">
                 <div className=" flex flex-row  cursor-pointer hover:text-blue ">
-                  <Link to="/Profile" className="mr-1 text-[15px]">
+                  <Link to="/Profile" onClick={() => profileHandler(event)} className="mr-1 text-[15px] ">
                     پروفایل + ویرایش
                   </Link>
                   <svg
@@ -180,7 +164,9 @@ export default function Topbar() {
                 </div>
                 {/* ............... */}
                 <div className=" flex flex-row  cursor-pointer mt-2 hover:text-blue">
-                  <span onClick={logoutHandler} className="mr-1 text-[15px]">خروج</span>
+                  <span onClick={logoutHandler} className="mr-1 text-[15px]">
+                    خروج
+                  </span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -199,47 +185,130 @@ export default function Topbar() {
               </div>
             </div>
             {/* ==================================================== */}
-            <svg
-              onClick={() => notficationHandler(event)}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 ml-3 cursor-pointer"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-              />
-            </svg>
+            <div onClick={() => notficationHandler(event)} className="relative">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 ml-3 cursor-pointer z-50"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                />
+              </svg>
+              <div
+                onClick={() => notficationHandler(event)}
+                className="circle absolute top-0 left-6 cursor-pointer"
+              ></div>
+            </div>
             {/* ==================================================== notfication */}
             <div
-              className={`w-[200px] h-[260px] vazir rounded-2xl ${notfication} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
-            ></div>
-            {/* ==================================================== */}
-            <svg
-              onClick={() => massageHandler(event)}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 ml-3 cursor-pointer"
+              className={`w-[280px] h-[270px] vazir rounded-2xl ${notfication} flex-col absolute bg-white border-[3px] border-blue shadow-lg top-[60px] left-[10px]`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-              />
-            </svg>
-            {/* ==================================================== massage */}
-            <div
-              className={`w-[200px] h-[260px] vazir rounded-2xl ${massage} flex-col pt-3 absolute bg-white border-2 border-blue shadow-lg top-[60px] left-[10px]`}
-            ></div>
-            {/* ==================================================== */}
+              <div className=" pb-3  flex justify-between px-1 bg-blue pt-3 rounded-t-xl">
+                <span className="text-[14px] text-black cursor-pointer pl-3 ">
+                  پاک کردن همه
+                </span>
+                <span className=" vazir-bold pr-3  text-gray-800">
+                  اعلانات جدید
+                </span>
+              </div>
+              <div className="allNotfication direction py-1 px-1">
+                <div className="flex flex-row hover:bg-indigo-300 p-1 mb-2 rounded-xl ">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-7 h-7 text-blue"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
 
+                  <div className="mr-3">
+                    <p className="text-[14px] vazir-bold">
+                      کاربر جدید ثبت نام کرد
+                    </p>
+                    <p className="text-[12px]">17 دقیقه پیش</p>
+                  </div>
+                </div>
+                {/* ============================ */}
+                <div className="flex flex-row hover:bg-indigo-300 p-1 mb-2 rounded-xl">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-7 h-7 text-blue"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                    />
+                  </svg>
+
+                  <div className="mr-3">
+                    <p className="text-[14px] vazir-bold">سفارش جدید ثبت شد</p>
+                    <p className="text-[12px]">30 دقیقه پیش</p>
+                  </div>
+                </div>
+                {/* ======================== */}
+                <div className="flex flex-row hover:bg-indigo-300 p-1 mb-2 rounded-xl">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-7 h-7 text-blue"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
+                    />
+                  </svg>
+
+                  <div className="mr-3">
+                    <p className="text-[14px] vazir-bold">محدودیت سرور</p>
+                    <p className="text-[12px]">42 دقیقه پیش</p>
+                  </div>
+                </div>
+                {/* ============================ */}
+                <div className="flex flex-row hover:bg-indigo-300 p-1 rounded-xl">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-7 h-7 text-blue"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                    />
+                  </svg>
+
+                  <div className="mr-3">
+                    <p className="text-[14px] vazir-bold">سفارش جدید ثبت شد</p>
+                    <p className="text-[12px]">30 دقیقه پیش</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -495,10 +564,7 @@ export default function Topbar() {
         </NavLink>
         {/* ================ */}
 
-        <div
-         
-          className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue cursor-pointer"
-        >
+        <div className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -513,7 +579,9 @@ export default function Topbar() {
               d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
             />
           </svg>
-          <span onClick={logoutHandler} className=" mr-1 text-[16px] vazir ">خروج از حساب</span>
+          <span onClick={logoutHandler} className=" mr-1 text-[16px] vazir ">
+            خروج از حساب
+          </span>
         </div>
         {/* ================ */}
       </div>

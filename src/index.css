@@ -49,7 +49,7 @@
     background-image: url(../public/images/body_back4.png);
     background-attachment: fixed;
   }
-  .bgsidebar{
+  .bgsidebar {
     background-image: url(../public/images/sideBack3.jpg);
     background-attachment: fixed;
   }
@@ -74,80 +74,112 @@
       RGBA(96, 165, 250)
     );
   }
-  .modal{
-    background-color:rgba(0,0,0,0.5);
+  .modal {
+    background-color: rgba(0, 0, 0, 0.5);
   }
-
-   .navlinks a.active{
+  .navlinks a.active {
     color: #068fff;
   }
-
-  /* ============== */
-  .modal-parent {
+  .modal-parent,
+  .form-container {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index:99999;
+    z-index: 99999;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.60);
+    background-color: rgba(0, 0, 0, 0.65);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: 0.4s;
     font-family: "Vazir";
-
-
-}
-
-.modal-parent.active {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .modal-parent.active {
     opacity: 1;
     visibility: visible;
-}
-
-.delete-modal {
+  }
+  .delete-modal {
     background-color: white;
     padding: 50px;
     text-align: center;
     border: 2.5px solid #ff0101;
     background: white;
     border-radius: 25px;
-    
-}
-
-
-.delete-modal-btns {
+  }
+  .delete-modal-btns {
     display: flex;
     justify-content: center;
     column-gap: 20px;
-}
-
-.delete-btn {
+  }
+  .delete-btn {
     width: 30%;
     margin-top: 30px;
     font-size: 1.3rem;
     padding: 10px 0;
     border-radius: 15px;
-}
-
-.login {
-  background-image: url(../public/images/bgUser.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index:9;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  visibility: visible;
-
-}
-  
-
+  }
+  .login {
+    background-image: url(../public/images/bgUser.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: visible;
+  }
+  .circle {
+    background: #068fff;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .circle::before {
+    background-color: #068fff;
+    content: "";
+    display: table;
+    border-radius: 50%;
+    position: absolute;
+  }
+  .circle::before,
+  .pulse {
+    animation-name: pulse;
+    animation-duration: 0.9s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+  }
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+      width: 7px;
+      height: 7px;
+      right: 0;
+      top: 0;
+    }
+    95% {
+      opacity: 0.2;
+      right: -10.5px;
+      top: -10.5px;
+      width: 28px;
+      height: 28px;
+    }
+    100% {
+      opacity: 0;
+      width: 7px;
+      height: 7px;
+      right: 0;
+      top: 0;
+    }
+  }
 }

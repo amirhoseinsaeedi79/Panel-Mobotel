@@ -2,18 +2,17 @@ import { useContext } from "react";
 import ReactDOM from "react-dom";
 import AllContext from "../../Context/Context";
 
-export default function ShowCommentModal(prop) {
-
+export default function ShowTicketModal(prop) {
   const context = useContext(AllContext);
   function showHandler() {
-    context.showComment(false);
+    context.showTicket(false);
   }
   return ReactDOM.createPortal(
     <div className="modal-parent active direction">
       <div className="w-[98%] md:w-[90%] lg:w-[60%] flex flex-col shadow-2xl rounded-xl mx-1  ">
         <div className=" py-2 blue rounded-xl  ">
           <svg
-           onClick={ showHandler}
+            onClick={showHandler}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
