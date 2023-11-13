@@ -12,7 +12,12 @@ const AllContext = createContext({
   ShowTicket: false,
   orderModa: false,
   ShowProfile: false,
+  deleteUser: false,
+  AllUser: [],
+  AllProduct: {},
+  admin: [],
   Delete: () => {},
+  Deleteuser: () => {},
   login: () => {},
   Edit: () => {},
   Info: () => {},
@@ -23,6 +28,9 @@ const AllContext = createContext({
   answerTicket: () => {},
   showOrder: () => {},
   showProfileAdmin: () => {},
+  RenderRemoveProduct: () => {},
+  RenderUser: () => {},
+  RenderAdmin: () => {},
 });
 
 export default AllContext;

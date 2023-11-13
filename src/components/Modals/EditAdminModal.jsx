@@ -2,7 +2,11 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import AllContext from "../../Context/Context";
 import ReactDOM from "react-dom";
-export default function EditAdminModal() {
+import { PutUser } from "../../Services/Axios/Requests/Users";
+import { toast } from "react-toastify";
+export default function EditAdminModal(prop) {
+  const context = useContext(AllContext);
+
   const {
     register,
     handleSubmit,
@@ -11,8 +15,31 @@ export default function EditAdminModal() {
   function exitHandler() {
     context.showProfileAdmin(false);
   }
-  const context = useContext(AllContext);
-  function registerHandler() {}
+
+  function registerHandler(data) {
+    const editadmin = {
+      username: data.name,
+      email: data.email,
+      phone: data.phone,
+      password: data.password,
+      image: "images/profile.jpg",
+    };
+
+    PutUser(editadmin, 1).then((res) => context.RenderAdmin(res.data));
+
+    toast.success("اطلاعات ویرایش شد", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    context.showProfileAdmin(false);
+  }
 
   return ReactDOM.createPortal(
     <div className="modal-parent active direction">
@@ -159,7 +186,7 @@ export default function EditAdminModal() {
                   type="file"
                   className="w-10/12 mb-1 text-black py-1 px-2  focus:outline-none rounded-xl "
                   {...register("image", {
-                    required: "وارد کردن عکس اجباریست",
+                    // required: "وارد کردن عکس اجباریست",
                   })}
                 />
                 <div className="error ">

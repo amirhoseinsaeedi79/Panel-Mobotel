@@ -1,0 +1,901 @@
+{
+  "user": [
+    {
+      "username": "amirhosein12345",
+      "email": "amir@gmail.com",
+      "password": "amir12345",
+      "phone": "09198642898",
+      "rasteh": "ادمین",
+      "id": 1,
+      "image": "images/profile.jpg"
+    },
+    {
+      "username": "Amirhosein",
+      "email": "amir@gmail.com",
+      "password": "aaaaaaaaaa",
+      "phone": "09123456789",
+      "rasteh": "معمولی",
+      "id": 2
+    }
+  ],
+  "comment": [],
+  "admins": [
+    
+    {
+      "username": "amirhosein12345",
+      "email": "amirhosein-saeedi@gmail.com",
+      "password": "amir12345",
+      "phone": "09198642898",
+      "rasteh": "ادمین",
+      "id": 1
+    }
+  ],
+  "ticket": [],
+  "cart": [],
+  "product": [
+    {
+      "id": 1,
+      "name": "ایرپاد گیمینگ مدل 27 سانشاین ",
+      "ctg": "airpod",
+      "price": "1,200,000",
+      "quantity": "500",
+      "imgae": "airpod (1).webp"
+    },
+    {
+      "id": 2,
+      "name": "ایرپاد طلایی مدل 90 اولتراسونیک",
+      "ctg": "airpod",
+      "price": "750,000",
+      "quantity": "500",
+      "imgae": "airpod (2).webp"
+    },
+    {
+      "id": 3,
+      "name": "ایرپاد پرو مدل 58 سامسونگ",
+      "ctg": "airpod",
+      "price": "2,000,000",
+      "quantity": "500",
+      "imgae": "airpod (3).webp"
+    },
+    {
+      "id": 4,
+      "name": "ایرپاد کلاسیک مدل 10 سامسونگ",
+      "ctg": "airpod",
+      "price": "900,000",
+      "quantity": "500",
+      "imgae": "airpod (4).webp"
+    },
+    {
+      "id": 5,
+      "name": "ایرپاد دارای صفحه نمایش مدل 66",
+      "ctg": "airpod",
+      "price": "800,000",
+      "quantity": "500",
+      "imgae": "airpod (5).webp"
+    },
+    {
+      "id": 6,
+      "name": "ایرپاد یونیک 56 سامسونگ",
+      "ctg": "airpod",
+      "price": "2,300,000",
+      "quantity": "500",
+      "imgae": "airpod (6).webp"
+    },
+    {
+      "id": 7,
+      "name": "ایرپاد سانشاین طرح ساده مدل 21",
+      "ctg": "airpod",
+      "price": "1,950,000",
+      "quantity": "500",
+      "imgae": "airpod (7).webp"
+    },
+    {
+      "id": 8,
+      "name": "ایرپاد دارای صفحه نمایش مدل 687 ",
+      "ctg": "airpod",
+      "price": "500,000",
+      "quantity": "500",
+      "imgae": "airpod (8).webp"
+    },
+    {
+      "id": 9,
+      "name": "ایرپاد سانشاین طرح ساده مدل 75",
+      "ctg": "airpod",
+      "price": "1,300,000",
+      "quantity": "500",
+      "imgae": "airpod (9).webp"
+    },
+    {
+      "id": 10,
+      "name": "ایرپاد گیمینگ لایت پرو 25",
+      "ctg": "airpod",
+      "price": "1,000,000",
+      "quantity": "500",
+      "imgae": "airpod (10).webp"
+    },
+    {
+      "id": 12,
+      "name": "ایرپاد گیمینگ لایت پرو 24",
+      "ctg": "airpod",
+      "price": "900,000",
+      "quantity": "500",
+      "imgae": "airpod (11).webp"
+    },
+    {
+      "id": 13,
+      "name": "شارژر وایرلس + سیمی سامسونگ مدل 12",
+      "ctg": "charger",
+      "price": "900,000",
+      "quantity": "500",
+      "imgae": "charger (0).jpg"
+    },
+    {
+      "id": 14,
+      "name": "آداپوتر شارژر مدل 22 آنکر",
+      "ctg": "charger",
+      "price": "1,200,000",
+      "quantity": "500",
+      "imgae": "charger (1).webp"
+    },
+    {
+      "id": 15,
+      "name": "شارژر سوکتی دارای صفحه نمایش سامسونگ",
+      "ctg": "charger",
+      "price": "750,000",
+      "quantity": "500",
+      "imgae": "charger (2).jpg"
+    },
+    {
+      "id": 16,
+      "name": "شارژر 5 گانه فندکی ماشین",
+      "ctg": "charger",
+      "price": "2,000,000",
+      "quantity": "500",
+      "imgae": "charger (2).webp"
+    },
+    {
+      "id": 17,
+      "name": "شارژر وایرلس آمازون مدل 45",
+      "ctg": "charger",
+      "price": "900,000",
+      "quantity": "500",
+      "imgae": "charger (3).jpg"
+    },
+    {
+      "id": 18,
+      "name": "شارژر سیمی مدل 32 سامسونگ",
+      "ctg": "charger",
+      "price": "800,000",
+      "quantity": "500",
+      "imgae": "charger (3).webp"
+    },
+    {
+      "id": 19,
+      "name": "شارژر وایرلس + سیمی آیفون مدل 12",
+      "ctg": "charger",
+      "price": "2,300,000",
+      "quantity": "500",
+      "imgae": "charger (4).jpg"
+    },
+    {
+      "id": 20,
+      "name": "شارژر سیمی 67 وات سامسونگ",
+      "ctg": "charger",
+      "price": "1,950,000",
+      "quantity": "500",
+      "imgae": "charger (4).webp"
+    },
+    {
+      "id": 21,
+      "name": "شارژر 3 کاره 67 وات مدل 41",
+      "ctg": "charger",
+      "price": "500,000",
+      "quantity": "500",
+      "imgae": "charger (5).jpg"
+    },
+    {
+      "id": 22,
+      "name": "آداپتور فست شارژ کوبالت ",
+      "ctg": "charger",
+      "price": "1,300,000",
+      "quantity": "500",
+      "imgae": "charger (5).webp"
+    },
+    {
+      "id": 23,
+      "name": "شارژ 2 کاره پیناز مدل 95",
+      "ctg": "charger",
+      "price": "1,000,000",
+      "quantity": "500",
+      "imgae": "charger (6).jpg"
+    },
+    {
+      "id": 24,
+      "name": "شارژر فست سامسونگ مدل 33",
+      "ctg": "charger",
+      "price": "900,000",
+      "quantity": "500",
+      "imgae": "charger (7).jpg"
+    },
+    {
+      "id": 25,
+      "name": "کاور گوشی سامسونگ مدل 165",
+      "ctg": "cover",
+      "price": "150,000",
+      "quantity": "500",
+      "imgae": "cover (1).webp"
+    },
+    {
+      "id": 26,
+      "name": "کاور گوشی سامسونگ مدل 227",
+      "ctg": "cover",
+      "price": "300,000",
+      "quantity": "500",
+      "imgae": "cover (2).webp"
+    },
+    {
+      "id": 27,
+      "name": "کاور گوشی سامسونگ مدل 385",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (3).webp"
+    },
+    {
+      "id": 28,
+      "name": "کاور گوشی سامسونگ مدل 054",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (4).webp"
+    },
+    {
+      "id": 29,
+      "name": "کاور گوشی سامسونگ مدل 22222",
+      "ctg": "cover",
+      "price": "150,000",
+      "quantity": "500",
+      "imgae": "cover (5).webp"
+    },
+    {
+      "id": 30,
+      "name": "کاور گوشی سامسونگ مدل 502",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (6).webp"
+    },
+    {
+      "id": 31,
+      "name": "کاور گوشی سامسونگ مدل 632",
+      "ctg": "cover",
+      "price": "300,000",
+      "quantity": "500",
+      "imgae": "cover (7).webp"
+    },
+    {
+      "id": 32,
+      "name": "کاور گوشی سامسونگ مدل 796",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (8).webp"
+    },
+    {
+      "id": 33,
+      "name": "کاور گوشی سامسونگ مدل 844",
+      "ctg": "cover",
+      "price": "150,000",
+      "quantity": "500",
+      "imgae": "cover (9).webp"
+    },
+    {
+      "id": 34,
+      "name": "کاور گوشی سامسونگ مدل 365",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (10).webp"
+    },
+    {
+      "id": 35,
+      "name": "کاور گوشی آیفون 13 مدل 229",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (11).webp"
+    },
+    {
+      "id": 36,
+      "name": "کاور گوشی سامسونگ مدل 659",
+      "ctg": "cover",
+      "price": "150,000",
+      "quantity": "500",
+      "imgae": "cover (12).webp"
+    },
+    {
+      "id": 37,
+      "name": "کاور گوشی سامسونگ مدل 419",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (13).webp"
+    },
+    {
+      "id": 38,
+      "name": "کاور گوشی آیفون 13 مدل 255",
+      "ctg": "cover",
+      "price": "300,000",
+      "quantity": "500",
+      "imgae": "cover (14).webp"
+    },
+    {
+      "id": 39,
+      "name": "کاور گوشی آیفون 12 مدل 365",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (15).webp"
+    },
+    {
+      "id": 40,
+      "name": "کاور گوشی آیفون مدل 488",
+      "ctg": "cover",
+      "price": "150,000",
+      "quantity": "500",
+      "imgae": "cover (16).webp"
+    },
+    {
+      "id": 41,
+      "name": "کاور گوشی سامسونگ مدل 985",
+      "ctg": "cover",
+      "price": "300,000",
+      "quantity": "500",
+      "imgae": "cover (17).webp"
+    },
+    {
+      "id": 42,
+      "name": "کاور گوشی آیفون 13 مدل 510",
+      "ctg": "cover",
+      "price": "150,000",
+      "quantity": "500",
+      "imgae": "cover (1).jpg"
+    },
+    {
+      "id": 43,
+      "name": "کاور گوشی آیفون 6 مدل 153",
+      "ctg": "cover",
+      "price": "300,000",
+      "quantity": "500",
+      "imgae": "cover (2).jpg"
+    },
+    {
+      "id": 44,
+      "name": "کاور گوشی آیفون 6 مدل 333",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (3).jpg"
+    },
+    {
+      "id": 45,
+      "name": "کاور گوشی آیفون 12 مدل 753",
+      "ctg": "cover",
+      "price": "150,000",
+      "quantity": "500",
+      "imgae": "cover (4).jpg"
+    },
+    {
+      "id": 46,
+      "name": "کاور گوشی آیفون 12 مدل 363",
+      "ctg": "cover",
+      "price": "300,000",
+      "quantity": "500",
+      "imgae": "cover (5).jpg"
+    },
+    {
+      "id": 74,
+      "name": "کاور گوشی آیفون 14 مدل 367",
+      "ctg": "cover",
+      "price": "200,000",
+      "quantity": "500",
+      "imgae": "cover (6).jpg"
+    },
+    {
+      "id": 78,
+      "name": "کاور گوشی آیفون 12 مدل 143",
+      "ctg": "cover",
+      "price": "150,000",
+      "quantity": "500",
+      "imgae": "cover (7).jpg"
+    },
+    {
+      "id": 79,
+      "name": " پاور بانک 59 مدل 12 ریمکس",
+      "ctg": "power",
+      "price": "950,000",
+      "quantity": "500",
+      "imgae": "power (1).webp"
+    },
+    {
+      "id": 80,
+      "name": "پاور بانک 10000 مدل 15 ریمکس",
+      "ctg": "power",
+      "price": "1,250,000",
+      "quantity": "500",
+      "imgae": "power (2).webp"
+    },
+    {
+      "id": 81,
+      "name": "پاور بانک 5000 مدل 36 سامسونگ",
+      "ctg": "power",
+      "price": "950,000",
+      "quantity": "500",
+      "imgae": "power (3).webp"
+    },
+    {
+      "id": 82,
+      "name": "پاور بانک 20000 مدل پارچه ای سامسونگ",
+      "ctg": "power",
+      "price": "2,550,000",
+      "quantity": "500",
+      "imgae": "power (4).webp"
+    },
+    {
+      "id": 83,
+      "name": "پاور بانک 20000 مدل 36 ای سامسونگ",
+      "ctg": "power",
+      "price": "2,550,000",
+      "quantity": "500",
+      "imgae": "power (5).webp"
+    },
+    {
+      "id": 84,
+      "name": "پاور بانک 8000 مدل 65 ای هیسکا",
+      "ctg": "power",
+      "price": "1,250,000",
+      "quantity": "500",
+      "imgae": "power (6).webp"
+    },
+    {
+      "id": 85,
+      "name": "پاور بانک 10000 مدل فانتزی هیسکا",
+      "ctg": "power",
+      "price": "1,250,000",
+      "quantity": "500",
+      "imgae": "power (7).webp"
+    },
+    {
+      "id": 86,
+      "name": "پاور بانک 5000 مدل لایتی هیسکا",
+      "ctg": "power",
+      "price": "950,000",
+      "quantity": "500",
+      "imgae": "power (8).webp"
+    },
+    {
+      "id": 87,
+      "name": "پاور بانک 20000 مدل 365 هوکو",
+      "ctg": "power",
+      "price": "2,550,000",
+      "quantity": "500",
+      "imgae": "power (9).webp"
+    },
+    {
+      "id": 88,
+      "name": "پاور بانک 20000 مدل 378 هیسکا",
+      "ctg": "power",
+      "price": "2,550,000",
+      "quantity": "500",
+      "imgae": "power (10).webp"
+    },
+    {
+      "id": 89,
+      "name": "پاور بانک 15000 مدل مانیتور دار سامسونگ",
+      "ctg": "power",
+      "price": "1,250,000",
+      "quantity": "500",
+      "imgae": "power (11).webp"
+    },
+    {
+      "id": 90,
+      "name": "پاور بانک 22000 مدل 18 سامسونگ",
+      "ctg": "power",
+      "price": "3,000,000",
+      "quantity": "500",
+      "imgae": "power (12).webp"
+    },
+    {
+      "id": 91,
+      "name": "ساعت هوشمند هیسکا مدل 256 ",
+      "ctg": "watch",
+      "price": "3,000,000",
+      "quantity": "500",
+      "imgae": "watch (1).webp"
+    },
+    {
+      "id": 92,
+      "name": "ساعت هوشمند آیفون مدل 333 ",
+      "ctg": "watch",
+      "price": "3,600,000",
+      "quantity": "500",
+      "imgae": "watch (2).webp"
+    },
+    {
+      "id": 93,
+      "name": "ساعت هوشمند آیفون مدل 256 ",
+      "ctg": "watch",
+      "price": "1,800,000",
+      "quantity": "500",
+      "imgae": "watch (3).webp"
+    },
+    {
+      "id": 94,
+      "name": "ساعت هوشمند سامسونگ مدل 556",
+      "ctg": "watch",
+      "price": "2,000,000",
+      "quantity": "500",
+      "imgae": "watch (4).webp"
+    },
+    {
+      "id": 95,
+      "name": "ساعت هوشمند هیسکا مدل 994 ",
+      "ctg": "watch",
+      "price": "3,050,000",
+      "quantity": "500",
+      "imgae": "watch (5).webp"
+    },
+    {
+      "id": 96,
+      "name": "ساعت هوشمند آیفون 3 موتوره مدل 257 ",
+      "ctg": "watch",
+      "price": "6,000,000",
+      "quantity": "500",
+      "imgae": "watch (6).webp"
+    },
+    {
+      "id": 97,
+      "name": "ساعت هوشمند سامسونگ مدل 986 ",
+      "ctg": "watch",
+      "price": "2,800,000",
+      "quantity": "500",
+      "imgae": "watch (7).webp"
+    },
+    {
+      "id": 98,
+      "name": "ساعت هوشمند سامسونگ مدل 230 ",
+      "ctg": "watch",
+      "price": "3,500,000",
+      "quantity": "500",
+      "imgae": "watch (1).jpg"
+    },
+    {
+      "id": 99,
+      "name": "ساعت هوشمند هیسکا مدل 695 ",
+      "ctg": "watch",
+      "price": "1,850,000",
+      "quantity": "500",
+      "imgae": "watch (2).jpg"
+    },
+    {
+      "id": 100,
+      "name": "ساعت هوشمند سامسونگ مدل 666 ",
+      "ctg": "watch",
+      "price": "1,000,000",
+      "quantity": "500",
+      "imgae": "watch (3).jpg"
+    },
+    {
+      "id": 101,
+      "name": "ساعت هوشمند سامسونگ مدل 050 ",
+      "ctg": "watch",
+      "price": "3,500,000",
+      "quantity": "500",
+      "imgae": "watch (4).jpg"
+    },
+    {
+      "id": 102,
+      "name": "ساعت هوشمند هیسکا مدل 309 ",
+      "ctg": "watch",
+      "price": "1,200,000",
+      "quantity": "500",
+      "imgae": "watch (5).jpg"
+    },
+    {
+      "id": 103,
+      "name": "ساعت هوشمند سامسونگ مدل 980 ",
+      "ctg": "watch",
+      "price": "900,000",
+      "quantity": "500",
+      "imgae": "watch (6).jpg"
+    },
+    {
+      "id": 104,
+      "name": "هدفون گیمینگ با میکروفون مدل 25 ",
+      "ctg": "headphon",
+      "price": "2,100,000",
+      "quantity": "500",
+      "imgae": "headphon (1).webp"
+    },
+    {
+      "id": 105,
+      "name": "هدفون ساده نیا مدل 201 ",
+      "ctg": "headphon",
+      "price": "900,000",
+      "quantity": "500",
+      "imgae": "headphon (2).webp"
+    },
+    {
+      "id": 106,
+      "name": " هدفون گیمینگ با میکروفون لایت رنگی مدل 383 ",
+      "ctg": "headphon",
+      "price": "2,900,000",
+      "quantity": "500",
+      "imgae": "headphon (3).webp"
+    },
+    {
+      "id": 107,
+      "name": "هدفون گیمینگ با میکروفون مدل 689 ",
+      "ctg": "headphon",
+      "price": "2,500,000",
+      "quantity": "500",
+      "imgae": "headphon (4).webp"
+    },
+    {
+      "id": 108,
+      "name": "هدفون کاسوکا مدل 678 ",
+      "ctg": "headphon",
+      "price": "1,500,000",
+      "quantity": "500",
+      "imgae": "headphon (5).webp"
+    },
+    {
+      "id": 109,
+      "name": "هدفون معمولی با میکروفون مدل 545 ",
+      "ctg": "headphon",
+      "price": "1,900,000",
+      "quantity": "500",
+      "imgae": "headphon (6).webp"
+    },
+    {
+      "id": 110,
+      "name": "هدفون هیسکا مدل 956 ",
+      "ctg": "headphon",
+      "price": "1,100,000",
+      "quantity": "500",
+      "imgae": "headphon (1).jpg"
+    },
+    {
+      "id": 111,
+      "name": "هدفون هیسکا مدل 486 ",
+      "ctg": "headphon",
+      "price": "900,000",
+      "quantity": "500",
+      "imgae": "headphon (2).jpg"
+    },
+    {
+      "id": 112,
+      "name": " هدفون اپراتوری مدل 254 ",
+      "ctg": "headphon",
+      "price": "2,900,000",
+      "quantity": "500",
+      "imgae": "headphon (3).jpg"
+    },
+    {
+      "id": 113,
+      "name": "هدفون هیسکا مدل 850 ",
+      "ctg": "headphon",
+      "price": "3,500,000",
+      "quantity": "500",
+      "imgae": "headphon (4).jpg"
+    },
+    {
+      "id": 114,
+      "name": "هدفون اداری مدل 355 ",
+      "ctg": "headphon",
+      "price": "1,800,000",
+      "quantity": "500",
+      "imgae": "headphon (5).jpg"
+    },
+    {
+      "id": 115,
+      "name": "هدفون هیسکا مدل 558 ",
+      "ctg": "headphon",
+      "price": "2,050,000",
+      "quantity": "500",
+      "imgae": "headphon (6).jpg"
+    },
+    {
+      "id": 116,
+      "name": "فلش 32 گیگ رداستون",
+      "ctg": "flash",
+      "price": "2,500,000",
+      "quantity": "500",
+      "imgae": "flash1.webp"
+    },
+    {
+      "id": 117,
+      "name": "فلش 32 گیگ سن دیسک",
+      "ctg": "flash",
+      "price": "2,200,000",
+      "quantity": "500",
+      "imgae": "flash2.webp"
+    },
+    {
+      "id": 118,
+      "name": "فلش 64 گیگ اچ پی",
+      "ctg": "flash",
+      "price": "2,000,000",
+      "quantity": "500",
+      "imgae": "flash3.webp"
+    },
+    {
+      "id": 119,
+      "name": "فلش 16 گیگ سیو",
+      "ctg": "flash",
+      "price": "2,000,000",
+      "quantity": "500",
+      "imgae": "flash4.webp"
+    },
+    {
+      "id": 120,
+      "name": "فلش 8 گیگ نتاک",
+      "ctg": "flash",
+      "price": "1,050,000",
+      "quantity": "500",
+      "imgae": "flash5.webp"
+    },
+    {
+      "id": 121,
+      "name": "فلش 32 گیگ کوییک پلاس",
+      "ctg": "flash",
+      "price": "2,550,000",
+      "quantity": "500",
+      "imgae": "flash6.webp"
+    },
+    {
+      "id": 122,
+      "name": "فلش 32 گیگ کویین سیلور",
+      "ctg": "flash",
+      "price": "2,300,000",
+      "quantity": "500",
+      "imgae": "flash7.webp"
+    },
+    {
+      "id": 123,
+      "name": "فلش 64 گیگ کویین گلد پلاس",
+      "ctg": "flash",
+      "price": "2,850,000",
+      "quantity": "500",
+      "imgae": "flash8.webp"
+    },
+    {
+      "id": 124,
+      "name": "فلش 16 گیگ کویین گلد",
+      "ctg": "flash",
+      "price": "1,500,000",
+      "quantity": "500",
+      "imgae": "flash9.webp"
+    },
+    {
+      "id": 125,
+      "name": "فلش 128 گیگ آداتا",
+      "ctg": "flash",
+      "price": "4,000,000",
+      "quantity": "500",
+      "imgae": "flash10.webp"
+    },
+    {
+      "id": 126,
+      "name": "فلش 16 گیگ گلکس بیت",
+      "ctg": "flash",
+      "price": "2,500,000",
+      "quantity": "500",
+      "imgae": "flash11.webp"
+    },
+    {
+      "id": 127,
+      "name": "فلش 64 گیگ کویین بلک",
+      "ctg": "flash",
+      "price": "3,000,000",
+      "quantity": "500",
+      "imgae": "flash12.webp"
+    },
+    {
+      "id": 128,
+      "name": "مموری 64 گیگ تروبای",
+      "ctg": "memori",
+      "price": "2,500,000",
+      "quantity": "500",
+      "imgae": "memori1.webp"
+    },
+    {
+      "id": 129,
+      "name": "مموری 64 گیگ آداتا",
+      "ctg": "memori",
+      "price": "2,200,000",
+      "quantity": "500",
+      "imgae": "memori2.webp"
+    },
+    {
+      "id": 130,
+      "name": "مموری 128 گیگ سن دیسک",
+      "ctg": "memori",
+      "price": "3,000,000",
+      "quantity": "500",
+      "imgae": "memori3.webp"
+    },
+    {
+      "id": 131,
+      "name": "مموری 64 گیگ کوییک مجیک پرو",
+      "ctg": "memori",
+      "price": "2,000,000",
+      "quantity": "500",
+      "imgae": "memori4.webp"
+    },
+    {
+      "id": 132,
+      "name": "مموری 512 گیگ سن دیسک",
+      "ctg": "memori",
+      "price": "6,550,000",
+      "quantity": "500",
+      "imgae": "memori5.webp"
+    },
+    {
+      "id": 133,
+      "name": "مموری 16 گیگ تروبای",
+      "ctg": "memori",
+      "price": "4,550,000",
+      "quantity": "500",
+      "imgae": "memori6.webp"
+    },
+    {
+      "id": 134,
+      "name": "مموری 256 گیگ سن دیسک مدل 214",
+      "ctg": "memori",
+      "price": "6,300,000",
+      "quantity": "500",
+      "imgae": "memori7.webp"
+    },
+    {
+      "id": 135,
+      "name": "مموری 256 گیگ کیوکسا",
+      "ctg": "memori",
+      "price": "6,850,000",
+      "quantity": "500",
+      "imgae": "memori8.webp"
+    },
+    {
+      "id": 136,
+      "name": "مموری 256 گیگ سن دیسک مدل 245",
+      "ctg": "memori",
+      "price": "6,500,000",
+      "quantity": "500",
+      "imgae": "memori9.webp"
+    },
+    {
+      "id": 137,
+      "name": "مموری 16 گیگ آپاسر",
+      "ctg": "memori",
+      "price": "4,000,000",
+      "quantity": "500",
+      "imgae": "memori10.webp"
+    },
+    {
+      "id": 138,
+      "name": "مموری 1 ترابایت سن دیسک مدل 225",
+      "ctg": "memori",
+      "price": "8,500,000",
+      "quantity": "500",
+      "imgae": "memori11.webp"
+    },
+    {
+      "id": 139,
+      "name": "مموری 128 گیگ میکرو اس دی",
+      "ctg": "memori",
+      "price": "3,000,000",
+      "quantity": "500",
+      "imgae": "memori12.webp"
+    }
+  ]
+}

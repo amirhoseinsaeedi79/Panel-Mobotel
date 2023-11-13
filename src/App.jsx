@@ -4,10 +4,14 @@ import Topbar from "./components/Topbar.jsx";
 import AllContext from "./Context/Context.jsx";
 import { useEffect, useState } from "react";
 import Login from "./Pages/Login.jsx";
+import { GetProduct } from "./Services/Axios/Requests/Products.jsx";
+import { GetUser } from "./Services/Axios/Requests/Users.jsx";
+import axios from "axios";
 
 function App() {
   let route = useRoutes(Routes);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteUser, setDeleteUser] = useState(false);
   const [editeModal, setEditModal] = useState(false);
   const [editUserModal, setEditUserModal] = useState(false);
   const [infoModal, setInfoModal] = useState(false);
@@ -18,9 +22,17 @@ function App() {
   const [ShowTicket, setShowTicket] = useState(false);
   const [orderModal, setShowOrderModal] = useState(false);
   const [ShowProfile, setShowProfile] = useState(false);
+  const [AllProduct, setAllProduct] = useState([]);
+  const [AllUser, setAllUser] = useState([]);
+  const [admin, setAdmin] = useState({});
+
+
 
   function Delete(x) {
     setDeleteModal(x);
+  }
+  function Deleteuser(x) {
+    setDeleteUser(x);
   }
   function Edit(data) {
     setEditModal(data);
@@ -52,6 +64,21 @@ function App() {
   function showProfileAdmin(x) {
     setShowProfile(x);
   }
+  function RenderRemoveProduct(x) {
+    setAllProduct(x);
+  }
+  function RenderUser(x) {
+    setAllUser(x);
+  }
+  function RenderAdmin(x) {
+    setAdmin(x);
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/user/1")
+      .then((data) => setAdmin(data.data));
+  }, [admin]);
 
   useEffect(() => {
     if (localStorage.length == 0) {
@@ -60,6 +87,19 @@ function App() {
       setIsLogin(true);
     } 
   }, []);
+
+  useEffect(() => {
+    GetProduct().then((data) => setAllProduct(data.data));
+  }, [setAllProduct]);
+
+  useEffect(() => {
+    GetUser().then((data) => setAllUser(data.data));
+  }, [setAllUser]);
+
+
+
+
+
 
   const  {pathname :location}=useLocation()
   
@@ -81,7 +121,12 @@ function App() {
         ShowTicket,
         orderModal,
         ShowProfile,
+        AllProduct,
+        AllUser,
+        deleteUser,
+        admin,
         Delete,
+        Deleteuser,
         Edit,
         Info,
         login,
@@ -92,6 +137,9 @@ function App() {
         answerTicket,
         showOrder,
         showProfileAdmin,
+        RenderRemoveProduct,
+        RenderUser,
+        RenderAdmin,
       }}
     >
       {islogin ? (

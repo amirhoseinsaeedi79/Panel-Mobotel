@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, } from "react-router-dom";
 import AllContext from "../Context/Context";
+
 
 export default function Topbar() {
   const context = useContext(AllContext);
@@ -11,6 +12,8 @@ export default function Topbar() {
     (event) => event.preventDefault();
     reset();
   }
+
+
   function logoutHandler() {
     localStorage.clear();
     context.login(false);
@@ -144,7 +147,11 @@ export default function Topbar() {
               </div>
               <div className="w-full pt-3 flex flex-col items-end pr-2 ">
                 <div className=" flex flex-row  cursor-pointer hover:text-blue ">
-                  <Link to="/Profile" onClick={() => profileHandler(event)} className="mr-1 text-[15px] ">
+                  <Link
+                    to="/Profile"
+                    onClick={() => profileHandler(event)}
+                    className="mr-1 text-[15px] "
+                  >
                     پروفایل + ویرایش
                   </Link>
                   <svg
@@ -309,6 +316,7 @@ export default function Topbar() {
                 </div>
               </div>
             </div>
+            {/* ==========================================================================setting */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import AllContext from "../../Context/Context";
 import ReactDOM from "react-dom";
+import { GetUser, PutUser } from "../../Services/Axios/Requests/Users";
+import { toast } from "react-toastify";
 
 export default function EditUserModal(item) {
   const context = useContext(AllContext);
@@ -12,7 +14,34 @@ export default function EditUserModal(item) {
     formState: { errors },
   } = useForm();
 
-  function registerHandler() {}
+  async function registerHandler(data) {
+    const EditUser = {
+      username: data.name,
+      email: data.email,
+      password: data.password,
+      phone: data.phone,
+      rasteh: data.raste,
+    };
+
+    PutUser(EditUser, item.item.id).then((res) => console.log(res));
+
+    toast.success("اطلاعات کاربر ویرایش شد", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    GetUser().then((data) => context.RenderUser(data.data));
+
+    GetUser().then((res) => context.RenderUser(res.data));
+
+    context.EditUser(false);
+  }
 
   function exitHandler() {
     context.EditUser(false);
@@ -20,7 +49,7 @@ export default function EditUserModal(item) {
 
   return ReactDOM.createPortal(
     <div className="modal-parent active direction">
-      <div className="w-[98%] md:w-[90%] lg:w-[60%]  flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1  ">
+      <div className="w-[98%] md:w-[90%] lg:w-[60%] flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1  ">
         <div className=" py-2 blue rounded-t-lg">
           <svg
             onClick={exitHandler}
@@ -51,7 +80,7 @@ export default function EditUserModal(item) {
               <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
                 نام قبلی :
               </label>
-              {/* <span className="text-lg ">{item.item.name}</span> */}
+              <span className="text-lg ">{item.item.username}</span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
@@ -81,7 +110,7 @@ export default function EditUserModal(item) {
               <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
                 ایمیل قبلی :
               </label>
-              {/* <span className="text-lg ">{item.item.email}</span> */}
+              <span className="text-lg ">{item.item.email}</span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
@@ -112,7 +141,7 @@ export default function EditUserModal(item) {
               <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
                 عنوان قبلی :
               </label>
-              {/* <span className="text-lg ">{item.item.raste}</span> */}
+              <span className="text-lg ">{item.item.rasteh}</span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
@@ -130,7 +159,9 @@ export default function EditUserModal(item) {
                     required: "وارد کردن عنوان اجباریست",
                   })}
                 />
-                <div className="error ">{errors.raste && errors.raste.message}</div>
+                <div className="error ">
+                  {errors.raste && errors.raste.message}
+                </div>
               </div>
             </div>
           </div>
@@ -140,7 +171,7 @@ export default function EditUserModal(item) {
               <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
                 شماره تماس قبلی :
               </label>
-              {/* <span className="text-lg ">{item.item.phone} </span> */}
+              <span className="text-lg ">{item.item.phone} </span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
@@ -170,7 +201,7 @@ export default function EditUserModal(item) {
               <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
                 رمز عبور قبلی :
               </label>
-              {/* <span className="text-lg ">{item.item.password} </span> */}
+              <span className="text-lg ">{item.item.password} </span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
@@ -203,6 +234,7 @@ export default function EditUserModal(item) {
           </div>
         </form>
       </div>
-    </div>,document.getElementById("modals-parent")
+    </div>,
+    document.getElementById("modals-parent")
   );
 }

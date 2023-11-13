@@ -4,10 +4,35 @@ import AllContext from "../Context/Context";
 import RemoveModal from "../components/Modals/RemoveModal";
 import EditModal from "../components/Modals/EditModal";
 import InfoModal from "../components/Modals/InfoModal";
+import { GetProduct } from "../Services/Axios/Requests/Products";
+// import { GetProduct } from "../Services/Axios/Requests/Products";
 export default function Product() {
   const context = useContext(AllContext);
   const [edit, setEdit] = useState();
   const [info, setInfo] = useState();
+  const [remove, setRemove] = useState();
+  const [AllProduct, setAllProduct] = useState([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    GetProduct().then((res) => setAllProduct(res.data));
+  }, []);
+
+  function removeHandler(item) {
+    context.Delete(true);
+    setRemove(item);
+  }
+  // function searchHandler(event) {
+  //   event.preventDefault();
+  // }
+  function searchValueHandler(event) {
+    setSearch(event.target.value);
+    const searchValue = context.AllProduct.filter((item) =>
+      item.name.includes(event.target.value)
+    );
+    console.log(searchValue);
+    setAllProduct(searchValue);
+  }
 
   const {
     register,
@@ -26,11 +51,6 @@ export default function Product() {
     await setInfo(item);
     context.Info(true);
   }
-
-  const test = [
-    { id: 1, name: "ایرپاد پرو", onvan: "admin" },
-    { id: 2, name: "هدفون مدل قدیم", onvan: "admin" },
-  ];
 
   return (
     <div className="w-full pt-24  md:w-[calc(100%_-_180px)]">
@@ -180,12 +200,42 @@ export default function Product() {
           </div>
         </form>
       </div>
-      {/* =====================================================end newUser */}
+      {/* ==================================================== end newUser */}
 
       <div className="pt-7  direction">
-        <span className="text-[20px] md:text-[25px] vazir-bold flex-row-center">
-          لیست محصولات
-        </span>
+        <div className="alltopbarProduct flex flex-col md:flex-row justify-center  items-center">
+          <span className="text-[20px] md:text-[25px] vazir-bold flex-row-center pt-1  md:ml-10">
+            لیست محصولات
+          </span>
+          <form onSubmit={()=> event.preventDefault()} className="mt-5 md:mt-0">
+            <div className="relative px-3">
+              <button
+                onClick={searchValueHandler}
+                className="flex absolute inset-y-0 left-2 items-center pl-3 "
+              >
+                <svg
+                  className="w-6 h-6 "
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </button>
+              <input
+                onChange={searchValueHandler}
+                value={search}
+                type="text"
+                id="default-search"
+                className="block direction px-7 py-2 pl-10 w-full rounded-xl border-[3px] border-blue focus:outline-none"
+                placeholder="جستجوی محصول ..."
+              />
+            </div>
+          </form>
+        </div>
+        {/* ==================================================== ctg */}
+
         {/* ==================================================== */}
 
         <div className="flex flex-col vazir pt-5">
@@ -225,28 +275,29 @@ export default function Product() {
                       ></th>
                     </tr>
                   </thead>
-                  {test.map((item) => (
+                  {/* {!context.AllProduct.length == 0 && */}
+                  {AllProduct.map((item) => (
                     <tbody key={item.id}>
                       <tr className="bg-gray-100 vazir-bold ">
                         <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
-                          1
+                          {item.id}
                         </td>
                         <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
                           <img
-                            src="images/airpod1.jpg"
+                            src={`images/${item.imgae}`}
                             alt="airpod1"
-                            className="w-[100px] h-[60px] rounded-xl"
+                            className="w-[100px] h-[75px] rounded-xl"
                           />
                         </td>
                         <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
                           {item.name}
                         </td>
                         <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                          هندزفری
+                          {item.ctg}
                         </td>
                         <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold pt-7">
                           <button
-                            onClick={() => context.Delete(true)}
+                            onClick={() => removeHandler(item.id)}
                             className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl"
                           >
                             حذف
@@ -267,7 +318,9 @@ export default function Product() {
                         </td>
                       </tr>
                     </tbody>
-                  ))}                 {context.deleteModal && <RemoveModal />}
+                  ))}
+
+                  {context.deleteModal && <RemoveModal item={remove} />}
                   {context.editeModal && <EditModal item={edit} />}
                   {context.infoModal && <InfoModal item={info} />}
                 </table>
@@ -275,29 +328,10 @@ export default function Product() {
             </div>
           </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
         {/* ==================================================== */}
       </div>
     </div>
   );
 }
+
+// RenderRemoveProduct
