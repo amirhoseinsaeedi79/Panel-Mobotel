@@ -1,11 +1,11 @@
 export default function BestProduct() {
 
     const bestProduct =[
-        {id:1,name: 'ایرپاد 2 پرومکس',src:'images/airpod1.jpg',info:'298'},
-        {id:2,name: 'ایرپاد 5 پرو',src:'images/airpod5.jpg',info:'245'},
-        {id:3,name: 'گارد موبایل آیفون 14',src:'images/case6.jpg',info:'180'},
-        {id:4,name: 'هدفون وایرلس مدل 2',src:'images/hed1.jpg',info:'150'},
-        {id:5,name: 'ساعت هوشمند عقربه ای',src:'images/watch1.jpg',info:'120'},
+        {id:1,name: 'ایرپاد 2 پرومکس',src:'images/airpod (0).jpg',info:'298'},
+        {id:2,name: 'ایرپاد 5 پرو',src:'images/airpod (7).webp',info:'245'},
+        {id:3,name: 'گارد موبایل آیفون 14',src:'images/cover (6).jpg',info:'180'},
+        {id:4,name: 'هدفون وایرلس مدل 2',src:'images/headphon (3).jpg',info:'150'},
+        {id:5,name: 'ساعت هوشمند عقربه ای',src:'images/watch (3).jpg',info:'120'},
     ]
 
   return (

@@ -1,8 +1,8 @@
 {
   "user": [
     {
-      "username": "amirhosein12345",
-      "email": "amir@gmail.com",
+      "username": "amir12345",
+      "email": "amirhosein@gmail.com",
       "password": "amir12345",
       "phone": "09198642898",
       "rasteh": "ادمین",
@@ -10,17 +10,16 @@
       "image": "images/profile.jpg"
     },
     {
-      "username": "Amirhosein",
-      "email": "amir@gmail.com",
-      "password": "aaaaaaaaaa",
-      "phone": "09123456789",
-      "rasteh": "معمولی",
+      "username": "alis1234",
+      "email": "ali@gmail.com",
+      "password": "alial123",
+      "phone": "09155684412",
+      "rasteh": "عادی",
       "id": 2
     }
   ],
   "comment": [],
   "admins": [
-    
     {
       "username": "amirhosein12345",
       "email": "amirhosein-saeedi@gmail.com",

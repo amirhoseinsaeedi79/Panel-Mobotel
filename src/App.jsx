@@ -24,9 +24,8 @@ function App() {
   const [ShowProfile, setShowProfile] = useState(false);
   const [AllProduct, setAllProduct] = useState([]);
   const [AllUser, setAllUser] = useState([]);
+  const [sortProduct, setSortProduct] = useState([]);
   const [admin, setAdmin] = useState({});
-
-
 
   function Delete(x) {
     setDeleteModal(x);
@@ -73,19 +72,22 @@ function App() {
   function RenderAdmin(x) {
     setAdmin(x);
   }
+  function SortProduct(x) {
+    setSortProduct(x);
+  }
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/user/1")
       .then((data) => setAdmin(data.data));
-  }, [admin]);
+  }, []);
 
   useEffect(() => {
     if (localStorage.length == 0) {
       setIsLogin(false);
     } else {
       setIsLogin(true);
-    } 
+    }
   }, []);
 
   useEffect(() => {
@@ -96,16 +98,11 @@ function App() {
     GetUser().then((data) => setAllUser(data.data));
   }, [setAllUser]);
 
+  const { pathname: location } = useLocation();
 
-
-
-
-
-  const  {pathname :location}=useLocation()
-  
-  useEffect(() =>{
-    window.scrollTo(0,0)
-  },[location])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <AllContext.Provider
@@ -125,6 +122,7 @@ function App() {
         AllUser,
         deleteUser,
         admin,
+        sortProduct,
         Delete,
         Deleteuser,
         Edit,
@@ -140,6 +138,7 @@ function App() {
         RenderRemoveProduct,
         RenderUser,
         RenderAdmin,
+        SortProduct,
       }}
     >
       {islogin ? (

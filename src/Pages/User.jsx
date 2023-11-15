@@ -213,7 +213,7 @@ export default function User() {
                 {...register("rasteh", {
                   required: "وارد کردن عنوان کاربر اجباریست",
                   minLength: {
-                    value: 5,
+                    value:3,
                     message: "طول رمز وارد شده کمتراز5 کارکتر است",
                   },
                 })}

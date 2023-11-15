@@ -16,6 +16,7 @@ const AllContext = createContext({
   AllUser: [],
   AllProduct: {},
   admin: [],
+  sortProduct: [],
   Delete: () => {},
   Deleteuser: () => {},
   login: () => {},
@@ -31,6 +32,7 @@ const AllContext = createContext({
   RenderRemoveProduct: () => {},
   RenderUser: () => {},
   RenderAdmin: () => {},
+  SortProduct: () => {},
 });
 
 export default AllContext;

@@ -5,26 +5,42 @@ import RemoveModal from "../components/Modals/RemoveModal";
 import EditModal from "../components/Modals/EditModal";
 import InfoModal from "../components/Modals/InfoModal";
 import { GetProduct } from "../Services/Axios/Requests/Products";
-// import { GetProduct } from "../Services/Axios/Requests/Products";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import { FreeMode, Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
+
 export default function Product() {
+
   const context = useContext(AllContext);
   const [edit, setEdit] = useState();
   const [info, setInfo] = useState();
   const [remove, setRemove] = useState();
   const [AllProduct, setAllProduct] = useState([]);
+  const [sortList, setSortList] = useState([]);
   const [search, setSearch] = useState("");
+  const [statusSort,setStatusSort] = useState(false);
 
   useEffect(() => {
     GetProduct().then((res) => setAllProduct(res.data));
   }, []);
 
+
+function sortHandler(ctg){
+  setStatusSort(true)
+  const sortProduct = AllProduct.filter((item) => {
+    return item.ctg == ctg;
+  });
+  setSortList(sortProduct);
+}
+
+
   function removeHandler(item) {
     context.Delete(true);
     setRemove(item);
   }
-  // function searchHandler(event) {
-  //   event.preventDefault();
-  // }
   function searchValueHandler(event) {
     setSearch(event.target.value);
     const searchValue = context.AllProduct.filter((item) =>
@@ -32,6 +48,7 @@ export default function Product() {
     );
     console.log(searchValue);
     setAllProduct(searchValue);
+    setSortList(searchValue);
   }
 
   const {
@@ -207,7 +224,10 @@ export default function Product() {
           <span className="text-[20px] md:text-[25px] vazir-bold flex-row-center pt-1  md:ml-10">
             لیست محصولات
           </span>
-          <form onSubmit={()=> event.preventDefault()} className="mt-5 md:mt-0">
+          <form
+            onSubmit={() => event.preventDefault()}
+            className="mt-5 md:mt-0"
+          >
             <div className="relative px-3">
               <button
                 onClick={searchValueHandler}
@@ -236,9 +256,146 @@ export default function Product() {
         </div>
         {/* ==================================================== ctg */}
 
+        <div className="mt-2">
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={20}
+            freeMode={true}
+            breakpoints={{
+              320: {
+                slidesPerView: 2,
+                spaceBetween: 5,
+              },
+              640: {
+                slidesPerView: 4,
+                spaceBetween: 1,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 1,
+              },
+              1024: {
+                slidesPerView: 5,
+                // spaceBetween: 1,
+              },
+              1424: {
+                slidesPerView: 5.5,
+                // spaceBetween: 1,
+              },
+            }}
+            modules={[FreeMode, Pagination]}
+            className="mySwiper text-center px-3 max-h-[185px] mt-10 mb-5"
+          >
+            <SwiperSlide
+              onClick={() => sortHandler("watch")}
+              className="flex-row-center "
+            >
+              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
+                <img
+                  src="src/assets/images/watch.webp"
+                  alt=""
+                  className="mb-2"
+                />
+                <span className="max-h-[30px]">ساعت</span>
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide
+              onClick={() => sortHandler("airpod")}
+              className="flex-row-center "
+            >
+              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
+                <img
+                  src="src/assets/images/airpod.webp"
+                  alt=""
+                  className="mb-2"
+                />
+                <span>ایرپاد</span>
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide
+              onClick={() => sortHandler("charger")}
+              className="flex-row-center "
+            >
+              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
+                <img
+                  src="src/assets/images/charger.webp"
+                  alt=""
+                  className="mb-2"
+                />
+                <span>شارژر</span>
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide
+              onClick={() => sortHandler("cover")}
+              className="flex-row-center "
+            >
+              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
+                <img
+                  src="src/assets/images/cover.jpeg"
+                  alt=""
+                  className="rounded-full h-[105px] w-[105px] mb-2"
+                />
+                <span>قاب</span>
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide
+              onClick={() => sortHandler("flash")}
+              className="flex-row-center "
+            >
+              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
+                <img
+                  src="src/assets/images/flash.webp"
+                  alt=""
+                  className="rounded-full h-[105px] w-[105px] mb-2"
+                />
+                <span>فلش</span>
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide
+              onClick={() => sortHandler("memori")}
+              className="flex-row-center "
+            >
+              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
+                <img
+                  src="src/assets/images/memori.jpg"
+                  alt=""
+                  className="rounded-full h-[105px] w-[105px] mb-2"
+                />
+                <span>مموری</span>
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide
+              onClick={() => sortHandler("power")}
+              className="flex-row-center "
+            >
+              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
+                <img
+                  src="src/assets/images/power.webp"
+                  alt=""
+                  className="rounded-full h-[105px] w-[105px] mb-2"
+                />
+                <span>پاوربانک</span>
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide
+              onClick={() => sortHandler("headphon")}
+              className="flex-row-center "
+            >
+              <Link className=" px-5 py-3 text-[20px] rounded-xl w-[150px]">
+                <img
+                  src="src/assets/images/headphone.webp"
+                  alt=""
+                  className="rounded-full h-[105px] w-[105px] mb-2"
+                />
+                <span>هدفون</span>
+              </Link>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
         {/* ==================================================== */}
 
-        <div className="flex flex-col vazir pt-5">
+        <div className="flex flex-col vazir">
           <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
               <div className="overflow-hidden  border-[2px] border-blue rounded-2xl">
@@ -275,8 +432,8 @@ export default function Product() {
                       ></th>
                     </tr>
                   </thead>
-                  {/* {!context.AllProduct.length == 0 && */}
-                  {AllProduct.map((item) => (
+                 {!statusSort ? (
+                   AllProduct.map((item) => (
                     <tbody key={item.id}>
                       <tr className="bg-gray-100 vazir-bold ">
                         <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
@@ -318,7 +475,51 @@ export default function Product() {
                         </td>
                       </tr>
                     </tbody>
-                  ))}
+                  ))
+                 ):( 
+                  sortList.map((item) => (
+                  <tbody key={item.id}>
+                    <tr className="bg-gray-100 vazir-bold ">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
+                        {item.id}
+                      </td>
+                      <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                        <img
+                          src={`images/${item.imgae}`}
+                          alt="airpod1"
+                          className="w-[100px] h-[75px] rounded-xl"
+                        />
+                      </td>
+                      <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                        {item.name}
+                      </td>
+                      <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                        {item.ctg}
+                      </td>
+                      <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold pt-7">
+                        <button
+                          onClick={() => removeHandler(item.id)}
+                          className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl"
+                        >
+                          حذف
+                        </button>
+
+                        <button
+                          onClick={() => editHandler(item)}
+                          className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl ml-5"
+                        >
+                          ویرایش
+                        </button>
+                        <button
+                          onClick={() => InfoHandler(item)}
+                          className="px-5 py-2 border-[2.5px] border-gray-500 text-gray-500  hover:bg-gray-500 hover:text-white rounded-xl ml-5"
+                        >
+                          مشاهده
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                )))}
 
                   {context.deleteModal && <RemoveModal item={remove} />}
                   {context.editeModal && <EditModal item={edit} />}
@@ -333,5 +534,3 @@ export default function Product() {
     </div>
   );
 }
-
-// RenderRemoveProduct
