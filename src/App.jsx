@@ -80,6 +80,7 @@ function App() {
     axios
       .get("http://localhost:3000/user/1")
       .then((data) => setAdmin(data.data));
+      GetProduct().then((data) => setAllProduct(data.data));
   }, []);
 
   useEffect(() => {
@@ -90,9 +91,15 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    GetProduct().then((data) => setAllProduct(data.data));
-  }, [setAllProduct]);
+  function sortHandler(ctg) {
+
+    const sortProduct = AllProduct.filter((item) => {
+      return item.ctg == ctg;
+    });
+
+    setAllProduct(sortProduct);
+
+  }
 
   useEffect(() => {
     GetUser().then((data) => setAllUser(data.data));
@@ -139,6 +146,9 @@ function App() {
         RenderUser,
         RenderAdmin,
         SortProduct,
+        sortHandler,
+        
+
       }}
     >
       {islogin ? (
@@ -154,3 +164,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+

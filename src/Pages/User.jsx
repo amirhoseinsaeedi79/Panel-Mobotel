@@ -24,7 +24,6 @@ export default function User() {
       email: data.email,
       password: data.password,
       phone: data.phone,
-      rasteh: data.rasteh,
     };
 
     if (data.password == data.repeatPassword) {

@@ -4,61 +4,76 @@ import AllContext from "../Context/Context";
 import RemoveModal from "../components/Modals/RemoveModal";
 import EditModal from "../components/Modals/EditModal";
 import InfoModal from "../components/Modals/InfoModal";
-import { GetProduct } from "../Services/Axios/Requests/Products";
+import { GetProduct, PostProduct } from "../Services/Axios/Requests/Products";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 export default function Product() {
-
   const context = useContext(AllContext);
   const [edit, setEdit] = useState();
   const [info, setInfo] = useState();
+  const [AllProduct, setAllProduct] = useState();
   const [remove, setRemove] = useState();
-  const [AllProduct, setAllProduct] = useState([]);
-  const [sortList, setSortList] = useState([]);
   const [search, setSearch] = useState("");
-  const [statusSort,setStatusSort] = useState(false);
 
   useEffect(() => {
     GetProduct().then((res) => setAllProduct(res.data));
-  }, []);
-
-
-function sortHandler(ctg){
-  setStatusSort(true)
-  const sortProduct = AllProduct.filter((item) => {
-    return item.ctg == ctg;
+    // GetProduct().then(res=>context.RenderRemoveProduct(res.data))
   });
-  setSortList(sortProduct);
-}
 
+  async function sortHandler(ctg) {
+    await axios
+      .get(`http://localhost:3000/product?ctg=${ctg}`)
+      .then((res) => context.RenderRemoveProduct(res.data));
+  }
+
+  async function searchHandler(event) {
+    await setSearch(event.target.value);
+    const searchValue = AllProduct.filter((item) => item.name.includes(search));
+    context.RenderRemoveProduct(searchValue);
+  }
 
   function removeHandler(item) {
     context.Delete(true);
     setRemove(item);
   }
-  function searchValueHandler(event) {
-    setSearch(event.target.value);
-    const searchValue = context.AllProduct.filter((item) =>
-      item.name.includes(event.target.value)
-    );
-    console.log(searchValue);
-    setAllProduct(searchValue);
-    setSortList(searchValue);
-  }
 
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
   } = useForm();
 
-  function registerHandler() {}
+  function registerHandler(data) {
+    const newProduct = {
+      name: data.name,
+      ctg: data.ctg,
+      price: data.price,
+      quantity: data.quantity,
+      imgae: "no-image.jpg",
+    };
+
+    PostProduct(newProduct).then((res) => console.log(res.data));
+    reset()
+
+    toast.success("محصول جدید ثبت شد", {
+      position: "top-center",
+      autoClose: 1200,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
 
   async function editHandler(item) {
     await setEdit(item);
@@ -114,7 +129,7 @@ function sortHandler(ctg){
               <input
                 className="w-[250px] lg:w-[330px] xl:w-[450px]  shadow-xl h-12 rounded-2xl border-2 border-blue focus:outline-0 px-4 text-xl "
                 id="price"
-                type="email"
+                type="text"
                 {...register("price", {
                   required: "وارد کردن قیمت اجباریست",
                 })}
@@ -138,12 +153,8 @@ function sortHandler(ctg){
                 {...register("ctg", {
                   required: "وارد کردن دسته بندی اجباریست",
                   minLength: {
-                    value: 11,
+                    value: 2,
                     message: "طول دسته بندی وارد شده کمتراز11 کارکتر است",
-                  },
-                  maxLength: {
-                    value: 11,
-                    message: "طول دسته بندی وارد شده صحیح نیست ",
                   },
                 })}
               />
@@ -181,9 +192,7 @@ function sortHandler(ctg){
                 className="w-[250px] lg:w-[330px] xl:w-[450px]  shadow-xl h-12 rounded-2xl  border-2 border-blue focus:outline-0 px-4 text-xl "
                 id="code"
                 type="text"
-                {...register("code", {
-                  required: "وارد کردن کد محصول اجباریست",
-                })}
+                {...register("code", {})}
               />
               <div className="error ">{errors.code && errors.code.message}</div>
             </div>
@@ -199,9 +208,7 @@ function sortHandler(ctg){
                 className="w-[250px] lg:w-[330px] xl:w-[450px]   h-12 rounded-2xl   focus:outline-0 px-4 text-xl "
                 id="rasteh"
                 type="file"
-                {...register("rasteh", {
-                  required: "وارد کردن تصویر محصول اجباریست",
-                })}
+                {...register("rasteh", {})}
               />
               <div className="error ">
                 {errors.rasteh && errors.rasteh.message}
@@ -229,10 +236,7 @@ function sortHandler(ctg){
             className="mt-5 md:mt-0"
           >
             <div className="relative px-3">
-              <button
-                onClick={searchValueHandler}
-                className="flex absolute inset-y-0 left-2 items-center pl-3 "
-              >
+              <button className="flex absolute inset-y-0 left-2 items-center pl-3 ">
                 <svg
                   className="w-6 h-6 "
                   fill="none"
@@ -244,7 +248,7 @@ function sortHandler(ctg){
                 </svg>
               </button>
               <input
-                onChange={searchValueHandler}
+                onChange={searchHandler}
                 value={search}
                 type="text"
                 id="default-search"
@@ -432,8 +436,8 @@ function sortHandler(ctg){
                       ></th>
                     </tr>
                   </thead>
-                 {!statusSort ? (
-                   AllProduct.map((item) => (
+
+                  {context.AllProduct.map((item) => (
                     <tbody key={item.id}>
                       <tr className="bg-gray-100 vazir-bold ">
                         <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
@@ -475,51 +479,7 @@ function sortHandler(ctg){
                         </td>
                       </tr>
                     </tbody>
-                  ))
-                 ):( 
-                  sortList.map((item) => (
-                  <tbody key={item.id}>
-                    <tr className="bg-gray-100 vazir-bold ">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
-                        {item.id}
-                      </td>
-                      <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                        <img
-                          src={`images/${item.imgae}`}
-                          alt="airpod1"
-                          className="w-[100px] h-[75px] rounded-xl"
-                        />
-                      </td>
-                      <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.name}
-                      </td>
-                      <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.ctg}
-                      </td>
-                      <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold pt-7">
-                        <button
-                          onClick={() => removeHandler(item.id)}
-                          className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl"
-                        >
-                          حذف
-                        </button>
-
-                        <button
-                          onClick={() => editHandler(item)}
-                          className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl ml-5"
-                        >
-                          ویرایش
-                        </button>
-                        <button
-                          onClick={() => InfoHandler(item)}
-                          className="px-5 py-2 border-[2.5px] border-gray-500 text-gray-500  hover:bg-gray-500 hover:text-white rounded-xl ml-5"
-                        >
-                          مشاهده
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                )))}
+                  ))}
 
                   {context.deleteModal && <RemoveModal item={remove} />}
                   {context.editeModal && <EditModal item={edit} />}

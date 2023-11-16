@@ -12,7 +12,6 @@ export default function RemoveModal(item) {
 
   async function removeItem(test) {
     await DeleteProduct(test);
-
     const newProduct = context.AllProduct.filter((item) => {
       return item.id !== test;
     });

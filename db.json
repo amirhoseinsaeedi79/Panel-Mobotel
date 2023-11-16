@@ -33,20 +33,18 @@
   "cart": [],
   "product": [
     {
-      "id": 1,
-      "name": "ایرپاد گیمینگ مدل 27 سانشاین ",
+      "name": "ایرپاد گیمینگ پرو مدل 25",
+      "price": "950,000",
       "ctg": "airpod",
-      "price": "1,200,000",
-      "quantity": "500",
-      "imgae": "airpod (1).webp"
+      "imgae": "airpod (1).webp",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "ایرپاد طلایی مدل 90 اولتراسونیک",
+      "name": "ایرپاد پرو مدل 66 آیفون",
+      "price": "50000000",
       "ctg": "airpod",
-      "price": "750,000",
-      "quantity": "500",
-      "imgae": "airpod (2).webp"
+      "imgae": "airpod (2).webp",
+      "id": 2
     },
     {
       "id": 3,

@@ -3,7 +3,9 @@ import { useContext } from "react";
 
 import AllContext from "../../Context/Context";
 
-export default function InfoModal() {
+export default function InfoModal(info) {
+
+ 
   const context = useContext(AllContext);
   function exitHandler() {
     context.Info(false)
@@ -38,31 +40,31 @@ export default function InfoModal() {
           <div className="info pt-1">
             <div className="mr-4 ">
               <span className="text-[20px] vazir-bold ml-2">نام :</span>
-              <span className="text-[20px] ">ایرپاد پرو مدل 12</span>
+              <span className="text-[20px] ">{info.item.name}</span>
             </div>
 
             <div className="mr-4 mt-3">
               <span className="text-[20px] vazir-bold ml-2">دسته بندی :</span>
-              <span className="text-[20px] ">هندزفری</span>
+              <span className="text-[20px] ">{info.item.ctg}</span>
             </div>
 
             <div className="mr-4 mt-3">
               <span className="text-[20px] vazir-bold ml-2">قیمت :</span>
               <span className="text-lg ">
-                100000 <span>تومان</span>
+              {info.item.price} <span>تومان</span>
               </span>
             </div>
 
             <div className="mr-4 mt-3">
               <span className="text-[20px] vazir-bold ml-2">موجودی :</span>
               <span className="text-lg ">
-                2000 <span>عدد</span>
+              {info.item.quantity} <span>عدد</span>
               </span>
             </div>
           </div>
           <div className="mr-14">
             <img
-              src="images/airpod1.jpg"
+              src={`images/${info.item.imgae}`}
               alt="airpod1"
               className="w-[170px] h-[170px]"
             />

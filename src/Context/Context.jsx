@@ -33,6 +33,7 @@ const AllContext = createContext({
   RenderUser: () => {},
   RenderAdmin: () => {},
   SortProduct: () => {},
+  sortHandler: () => {},
 });
 
 export default AllContext;

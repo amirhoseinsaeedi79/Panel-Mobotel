@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import AllContext from "../../Context/Context";
 import ReactDOM from "react-dom";
+import { GetProduct, PutProduct } from "../../Services/Axios/Requests/Products";
+import { toast } from "react-toastify";
 
 export default function EditModal(item) {
   const context = useContext(AllContext);
-  console.log(item.item.name)
+  console.log(item.item.name);
 
   const {
     register,
@@ -13,7 +15,29 @@ export default function EditModal(item) {
     formState: { errors },
   } = useForm();
 
-  function registerHandler() {}
+  function registerHandler(data) {
+    const newProduct = {
+      name: data.name,
+      price: data.price,
+      ctg: data.ctg,
+      quantity: data.quantity,
+      imgae: item.item.imgae,
+    };
+
+    PutProduct(newProduct, item.item.id);
+    GetProduct().then((res) => context.RenderRemoveProduct(res.data));
+    toast.success("محصول ویرایش شد", {
+      position: "top-center",
+      autoClose: 1200,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    context.Edit(false);
+  }
 
   function exitHandler() {
     context.Edit(false);
@@ -190,6 +214,7 @@ export default function EditModal(item) {
           </div>
         </form>
       </div>
-    </div>,document.getElementById("modals-parent")
+    </div>,
+    document.getElementById("modals-parent")
   );
 }
