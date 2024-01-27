@@ -49,7 +49,7 @@ export default function EditUserModal(item) {
 
   return ReactDOM.createPortal(
     <div className="modal-parent active direction">
-      <div className="w-[98%] md:w-[90%] lg:w-[60%] flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1  ">
+      <div className="w-[98%] md:w-[90%] lg:w-[50%] flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1  ">
         <div className=" py-2 blue rounded-t-lg">
           <svg
             onClick={exitHandler}
@@ -66,7 +66,7 @@ export default function EditUserModal(item) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h3 className="text-[22px] vazir-bold md:pr-9 pr-3  text-gray-800">
+          <h3 className="text-[20px] vazir-bold md:pr-5 pr-3  text-gray-800">
             ویرایش کاربر{" "}
           </h3>
         </div>
@@ -77,15 +77,15 @@ export default function EditUserModal(item) {
           {/* ===========================name */}
           <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] ml-2 text-blue">
                 نام قبلی :
               </label>
-              <span className="text-lg ">{item.item.username}</span>
+              <span className="text-[16px]">{item.item.username}</span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[18px] min-w-[75px]"
+                className="vazir-bold text-[16px] text-blue min-w-[75px]"
               >
                 نام جدید :
               </label>
@@ -107,15 +107,15 @@ export default function EditUserModal(item) {
           {/* ===========================price */}
           <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] ml-2 text-blue">
                 ایمیل قبلی :
               </label>
-              <span className="text-lg ">{item.item.email}</span>
+              <span className="text-[16px]">{item.item.email}</span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#email"
-                className="vazir-bold text-[18px] min-w-[95px] "
+                className="vazir-bold text-[16px] text-blue min-w-[95px] "
               >
                 ایمیل جدید :
               </label>
@@ -138,15 +138,15 @@ export default function EditUserModal(item) {
 
           <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] ml-2 text-blue">
                 عنوان قبلی :
               </label>
-              <span className="text-lg ">{item.item.rasteh}</span>
+              <span className="text-[16px] "> {item.item.rasteh !== undefined ? item.item.rasteh : "کاربر عادی"}</span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#raste"
-                className="vazir-bold text-[18px] min-w-[105px]"
+                className="vazir-bold text-[16px] text-blue min-w-[105px]"
               >
                 عنوان جدید :
               </label>
@@ -168,15 +168,15 @@ export default function EditUserModal(item) {
           {/* =========================== */}
           <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] ml-2 text-blue">
                 شماره تماس قبلی :
               </label>
-              <span className="text-lg ">{item.item.phone} </span>
+              <span className="text-[16px]">{item.item.phone} </span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#phone"
-                className="vazir-bold text-[18px] min-w-[143px]"
+                className="vazir-bold text-[16px] text-blue min-w-[143px]"
               >
                 شماره تماس جدید :
               </label>
@@ -198,15 +198,15 @@ export default function EditUserModal(item) {
           {/* =========================== */}
           <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] ml-2 text-blue">
                 رمز عبور قبلی :
               </label>
-              <span className="text-lg ">{item.item.password} </span>
+              <span className="text-[16px] ">{item.item.password} </span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#password"
-                className="vazir-bold text-[18px] min-w-[110px]"
+                className="vazir-bold text-[16px] text-blue min-w-[110px]"
               >
                 رمز عبور جدید :
               </label>

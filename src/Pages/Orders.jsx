@@ -24,21 +24,21 @@ export default function Orders() {
     {
       id: 3,
       username: "sara98-s25",
-      price: "450,025",
+      price: "450,000",
       code: "552-200-025",
       status: "تکمیل",
     },
     {
       id: 4,
       username: "nimanakisa2",
-      price: "25,500,655",
+      price: "25,500,000",
       code: "125-655-1345",
       status: "تکمیل",
     },
     {
       id: 5,
       username: "alisihrabi-s365",
-      price: "305,500,980",
+      price: "305,500,000",
       code: "366-658-1345",
       status: "تکمیل",
     },
@@ -61,7 +61,7 @@ export default function Orders() {
   return (
     <div className="w-full pt-24 md:w-[calc(100%_-_200px)] direction vazir">
       <div className="w-full flex-row-center">
-        <span className="vazir-bold text-[25px]">سفارشات کاربران </span>
+        <span className="vazir-bold text-[24px]">سفارشات کاربران </span>
       </div>
       <div className="flex flex-col vazir pt-5">
         <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
@@ -78,7 +78,7 @@ export default function Orders() {
                     </th>
                     <th
                       scope="col"
-                      className="text-sm text-black pr-14 py-4 text-right "
+                      className="text-sm text-black pr-7 py-4 text-right "
                     >
                       نام کاربری
                     </th>
@@ -96,7 +96,7 @@ export default function Orders() {
                     </th>
                     <th
                       scope="col"
-                      className="text-sm text-black pr-3 py-4 text-right "
+                      className="text-sm text-black pr-5 py-4 text-right "
                     >
                       قیمت کل
                     </th>
@@ -144,7 +144,7 @@ export default function Orders() {
                         </svg>
                       </td>
                       <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {order.price}
+                        {order.price} تومان
                       </td>
                       <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold">
                         <button className="px-5 py-2 bg-green-500 ml-5 text-black rounded-xl">

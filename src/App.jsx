@@ -7,6 +7,7 @@ import Login from "./Pages/Login.jsx";
 import { GetProduct } from "./Services/Axios/Requests/Products.jsx";
 import { GetUser } from "./Services/Axios/Requests/Users.jsx";
 import axios from "axios";
+import { GetComment } from "./Services/Axios/Requests/Comments.jsx";
 
 function App() {
   let route = useRoutes(Routes);
@@ -25,16 +26,23 @@ function App() {
   const [AllProduct, setAllProduct] = useState([]);
   const [AllUser, setAllUser] = useState([]);
   const [sortProduct, setSortProduct] = useState([]);
+  const [allTicket, setAllTicket] = useState([]);
   const [admin, setAdmin] = useState({});
-
+  const [allcomment, setAllcomment] = useState([]);
   function Delete(x) {
     setDeleteModal(x);
   }
   function Deleteuser(x) {
     setDeleteUser(x);
   }
+  function updateComment(x) {
+    setAllcomment(x);
+  }
   function Edit(data) {
     setEditModal(data);
+  }
+  function Tickets(data) {
+    setAllTicket(data);
   }
   function Info(data) {
     setInfoModal(data);
@@ -78,9 +86,15 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/user/1")
+      .get("https://mobo-server.liara.run/user/1")
       .then((data) => setAdmin(data.data));
       GetProduct().then((data) => setAllProduct(data.data));
+  }, []);
+  
+  useEffect(() => { 
+     axios.get("https://mobo-server.liara.run/ticket")
+      .then((data) => setAllTicket(data.data));
+      GetComment().then((res) => setAllcomment(res.data));
   }, []);
 
   useEffect(() => {
@@ -130,6 +144,10 @@ function App() {
         deleteUser,
         admin,
         sortProduct,
+        allTicket,
+        allcomment,
+        Tickets,
+        updateComment,
         Delete,
         Deleteuser,
         Edit,

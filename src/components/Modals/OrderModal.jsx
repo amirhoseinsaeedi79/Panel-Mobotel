@@ -11,7 +11,7 @@ export default function OrderModal(prop) {
       q: "1",
       price: "500,000",
       allprice: "500,000",
-      src: "images/airpod1.jpg",
+      src: "images/airpod (2).webp",
     },
     {
       id: 2,
@@ -19,15 +19,15 @@ export default function OrderModal(prop) {
       q: "1",
       price: "800,000",
       allprice: "800,000",
-      src: "images/case6.jpg",
+      src: "images/cover (6).jpg",
     },
     {
-      id: 1,
+      id:3,
       name: "ساعت هوشمند نکست 2",
       q: "1",
       price: "4,500,000",
       allprice: "4,500,000",
-      src: "images/watch1.jpg",
+      src: "images/watch (3).jpg",
     },
   ];
 
@@ -50,7 +50,7 @@ export default function OrderModal(prop) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h3 className="text-[22px] vazir-bold md:pr-9 pr-3  text-gray-800">
+          <h3 className="text-[20px] vazir-bold md:pr-5 pr-3  text-gray-800">
             سفارش کاربر{" "}
           </h3>
         </div>
@@ -131,13 +131,13 @@ export default function OrderModal(prop) {
                     scope="col"
                     className="text-sm text-black pl-6 pr-3 py-2 text-center max-w-[80px] "
                   >
-                    {item.price}
+                    {item.price} تومان
                   </th>
                   <th
                     scope="col"
                     className="text-sm text-black pl-6 pr-3 py-2 text-center max-w-[80px] "
                   >
-                    {item.allprice}
+                    {item.allprice} تومان
                   </th>
                 </tr>
               ))}

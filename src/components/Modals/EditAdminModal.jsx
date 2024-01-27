@@ -60,7 +60,7 @@ export default function EditAdminModal(prop) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h3 className="text-[22px] vazir-bold md:pr-5 pr-3  text-gray-800">
+          <h3 className="text-[20px] vazir-bold md:pr-5 pr-3  text-gray-800">
             ویرایش پروفایل{" "}
           </h3>
         </div>

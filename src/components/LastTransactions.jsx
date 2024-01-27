@@ -138,7 +138,7 @@ export default function LastTransactions() {
                     <td className={`text-sm ${
                         item.type == "واریز" ? "text-green-500" : "text-red-500 "
                       } pt-[15px]  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold`}>
-                      {item.price}
+                      {item.price} تومان
                     </td>
 
                     <td className={`px-6 py-4  text-sm  ${

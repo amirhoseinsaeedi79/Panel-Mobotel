@@ -63,7 +63,7 @@ export default function BestProduct() {
                     </td>
 
                     <td className="text-sm text-gray-900 pt-[41px]  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold">
-                     {item.info}
+                     {item.info} عدد
                     </td>
                   </tr>
                   ))}

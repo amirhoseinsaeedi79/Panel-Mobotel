@@ -7,41 +7,41 @@ export default function Profile() {
   return (
     <div className="w-full pt-24 h-[100vh] md:w-[calc(100%_-_180px)] px-2">
       <div className="w-full flex-col-center">
-        <span className="vazir-bold text-[25px]">پروفایل کاربری</span>
+        <span className="vazir-bold text-[24px]">پروفایل کاربری</span>
         <img
           src="images/profile.jpg"
           alt="profile"
-          className="w-[100px] h-[100px] rounded-full mt-5"
+          className="w-[80px] h-[80px] rounded-full mt-5"
         />
       </div>
       {context.admin !== "undefined" && (
-        <div className="direction w-full flex-col-center border-[3px] border-blue p-3 rounded-xl mt-5 vazir-bold bg-white shadow-xl">
+        <div className="direction w-full flex-col-center  border-[3px] border-blue p-3 rounded-xl mt-5 vazir-bold bg-white shadow-xl">
           <div className="w-full grid grid-col-1 md:grid-cols-2  lg:grid-cols-3 text-center pt-3 mb-3">
-            <div className="mr-2 mb-5 flex flex-col text-[17px]">
+            <div className="mr-2 mb-5 flex flex-col text-[16px]">
               <span>نام کاربری :</span>
-              <span className="mr-2">{context.admin.username}</span>
+              <span className="mr-2 text-blue">{context.admin.username}</span>
             </div>
             <div className="mr-2 mb-5 flex flex-col ">
-              <span className=" text-[17px]">آدرس ایمیل :</span>
-              <span className="mt-2 md:mt-0 md:mr-2  text-[15px]">
+              <span className=" text-[16px]">آدرس ایمیل :</span>
+              <span className="mt-2 md:mt-0 md:mr-2 text-blue text-[15px]">
                 {context.admin.email}
               </span>
             </div>
-            <div className="mr-2 mb-5 text-[17px]">
+            <div className="mr-2 mb-5 text-[16px]">
               <span>عنوان کاربر :</span>
-              <span className="mr-2">ادمین</span>
+              <span className="mr-2  text-blue">ادمین</span>
             </div>
-            <div className="mr-2 mb-5 text-[17px]">
+            <div className="mr-2 mb-5 text-[16px]">
               <span>شماره تماس :</span>
-              <span className="mr-2">{context.admin.phone}</span>
+              <span className="mr-2 text-blue">{context.admin.phone}</span>
             </div>
-            <div className="mr-2 mb-5 text-[17px]">
+            <div className="mr-2 mb-5 text-[16px]">
               <span>رمز عبور :</span>
-              <span className="mr-2">{context.admin.password}</span>
+              <span className="mr-2 text-blue">{context.admin.password}</span>
             </div>
-            <div className="mr-2 mb-5 text-[17px]">
+            <div className="mr-2 mb-5 text-[16px]">
               <span>تاریخ ثبت نام :</span>
-              <span className="mr-2">1401/05/14</span>
+              <span className="mr-2 text-blue">1401/05/14</span>
             </div>
           </div>
           <div

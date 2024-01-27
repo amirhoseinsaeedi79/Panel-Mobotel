@@ -30,7 +30,7 @@ export default function InfoModal(info) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h3 className="text-[22px] vazir-bold md:pr-3 pr-3  text-gray-800">
+          <h3 className="text-[20px] vazir-bold md:pr-3 pr-3  text-gray-800">
             مشخصات محصول
           </h3>
         </div>
@@ -39,24 +39,24 @@ export default function InfoModal(info) {
 
           <div className="info pt-1">
             <div className="mr-4 ">
-              <span className="text-[20px] vazir-bold ml-2">نام :</span>
-              <span className="text-[20px] ">{info.item.name}</span>
+              <span className="text-[16px] vazir-bold ml-2 text-blue">نام :</span>
+              <span className="text-[16px] ">{info.item.name}</span>
             </div>
 
             <div className="mr-4 mt-3">
-              <span className="text-[20px] vazir-bold ml-2">دسته بندی :</span>
-              <span className="text-[20px] ">{info.item.ctg}</span>
+              <span className="text-[16px] vazir-bold ml-2 text-blue">دسته بندی :</span>
+              <span className="text-[16px] ">{info.item.ctg}</span>
             </div>
 
             <div className="mr-4 mt-3">
-              <span className="text-[20px] vazir-bold ml-2">قیمت :</span>
+              <span className="text-[16px] vazir-bold ml-2 text-blue">قیمت :</span>
               <span className="text-lg ">
               {info.item.price} <span>تومان</span>
               </span>
             </div>
 
             <div className="mr-4 mt-3">
-              <span className="text-[20px] vazir-bold ml-2">موجودی :</span>
+              <span className="text-[16px] vazir-bold ml-2 text-blue">موجودی :</span>
               <span className="text-lg ">
               {info.item.quantity} <span>عدد</span>
               </span>

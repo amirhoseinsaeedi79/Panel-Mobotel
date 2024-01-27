@@ -1,8 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, NavLink, } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import AllContext from "../Context/Context";
-
 
 export default function Topbar() {
   const context = useContext(AllContext);
@@ -12,7 +11,6 @@ export default function Topbar() {
     (event) => event.preventDefault();
     reset();
   }
-
 
   function logoutHandler() {
     localStorage.clear();
@@ -402,6 +400,7 @@ export default function Topbar() {
         </div>
         {/* ================================================================ items sidebar */}
         <NavLink
+          onClick={menuHandler}
           to="/"
           ref={home}
           className="px-2 py-5 flex flex-row-reverse items-center hover:text-blue "
@@ -424,6 +423,7 @@ export default function Topbar() {
         </NavLink>
         <div className="w-full px-2 mb-3 cursor-pointer">
           <NavLink
+            onClick={menuHandler}
             ref={userr}
             to="/User"
             className="w-full flex flex-row-reverse justify-between  items-center hover:text-blue"
@@ -450,6 +450,7 @@ export default function Topbar() {
         </div>
         <div className="w-full pt-2 px-2 mb-3 cursor-pointer">
           <NavLink
+            onClick={menuHandler}
             ref={products}
             to="/Product"
             className="w-full flex flex-row-reverse justify-between items-center hover:text-blue "
@@ -476,6 +477,7 @@ export default function Topbar() {
         </div>
         <div className="w-full pt-2 px-2 mb-3 ">
           <NavLink
+            onClick={menuHandler}
             ref={tickets}
             to="/Ticket"
             className="w-full flex flex-row-reverse justify-between  items-center hover:text-blue"
@@ -503,6 +505,7 @@ export default function Topbar() {
           </NavLink>
         </div>
         <NavLink
+          onClick={menuHandler}
           ref={orders}
           to="/Orders"
           className="px-2 pt-2 mb-3 flex flex-row-reverse hover:text-blue "
@@ -525,6 +528,7 @@ export default function Topbar() {
           <span className=" mr-1 text-[16px] vazir">سفارشات</span>
         </NavLink>
         <NavLink
+          onClick={menuHandler}
           ref={comments}
           to="/Comments"
           className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue"
@@ -549,6 +553,7 @@ export default function Topbar() {
 
         {/* ================ */}
         <NavLink
+          onClick={menuHandler}
           ref={profiles}
           to="/Profile"
           className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue"
@@ -572,7 +577,10 @@ export default function Topbar() {
         </NavLink>
         {/* ================ */}
 
-        <div className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue cursor-pointer">
+        <div
+          onClick={menuHandler}
+          className=" px-2 mb-3 pt-2 flex flex-row-reverse hover:text-blue cursor-pointer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

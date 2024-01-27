@@ -1,13 +1,29 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import ReactDOM from "react-dom";
 import AllContext from "../../Context/Context";
+import { toast } from "react-toastify";
 
 export default function AnsswerModal(prop) {
   const context = useContext(AllContext);
+  const answerDate = useRef();
   function showHandler() {
     context.answerComment(false);
   }
-
+  function sendAnswer() {
+    if (answerDate.current.value !== null) {
+      context.answerComment(false);
+      toast.success("پاسخ با موفقیت ارسال شد", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
   return ReactDOM.createPortal(
     <div className="modal-parent active direction">
       <div className="w-[98%] md:w-[90%] lg:w-[60%] flex flex-col shadow-2xl rounded-xl mx-1  ">
@@ -34,17 +50,19 @@ export default function AnsswerModal(prop) {
         <div className="bg-white p-3 rounded-b-xl">
           <div className="mb-3">
             <span className="vazir-bold">متن نظر کاربر :</span>
-            <p className="p-3 mt-1  blue rounded-xl">
-              {prop.item}
-            </p>
+            <p className="p-3 mt-1  blue rounded-xl">{prop.item}</p>
           </div>
           <form className="w-full flex-col-center md:flex-row-center">
             <label htmlFor="#answer" className="vazir-bold">
               پاسخ خودرا وارد کنید :
             </label>
-            <textarea  className="border-[3px] w-full md:w-7/12 rounded-xl h-[150px] border-blue p-3 mb-3 mt-1 focus:outline-blue mx-3"></textarea>
+            <textarea
+              ref={answerDate}
+              className="border-[3px] w-full md:w-7/12 rounded-xl h-[150px] border-blue p-3 mb-3 mt-1 focus:outline-blue mx-3"
+            ></textarea>
 
             <button
+              onClick={() => sendAnswer()}
               type="submit"
               className="py-[5px] px-4 vazir-bold border-[3px] text-black hover:bg-blue hover:text-white border-blue rounded-xl mr-5"
             >

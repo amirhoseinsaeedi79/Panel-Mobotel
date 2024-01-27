@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ApiRequest = axios.create({
-  baseURL: "  http://localhost:3000/",
+  baseURL: "  https://mobo-server.liara.run/",
   headers: {
     "Content-Type": "application/json",
   },

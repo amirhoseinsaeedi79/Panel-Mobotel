@@ -75,7 +75,7 @@ export default function Home() {
                   <More status={"hidden"} />
                 )}
               </div>
-              <span className="text-[20px]">رشد</span>
+              <span className="text-[18px]">رشد</span>
             </div>
             <div className="flex flex-row items-center justify-between">
               <div className="mt-8">
@@ -143,7 +143,7 @@ export default function Home() {
                   <More status={"hidden"} />
                 )}
               </div>
-              <span className="text-[20px]">سفارشات</span>
+              <span className="text-[18px]">سفارشات</span>
             </div>
             <div className="flex flex-row items-center justify-between">
               <div className="mt-8">
@@ -206,7 +206,7 @@ export default function Home() {
                   <More status={"hidden"} />
                 )}
               </div>
-              <span className="text-[20px]">مشتریان</span>
+              <span className="text-[18px]">مشتریان</span>
             </div>
             <div className="flex flex-row items-center justify-between">
               <div className="mt-8">
@@ -248,8 +248,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className=" h-[190px] lg:h-[300px] bg-white mx-3 mb-5 md:mx-3 pr-  rounded-xl border-[2px] border-blue mt-5 shadow-lg">
-          <span className="w-full flex flex-row item-end justify-end text-[20px] px-2 pt-3 pb-2 vazir-bold">
+        <div className=" h-[260px] lg:h-[300px] bg-white mx-3 mb-5 md:mx-3 pr-  rounded-xl border-[2px] border-blue mt-5 shadow-lg">
+          <span className="w-full flex flex-row item-end justify-end text-[18px] px-2 pt-3 pb-2 vazir-bold">
             فروش ماهیانه
           </span>
           <ResponsiveContainer width="100%" height="85%">

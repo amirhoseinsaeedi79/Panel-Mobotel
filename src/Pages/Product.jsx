@@ -9,10 +9,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import { FreeMode, Pagination } from "swiper/modules";
+import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Loader from "../components/Loader";
 
 export default function Product() {
   const context = useContext(AllContext);
@@ -24,12 +25,11 @@ export default function Product() {
 
   useEffect(() => {
     GetProduct().then((res) => setAllProduct(res.data));
-    // GetProduct().then(res=>context.RenderRemoveProduct(res.data))
   });
 
   async function sortHandler(ctg) {
     await axios
-      .get(`http://localhost:3000/product?ctg=${ctg}`)
+      .get(`https://mobo-server.liara.run/product?ctg=${ctg}`)
       .then((res) => context.RenderRemoveProduct(res.data));
   }
 
@@ -61,7 +61,7 @@ export default function Product() {
     };
 
     PostProduct(newProduct).then((res) => console.log(res.data));
-    reset()
+    reset();
 
     toast.success("محصول جدید ثبت شد", {
       position: "top-center",
@@ -93,7 +93,7 @@ export default function Product() {
           className="flex-col-center border-b-2 border-blue pb-3"
         >
           {/* =================================================== username */}
-          <div className="flex-row-center text-[20px] md:text-[25px] mb-5 vazir-bold">
+          <div className="flex-row-center text-[20px] md:text-[22px] mb-5 vazir-bold">
             <p>افزودن محصول جدید</p>
           </div>
           <div className="max-w-[600px] xl:max-w-[1300px] flex-col-center md:grid md:grid-cols-2 xl:md:grid-rows-2 md:items-end gap-x-10 lg:gap-x-[100px] xl:gap-x-[150px]">
@@ -228,7 +228,7 @@ export default function Product() {
 
       <div className="pt-7  direction">
         <div className="alltopbarProduct flex flex-col md:flex-row justify-center  items-center">
-          <span className="text-[20px] md:text-[25px] vazir-bold flex-row-center pt-1  md:ml-10">
+          <span className="text-[20px] md:text-[22px] vazir-bold flex-row-center pt-1  md:ml-10">
             لیست محصولات
           </span>
           <form
@@ -260,235 +260,232 @@ export default function Product() {
         </div>
         {/* ==================================================== ctg */}
 
-        <div className="mt-2">
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={20}
-            freeMode={true}
-            breakpoints={{
-              320: {
-                slidesPerView: 2,
-                spaceBetween: 5,
-              },
-              640: {
-                slidesPerView: 4,
-                spaceBetween: 1,
-              },
-              768: {
-                slidesPerView: 4,
-                spaceBetween: 1,
-              },
-              1024: {
-                slidesPerView: 5,
-                // spaceBetween: 1,
-              },
-              1424: {
-                slidesPerView: 5.5,
-                // spaceBetween: 1,
-              },
-            }}
-            modules={[FreeMode, Pagination]}
-            className="mySwiper text-center px-3 max-h-[185px] mt-10 mb-5"
-          >
-            <SwiperSlide
-              onClick={() => sortHandler("watch")}
-              className="flex-row-center "
-            >
-              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
-                <img
-                  src="src/assets/images/watch.webp"
-                  alt=""
-                  className="mb-2"
-                />
-                <span className="max-h-[30px]">ساعت</span>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide
-              onClick={() => sortHandler("airpod")}
-              className="flex-row-center "
-            >
-              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
-                <img
-                  src="src/assets/images/airpod.webp"
-                  alt=""
-                  className="mb-2"
-                />
-                <span>ایرپاد</span>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide
-              onClick={() => sortHandler("charger")}
-              className="flex-row-center "
-            >
-              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
-                <img
-                  src="src/assets/images/charger.webp"
-                  alt=""
-                  className="mb-2"
-                />
-                <span>شارژر</span>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide
-              onClick={() => sortHandler("cover")}
-              className="flex-row-center "
-            >
-              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
-                <img
-                  src="src/assets/images/cover.jpeg"
-                  alt=""
-                  className="rounded-full h-[105px] w-[105px] mb-2"
-                />
-                <span>قاب</span>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide
-              onClick={() => sortHandler("flash")}
-              className="flex-row-center "
-            >
-              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
-                <img
-                  src="src/assets/images/flash.webp"
-                  alt=""
-                  className="rounded-full h-[105px] w-[105px] mb-2"
-                />
-                <span>فلش</span>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide
-              onClick={() => sortHandler("memori")}
-              className="flex-row-center "
-            >
-              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
-                <img
-                  src="src/assets/images/memori.jpg"
-                  alt=""
-                  className="rounded-full h-[105px] w-[105px] mb-2"
-                />
-                <span>مموری</span>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide
-              onClick={() => sortHandler("power")}
-              className="flex-row-center "
-            >
-              <Link className=" px-5 py-3  text-[20px] rounded-xl w-[150px]">
-                <img
-                  src="src/assets/images/power.webp"
-                  alt=""
-                  className="rounded-full h-[105px] w-[105px] mb-2"
-                />
-                <span>پاوربانک</span>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide
-              onClick={() => sortHandler("headphon")}
-              className="flex-row-center "
-            >
-              <Link className=" px-5 py-3 text-[20px] rounded-xl w-[150px]">
-                <img
-                  src="src/assets/images/headphone.webp"
-                  alt=""
-                  className="rounded-full h-[105px] w-[105px] mb-2"
-                />
-                <span>هدفون</span>
-              </Link>
-            </SwiperSlide>
-          </Swiper>
-        </div>
+        {context.AllProduct.length != 0 ? (
+          <>
+            <div className="mt-2">
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={20}
+                loop={true}
+                autoplay={{
+                  delay: 1500,
+                  disableOnInteraction: false,
+                }}
+                freeMode={true}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 2,
+                    spaceBetween: 5,
+                  },
+                  640: {
+                    slidesPerView: 4,
+                    spaceBetween: 1,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                    spaceBetween: 1,
+                  },
+                  1024: {
+                    slidesPerView: 5,
+                    // spaceBetween: 1,
+                  },
+                  1424: {
+                    slidesPerView: 5.5,
+                    // spaceBetween: 1,
+                  },
+                }}
+                modules={[FreeMode, Pagination, Autoplay]}
+                className="mySwiper text-center px-3 max-h-[185px] mt-10 mb-5"
+              >
+                <SwiperSlide
+                  onClick={() => sortHandler("ساعت")}
+                  className="flex-row-center "
+                >
+                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                    <img src="images/watch.webp" alt="" className="mb-2" />
+                    <span className="max-h-[30px]">ساعت</span>
+                  </Link>
+                </SwiperSlide>
+                <SwiperSlide
+                  onClick={() => sortHandler("ایرپاد")}
+                  className="flex-row-center "
+                >
+                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                    <img src="images/airpod.webp" alt="" className="mb-2" />
+                    <span>ایرپاد</span>
+                  </Link>
+                </SwiperSlide>
+                <SwiperSlide
+                  onClick={() => sortHandler("شارژر")}
+                  className="flex-row-center "
+                >
+                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                    <img src="images/charger.webp" alt="" className="mb-2" />
+                    <span>شارژر</span>
+                  </Link>
+                </SwiperSlide>
+                <SwiperSlide
+                  onClick={() => sortHandler("قاب")}
+                  className="flex-row-center "
+                >
+                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                    <img
+                      src="images/cover.jpeg"
+                      alt=""
+                      className="rounded-full h-[105px] w-[105px] mb-2"
+                    />
+                    <span>قاب</span>
+                  </Link>
+                </SwiperSlide>
+                <SwiperSlide
+                  onClick={() => sortHandler("فلش")}
+                  className="flex-row-center "
+                >
+                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                    <img
+                      src="images/flash.webp"
+                      alt=""
+                      className="rounded-full h-[105px] w-[105px] mb-2"
+                    />
+                    <span>فلش</span>
+                  </Link>
+                </SwiperSlide>
+                <SwiperSlide
+                  onClick={() => sortHandler("مموری")}
+                  className="flex-row-center "
+                >
+                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                    <img
+                      src="images/memori.jpg"
+                      alt=""
+                      className="rounded-full h-[105px] w-[105px] mb-2"
+                    />
+                    <span>مموری</span>
+                  </Link>
+                </SwiperSlide>
+                <SwiperSlide
+                  onClick={() => sortHandler("پاوربانک")}
+                  className="flex-row-center "
+                >
+                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                    <img
+                      src="images/power.webp"
+                      alt=""
+                      className="rounded-full h-[105px] w-[105px] mb-2"
+                    />
+                    <span>پاوربانک</span>
+                  </Link>
+                </SwiperSlide>
+                <SwiperSlide
+                  onClick={() => sortHandler("هدفون")}
+                  className="flex-row-center "
+                >
+                  <Link className=" px-5 py-3 text-[18px] rounded-xl w-[150px]">
+                    <img
+                      src="images/headphone.webp"
+                      alt=""
+                      className="rounded-full h-[105px] w-[105px] mb-2"
+                    />
+                    <span>هدفون</span>
+                  </Link>
+                </SwiperSlide>
+              </Swiper>
+            </div>
 
-        {/* ==================================================== */}
+            {/* ==================================================== */}
 
-        <div className="flex flex-col vazir">
-          <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
-            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
-              <div className="overflow-hidden  border-[2px] border-blue rounded-2xl">
-                <table className="min-w-full bg-white">
-                  <thead className="bg-white border-b-[2px] blue border-blue ">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="text-sm text-black pr-4 py-4 text-right max-w-[100px] "
-                      >
-                        شماره
-                      </th>
-                      <th
-                        scope="col"
-                        className="text-sm text-black pr-5 py-4 text-right"
-                      >
-                        تصویر محصول
-                      </th>
-                      <th
-                        scope="col"
-                        className="text-sm text-black px-6 py-4 text-right"
-                      >
-                        نام محصول
-                      </th>
-                      <th
-                        scope="col"
-                        className="text-sm text-black pr-5 py-4 text-right"
-                      >
-                        دسته بندی
-                      </th>
-                      <th
-                        scope="col"
-                        className="text-sm text-black pr-10 py-4 text-right"
-                      ></th>
-                    </tr>
-                  </thead>
-
-                  {context.AllProduct.map((item) => (
-                    <tbody key={item.id}>
-                      <tr className="bg-gray-100 vazir-bold ">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
-                          {item.id}
-                        </td>
-                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                          <img
-                            src={`images/${item.imgae}`}
-                            alt="airpod1"
-                            className="w-[100px] h-[75px] rounded-xl"
-                          />
-                        </td>
-                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                          {item.name}
-                        </td>
-                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                          {item.ctg}
-                        </td>
-                        <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold pt-7">
-                          <button
-                            onClick={() => removeHandler(item.id)}
-                            className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl"
+            <div className="flex flex-col vazir">
+              <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
+                <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
+                  <div className="overflow-hidden  border-[2px] border-blue rounded-2xl">
+                    <table className="min-w-full bg-white">
+                      <thead className="bg-white border-b-[2px] blue border-blue ">
+                        <tr>
+                          <th
+                            scope="col"
+                            className="text-sm text-black pr-4 py-4 text-right max-w-[100px] "
                           >
-                            حذف
-                          </button>
-
-                          <button
-                            onClick={() => editHandler(item)}
-                            className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl ml-5"
+                            شماره
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm text-black pr-5 py-4 text-right"
                           >
-                            ویرایش
-                          </button>
-                          <button
-                            onClick={() => InfoHandler(item)}
-                            className="px-5 py-2 border-[2.5px] border-gray-500 text-gray-500  hover:bg-gray-500 hover:text-white rounded-xl ml-5"
+                            تصویر محصول
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm text-black px-6 py-4 text-right"
                           >
-                            مشاهده
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
+                            نام محصول
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm text-black pr-5 py-4 text-right"
+                          >
+                            دسته بندی
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-sm text-black pr-10 py-4 text-right"
+                          ></th>
+                        </tr>
+                      </thead>
 
-                  {context.deleteModal && <RemoveModal item={remove} />}
-                  {context.editeModal && <EditModal item={edit} />}
-                  {context.infoModal && <InfoModal item={info} />}
-                </table>
+                      {context.AllProduct.map((item, index) => (
+                        <tbody key={item.id}>
+                          <tr className="bg-gray-100 vazir-bold ">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
+                              {index + 1}
+                            </td>
+                            <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                              <img
+                                src={`images/${item.imgae}`}
+                                alt="airpod1"
+                                className="w-[100px] h-[75px] rounded-xl"
+                              />
+                            </td>
+                            <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                              {item.name}
+                            </td>
+                            <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                              {item.ctg}
+                            </td>
+                            <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold pt-7">
+                              <button
+                                onClick={() => removeHandler(item.id)}
+                                className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl"
+                              >
+                                حذف
+                              </button>
+                              <button
+                                onClick={() => editHandler(item)}
+                                className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl ml-5"
+                              >
+                                ویرایش
+                              </button>
+                              <button
+                                onClick={() => InfoHandler(item)}
+                                className="px-5 py-2 border-[2.5px] border-gray-500 text-gray-500  hover:bg-gray-500 hover:text-white rounded-xl ml-5"
+                              >
+                                مشاهده
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      ))}
+                      {context.deleteModal && <RemoveModal item={remove} />}
+                      {context.editeModal && <EditModal item={edit} />}
+                      {context.infoModal && <InfoModal item={info} />}
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </>
+        ) : (
+          <Loader />
+        )}
         {/* ==================================================== */}
       </div>
     </div>

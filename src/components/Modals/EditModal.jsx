@@ -62,7 +62,7 @@ export default function EditModal(item) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h3 className="text-[22px] vazir-bold md:pr-9 pr-3  text-gray-800">
+          <h3 className="text-[20px] vazir-bold md:pr-9 pr-3  text-gray-800">
             ویرایش محصول{" "}
           </h3>
         </div>
@@ -73,7 +73,7 @@ export default function EditModal(item) {
           {/* ===========================name */}
           <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] text-blue ml-2">
                 نام قبلی :
               </label>
               <span className="text-lg ">{item.item.name}</span>
@@ -81,7 +81,7 @@ export default function EditModal(item) {
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[18px] min-w-[75px]"
+                className="vazir-bold text-[16px] text-blue min-w-[75px]"
               >
                 نام جدید :
               </label>
@@ -103,17 +103,17 @@ export default function EditModal(item) {
           {/* ===========================price */}
           <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] text-blue ml-2">
                 قیمت قبلی :
               </label>
               <span className="text-lg ">
-                100000 <span>تومان</span>
+                {item.item.price} <span>تومان</span>
               </span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[18px] min-w-[95px] "
+                className="vazir-bold text-[16px] text-blue min-w-[95px] "
               >
                 قیمت جدید :
               </label>
@@ -136,15 +136,15 @@ export default function EditModal(item) {
 
           <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] text-blue ml-2">
                 دسته بندی قبلی :
               </label>
-              <span className="text-lg ">هدفون</span>
+              <span className="text-lg ">{item.item.ctg}</span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[18px] min-w-[129px]"
+                className="vazir-bold text-[16px] text-blue min-w-[129px]"
               >
                 دسته بندی جدید :
               </label>
@@ -164,15 +164,15 @@ export default function EditModal(item) {
           {/* =========================== */}
           <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[18px] ml-2">
+              <label htmlFor="#id" className="vazir-bold text-[16px] text-blue ml-2">
                 تعداد قبلی :
               </label>
-              <span className="text-lg ">2000 </span>
+              <span className="text-lg ">500 عدد</span>
             </div>
             <div className="md:mr-3 flex flex-row items-baseline ">
               <label
                 htmlFor="#quant"
-                className="vazir-bold text-[18px] min-w-[95px]"
+                className="vazir-bold text-[16px] text-blue min-w-[95px]"
               >
                 تعداد جدید :
               </label>

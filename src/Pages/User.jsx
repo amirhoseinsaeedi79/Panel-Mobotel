@@ -6,6 +6,7 @@ import { GetUser, PostUser } from "../Services/Axios/Requests/Users";
 import { toast } from "react-toastify";
 import RemoveUserMOdal from "../components/Modals/RemoveUserMOdal";
 import Empty from "../components/Empty";
+import Loader from "../components/Loader";
 export default function User() {
   const [edit, setEdit] = useState();
   const [remove, setRemove] = useState();
@@ -212,7 +213,7 @@ export default function User() {
                 {...register("rasteh", {
                   required: "وارد کردن عنوان کاربر اجباریست",
                   minLength: {
-                    value:3,
+                    value: 3,
                     message: "طول رمز وارد شده کمتراز5 کارکتر است",
                   },
                 })}
@@ -240,7 +241,7 @@ export default function User() {
         {/* ==================================================== */}
 
         {context.AllUser.length == 0 ? (
-          <Empty title="کاربری وجود ندارد" />
+          <Loader/>
         ) : (
           <div className="flex flex-col vazir pt-5">
             <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
@@ -286,10 +287,10 @@ export default function User() {
                       </tr>
                     </thead>
                     <tbody className=" ">
-                      {context.AllUser.map((user) => (
+                      {context.AllUser.map((user, index) => (
                         <tr key={user.id} className="bg-gray-100 vazir-bold  ">
                           <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
-                            {user.id}
+                            {index + 1}
                           </td>
                           <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
                             {user.username}
@@ -298,7 +299,9 @@ export default function User() {
                             {user.email}
                           </td>
                           <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
-                            {user.rasteh}
+                            {user.rasteh !== undefined
+                              ? user.rasteh
+                              : "کاربر عادی"}
                           </td>
                           <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
                             {user.phone}
