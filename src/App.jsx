@@ -1,16 +1,15 @@
-import { useLocation, useRoutes } from "react-router-dom";
-import Routes from "./Routes.jsx";
-import Topbar from "./components/Topbar.jsx";
-import AllContext from "./Context/Context.jsx";
 import { useEffect, useState } from "react";
-import Login from "./Pages/Login.jsx";
+
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+
+import AllContext from "./Context/Context.jsx";
+import Routes from "./Routes.jsx";
+import { GetComment } from "./Services/Axios/Requests/Comments.jsx";
 import { GetProduct } from "./Services/Axios/Requests/Products.jsx";
 import { GetUser } from "./Services/Axios/Requests/Users.jsx";
-import axios from "axios";
-import { GetComment } from "./Services/Axios/Requests/Comments.jsx";
 
-function App() {
-  let route = useRoutes(Routes);
+function App({ children }) {
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
   const [editeModal, setEditModal] = useState(false);
@@ -88,13 +87,14 @@ function App() {
     axios
       .get("https://mobo-server.liara.run/user/1")
       .then((data) => setAdmin(data.data));
-      GetProduct().then((data) => setAllProduct(data.data));
+    GetProduct().then((data) => setAllProduct(data.data));
   }, []);
-  
-  useEffect(() => { 
-     axios.get("https://mobo-server.liara.run/ticket")
+
+  useEffect(() => {
+    axios
+      .get("https://mobo-server.liara.run/ticket")
       .then((data) => setAllTicket(data.data));
-      GetComment().then((res) => setAllcomment(res.data));
+    GetComment().then((res) => setAllcomment(res.data));
   }, []);
 
   useEffect(() => {
@@ -106,13 +106,11 @@ function App() {
   }, []);
 
   function sortHandler(ctg) {
-
     const sortProduct = AllProduct.filter((item) => {
       return item.ctg == ctg;
     });
 
     setAllProduct(sortProduct);
-
   }
 
   useEffect(() => {
@@ -165,26 +163,12 @@ function App() {
         RenderAdmin,
         SortProduct,
         sortHandler,
-        
-
       }}
     >
-      {islogin ? (
-        <div className="h-[100vh]">
-          <Topbar />
-          {route}
-        </div>
-      ) : (
-        <Login />
-      )}
+      {/* <Topbar /> */}
+      <Routes />
     </AllContext.Provider>
   );
 }
 
 export default App;
-
-
-
-
-
-
