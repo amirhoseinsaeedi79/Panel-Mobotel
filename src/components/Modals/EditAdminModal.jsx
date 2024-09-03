@@ -1,10 +1,16 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import AllContext from "../../Context/Context";
-import ReactDOM from "react-dom";
-import { PutUser } from "../../Services/Axios/Requests/Users";
-import { toast } from "react-toastify";
-export default function EditAdminModal(prop) {
+import {
+  useContext,
+  useEffect,
+} from 'react';
+import ReactDOM from 'react-dom';
+
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+
+import AllContext from '../../Context/Context';
+import { PutUser } from '../../Services/Axios/Requests/Users';
+
+export default function EditAdminModal() {
   const context = useContext(AllContext);
 
   const {
@@ -41,10 +47,24 @@ export default function EditAdminModal(prop) {
     context.showProfileAdmin(false);
   }
 
+
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (event.target === event.currentTarget) {
+      context.showProfileAdmin(false);
+    }
+  };
+
   return ReactDOM.createPortal(
-    <div className="modal-parent active direction">
-      <div className="w-[98%] md:w-[349px]  flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1">
-        <div className=" py-2 blue rounded-t-lg">
+    <div className="modal-parent active direction" onClick={handleClickOutside}>
+      <div className="mx-1 flex w-[98%] flex-col rounded-xl border-2 border-blue bg-white shadow-2xl md:w-[349px]">
+        <div className="blue rounded-t-lg py-2">
           <svg
             onClick={exitHandler}
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +72,7 @@ export default function EditAdminModal(prop) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-8 h-8 float-left ml-3 cursor-pointer"
+            className="float-left ml-3 h-8 w-8 cursor-pointer"
           >
             <path
               strokeLinecap="round"
@@ -60,19 +80,19 @@ export default function EditAdminModal(prop) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h3 className="text-[20px] vazir-bold md:pr-5 pr-3  text-gray-800">
+          <h3 className="vazir-bold pr-3 text-[20px] text-gray-800 md:pr-5">
             ویرایش پروفایل{" "}
           </h3>
         </div>
         <form
           onSubmit={handleSubmit(registerHandler)}
-          className="md:px-10 px-3 py-3  "
+          className="px-3 py-3 md:px-10"
         >
-          <div className="w-full flex flex-col  items-end  text-center">
-            <div className="md:mr-3 flex flex-row items-baseline ">
+          <div className="flex w-full flex-col items-end text-center">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[18px] min-w-[30px]"
+                className="vazir-bold min-w-[30px] text-[18px]"
               >
                 نام :
               </label>
@@ -80,7 +100,7 @@ export default function EditAdminModal(prop) {
                 <input
                   id="name"
                   type="text"
-                  className=" mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
+                  className="mb-1 rounded-xl border-[3px] border-blue px-2 py-1 text-black focus:outline-none"
                   {...register("name", {
                     required: "وارد کردن نام اجباریست",
                     minLength: {
@@ -89,16 +109,16 @@ export default function EditAdminModal(prop) {
                     },
                   })}
                 />
-                <div className="error ">
+                <div className="error">
                   {errors.name && errors.name.message}
                 </div>
               </div>
             </div>
             {/* ============== */}
-            <div className="md:mr-3 flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#email"
-                className="vazir-bold text-[18px] min-w-[52px] "
+                className="vazir-bold min-w-[52px] text-[18px]"
               >
                 ایمیل :
               </label>
@@ -106,29 +126,29 @@ export default function EditAdminModal(prop) {
                 <input
                   id="email"
                   type="email"
-                  className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
+                  className="mb-1 w-full rounded-xl border-[3px] border-blue px-2 py-1 text-black focus:outline-none"
                   {...register("email", {
                     required: "وارد کردن ایمیل اجباریست",
                   })}
                 />
-                <div className="error ">
+                <div className="error">
                   {errors.email && errors.email.message}
                 </div>
               </div>
             </div>
             {/* ============== */}
-            <div className="md:mr-3 flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#phone"
-                className="vazir-bold text-[18px] min-w-[100px]"
+                className="vazir-bold min-w-[100px] text-[18px]"
               >
                 شماره تماس :
               </label>
-              <div className="flex flex-col mr-2.5">
+              <div className="mr-2.5 flex flex-col">
                 <input
                   id="phone"
                   type="text"
-                  className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
+                  className="mb-1 w-full rounded-xl border-[3px] border-blue px-2 py-1 text-black focus:outline-none"
                   {...register("phone", {
                     required: "وارد کردن شماره تماس اجباریست",
                     minLength: {
@@ -141,24 +161,24 @@ export default function EditAdminModal(prop) {
                     },
                   })}
                 />
-                <div className="error ">
+                <div className="error">
                   {errors.phone && errors.phone.message}
                 </div>
               </div>
             </div>
             {/* ============== */}
-            <div className="md:mr-3 flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#password"
-                className="vazir-bold text-[18px] min-w-[109px]"
+                className="vazir-bold min-w-[109px] text-[18px]"
               >
                 رمز عبور جدید :
               </label>
-              <div className="flex flex-col mr-2.5">
+              <div className="mr-2.5 flex flex-col">
                 <input
                   id="password"
                   type="password"
-                  className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
+                  className="mb-1 w-full rounded-xl border-[3px] border-blue px-2 py-1 text-black focus:outline-none"
                   {...register("password", {
                     required: "وارد کردن رمز عبور اجباریست",
                     minLength: {
@@ -167,36 +187,36 @@ export default function EditAdminModal(prop) {
                     },
                   })}
                 />
-                <div className="error ">
+                <div className="error">
                   {errors.password && errors.password.message}
                 </div>
               </div>
             </div>
             {/* ============== */}
-            <div className="md:mr-3 flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#image"
-                className="vazir-bold text-[18px] min-w-[93px]"
+                className="vazir-bold min-w-[93px] text-[18px]"
               >
                 تصویر نمایه :
               </label>
-              <div className="flex flex-col mr-2.5">
+              <div className="mr-2.5 flex flex-col">
                 <input
                   id="image"
                   type="file"
-                  className="w-10/12 mb-1 text-black py-1 px-2  focus:outline-none rounded-xl "
+                  className="mb-1 w-10/12 rounded-xl px-2 py-1 text-black focus:outline-none"
                   {...register("image", {
                     // required: "وارد کردن عکس اجباریست",
                   })}
                 />
-                <div className="error ">
+                <div className="error">
                   {errors.image && errors.image.message}
                 </div>
               </div>
             </div>
           </div>
           <div className="flex-row-center">
-            <button className="max-w-[120px] px-6 py-1.5 hover:text-blue text-md vazir-bold rounded-xl border-[3px] border-blue mt-3 np">
+            <button className="text-md vazir-bold np mt-3 max-w-[120px] rounded-xl border-[3px] border-blue px-6 py-1.5 hover:text-blue">
               ارسال
             </button>
           </div>

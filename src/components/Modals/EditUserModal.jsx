@@ -1,9 +1,17 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import AllContext from "../../Context/Context";
-import ReactDOM from "react-dom";
-import { GetUser, PutUser } from "../../Services/Axios/Requests/Users";
-import { toast } from "react-toastify";
+import {
+  useContext,
+  useEffect,
+} from 'react';
+import ReactDOM from 'react-dom';
+
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+
+import AllContext from '../../Context/Context';
+import {
+  GetUser,
+  PutUser,
+} from '../../Services/Axios/Requests/Users';
 
 export default function EditUserModal(item) {
   const context = useContext(AllContext);
@@ -47,8 +55,21 @@ export default function EditUserModal(item) {
     context.EditUser(false);
   }
 
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (event.target === event.currentTarget) {
+      context.EditUser(false);
+    }
+  };
+
   return ReactDOM.createPortal(
-    <div className="modal-parent active direction">
+    <div className="modal-parent active direction" onClick={handleClickOutside}>
       <div className="w-[98%] md:w-[90%] lg:w-[50%] flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1  ">
         <div className=" py-2 blue rounded-t-lg">
           <svg

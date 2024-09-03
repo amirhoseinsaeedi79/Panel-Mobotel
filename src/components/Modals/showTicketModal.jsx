@@ -1,14 +1,31 @@
-import { useContext } from "react";
-import ReactDOM from "react-dom";
-import AllContext from "../../Context/Context";
+import {
+  useContext,
+  useEffect,
+} from 'react';
+import ReactDOM from 'react-dom';
+
+import AllContext from '../../Context/Context';
 
 export default function ShowTicketModal(prop) {
   const context = useContext(AllContext);
   function showHandler() {
     context.showTicket(false);
   }
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (event.target === event.currentTarget) {
+      context.showTicket(false);
+    }
+  };
+
   return ReactDOM.createPortal(
-    <div className="modal-parent active direction">
+    <div className="modal-parent active direction" onClick={handleClickOutside}>
       <div className="w-[98%] md:w-[90%] lg:w-[60%] flex flex-col shadow-2xl rounded-xl mx-1  ">
         <div className=" py-2 blue rounded-xl  ">
           <svg

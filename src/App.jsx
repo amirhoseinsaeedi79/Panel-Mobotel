@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from 'react';
 
-import axios from "axios";
-import { useLocation } from "react-router-dom";
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
-import AllContext from "./Context/Context.jsx";
-import Routes from "./Routes.jsx";
-import { GetComment } from "./Services/Axios/Requests/Comments.jsx";
-import { GetProduct } from "./Services/Axios/Requests/Products.jsx";
-import { GetUser } from "./Services/Axios/Requests/Users.jsx";
+import AllContext from './Context/Context.jsx';
+import Routes from './Routes.jsx';
+import { GetComment } from './Services/Axios/Requests/Comments.jsx';
+import { GetProduct } from './Services/Axios/Requests/Products.jsx';
+import { PostTicket } from './Services/Axios/Requests/Tickets.jsx';
+import { GetUser } from './Services/Axios/Requests/Users.jsx';
 
-function App({ children }) {
+function App() {
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
   const [editeModal, setEditModal] = useState(false);
@@ -42,6 +46,7 @@ function App({ children }) {
   }
   function Tickets(data) {
     setAllTicket(data);
+    PostTicket(data)
   }
   function Info(data) {
     setInfoModal(data);

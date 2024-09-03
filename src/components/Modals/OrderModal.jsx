@@ -1,8 +1,9 @@
-import { useContext } from "react";
-import ReactDOM from "react-dom";
-import AllContext from "../../Context/Context";
+import { useContext } from 'react';
+import ReactDOM from 'react-dom';
 
-export default function OrderModal(prop) {
+import AllContext from '../../Context/Context';
+
+export default function OrderModal() {
   const context = useContext(AllContext);
   const AllCart = [
     {

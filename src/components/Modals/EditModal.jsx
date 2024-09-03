@@ -1,9 +1,17 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import AllContext from "../../Context/Context";
-import ReactDOM from "react-dom";
-import { GetProduct, PutProduct } from "../../Services/Axios/Requests/Products";
-import { toast } from "react-toastify";
+import {
+  useContext,
+  useEffect,
+} from 'react';
+import ReactDOM from 'react-dom';
+
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+
+import AllContext from '../../Context/Context';
+import {
+  GetProduct,
+  PutProduct,
+} from '../../Services/Axios/Requests/Products';
 
 export default function EditModal(item) {
   const context = useContext(AllContext);
@@ -43,10 +51,24 @@ export default function EditModal(item) {
     context.Edit(false);
   }
 
+
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (event.target === event.currentTarget) {
+      context.Edit(false);
+    }
+  };
+
   return ReactDOM.createPortal(
-    <div className="modal-parent active direction">
-      <div className="w-[98%] md:w-[90%] lg:w-[60%]  flex flex-col border-2 border-blue shadow-2xl rounded-xl bg-white mx-1  ">
-        <div className=" py-2 blue rounded-t-lg">
+    <div className="modal-parent active direction" onClick={handleClickOutside}>
+      <div className="mx-1 flex w-[98%] flex-col rounded-xl border-2 border-blue bg-white shadow-2xl md:w-[90%] lg:w-[60%]">
+        <div className="blue rounded-t-lg py-2">
           <svg
             onClick={exitHandler}
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +76,7 @@ export default function EditModal(item) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-8 h-8 float-left ml-3 cursor-pointer"
+            className="float-left ml-3 h-8 w-8 cursor-pointer"
           >
             <path
               strokeLinecap="round"
@@ -62,26 +84,26 @@ export default function EditModal(item) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-          <h3 className="text-[20px] vazir-bold md:pr-9 pr-3  text-gray-800">
+          <h3 className="vazir-bold pr-3 text-[20px] text-gray-800 md:pr-9">
             ویرایش محصول{" "}
           </h3>
         </div>
         <form
           onSubmit={handleSubmit(registerHandler)}
-          className="md:px-10 px-3 py-3"
+          className="px-3 py-3 md:px-10"
         >
           {/* ===========================name */}
-          <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+          <div className="mb-2 flex flex-col md:flex-row md:items-baseline md:justify-between">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[16px] text-blue ml-2">
+              <label htmlFor="#id" className="vazir-bold ml-2 text-[16px] text-blue">
                 نام قبلی :
               </label>
-              <span className="text-lg ">{item.item.name}</span>
+              <span className="text-lg">{item.item.name}</span>
             </div>
-            <div className="md:mr-3 flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[16px] text-blue min-w-[75px]"
+                className="vazir-bold min-w-[75px] text-[16px] text-blue"
               >
                 نام جدید :
               </label>
@@ -89,31 +111,31 @@ export default function EditModal(item) {
                 <input
                   id="name"
                   type="text"
-                  className=" mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
+                  className="mb-1 rounded-xl border-[3px] border-blue px-2 py-1 text-black focus:outline-none"
                   {...register("name", {
                     required: "وارد کردن نام اجباریست",
                   })}
                 />
-                <div className="error ">
+                <div className="error">
                   {errors.name && errors.name.message}
                 </div>
               </div>
             </div>
           </div>
           {/* ===========================price */}
-          <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
+          <div className="mb-2 flex flex-col md:flex-row md:place-items-baseline md:justify-between">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[16px] text-blue ml-2">
+              <label htmlFor="#id" className="vazir-bold ml-2 text-[16px] text-blue">
                 قیمت قبلی :
               </label>
-              <span className="text-lg ">
+              <span className="text-lg">
                 {item.item.price} <span>تومان</span>
               </span>
             </div>
-            <div className="md:mr-3 flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[16px] text-blue min-w-[95px] "
+                className="vazir-bold min-w-[95px] text-[16px] text-blue"
               >
                 قیمت جدید :
               </label>
@@ -121,12 +143,12 @@ export default function EditModal(item) {
                 <input
                   id="name"
                   type="text"
-                  className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
+                  className="mb-1 w-full rounded-xl border-[3px] border-blue px-2 py-1 text-black focus:outline-none"
                   {...register("price", {
                     required: "وارد کردن قیمت اجباریست",
                   })}
                 />
-                <div className="error ">
+                <div className="error">
                   {errors.price && errors.price.message}
                 </div>
               </div>
@@ -134,58 +156,58 @@ export default function EditModal(item) {
           </div>
           {/* =========================== */}
 
-          <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
+          <div className="mb-2 flex flex-col md:flex-row md:place-items-baseline md:justify-between">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[16px] text-blue ml-2">
+              <label htmlFor="#id" className="vazir-bold ml-2 text-[16px] text-blue">
                 دسته بندی قبلی :
               </label>
-              <span className="text-lg ">{item.item.ctg}</span>
+              <span className="text-lg">{item.item.ctg}</span>
             </div>
-            <div className="md:mr-3 flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#id"
-                className="vazir-bold text-[16px] text-blue min-w-[129px]"
+                className="vazir-bold min-w-[129px] text-[16px] text-blue"
               >
                 دسته بندی جدید :
               </label>
-              <div className="flex flex-col mr-2.5">
+              <div className="mr-2.5 flex flex-col">
                 <input
                   id="name"
                   type="text"
-                  className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
+                  className="mb-1 w-full rounded-xl border-[3px] border-blue px-2 py-1 text-black focus:outline-none"
                   {...register("ctg", {
                     required: "دسته بندی را وارد کنید",
                   })}
                 />
-                <div className="error ">{errors.ctg && errors.ctg.message}</div>
+                <div className="error">{errors.ctg && errors.ctg.message}</div>
               </div>
             </div>
           </div>
           {/* =========================== */}
-          <div className="flex flex-col md:flex-row md:place-items-baseline md:justify-between mb-2 ">
+          <div className="mb-2 flex flex-col md:flex-row md:place-items-baseline md:justify-between">
             <div className="">
-              <label htmlFor="#id" className="vazir-bold text-[16px] text-blue ml-2">
+              <label htmlFor="#id" className="vazir-bold ml-2 text-[16px] text-blue">
                 تعداد قبلی :
               </label>
-              <span className="text-lg ">500 عدد</span>
+              <span className="text-lg">500 عدد</span>
             </div>
-            <div className="md:mr-3 flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline md:mr-3">
               <label
                 htmlFor="#quant"
-                className="vazir-bold text-[16px] text-blue min-w-[95px]"
+                className="vazir-bold min-w-[95px] text-[16px] text-blue"
               >
                 تعداد جدید :
               </label>
-              <div className="flex flex-col mr-2.5">
+              <div className="mr-2.5 flex flex-col">
                 <input
                   id="quant"
                   type="text"
-                  className="w-full mb-1 text-black py-1 px-2 border-[3px] border-blue  focus:outline-none rounded-xl "
+                  className="mb-1 w-full rounded-xl border-[3px] border-blue px-2 py-1 text-black focus:outline-none"
                   {...register("quant", {
                     required: "وارد کردن تعداد اجباریست",
                   })}
                 />
-                <div className="error ">
+                <div className="error">
                   {errors.quant && errors.quant.message}
                 </div>
               </div>
@@ -194,21 +216,21 @@ export default function EditModal(item) {
 
           {/* ===========================image */}
           <div className="flex flex-col items-center md:flex-row md:items-baseline md:justify-between">
-            <div className=" flex flex-row items-baseline ">
+            <div className="flex flex-row items-baseline">
               <label
                 htmlFor="#image"
-                className="vazir-bold text-[18px] min-w-[105px]"
+                className="vazir-bold min-w-[105px] text-[18px]"
               >
                 انتخاب عکس :
               </label>
               <input
                 id="image"
                 type="file"
-                className="w-[95%] mb-1 text-black py-1 mr-2  px-2  focus:outline-none rounded-xl"
+                className="mb-1 mr-2 w-[95%] rounded-xl px-2 py-1 text-black focus:outline-none"
                 {...register("image", {})}
               />
             </div>
-            <button className="max-w-[120px] px-6 py-1.5 hover:text-blue text-md vazir-bold rounded-xl border-[3px] border-blue mt-3 np">
+            <button className="text-md vazir-bold np mt-3 max-w-[120px] rounded-xl border-[3px] border-blue px-6 py-1.5 hover:text-blue">
               ارسال
             </button>
           </div>

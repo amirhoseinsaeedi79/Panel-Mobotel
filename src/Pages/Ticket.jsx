@@ -3,6 +3,9 @@ import {
   useState,
 } from 'react';
 
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
 import Loader from '../components/Loader';
 import AnswerTicketModal from '../components/Modals/AnswerTicketModal';
 import ShowTicketModal from '../components/Modals/showTicketModal';
@@ -16,6 +19,25 @@ export default function Ticket() {
     await setTickets(item);
     context.showTicket(true);
   }
+
+  const removeTicketHandler = (id) => {
+    axios.delete(`https://mobo-server.liara.run/ticket/${id}`);
+    const result = context.allTicket.filter((tik) => {
+      return tik.id !== id;
+    });
+    context.Tickets(result);
+    toast.success("با موفقیت حذف شد", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <div className="direction vazir w-full pt-24 md:w-[calc(100%_-_180px)]">
       <div className="flex-row-center w-full">
@@ -101,7 +123,7 @@ export default function Ticket() {
                             پاسخ
                           </button>
                           <button
-                            // onClick={() => context.answerTicket(true)}
+                            onClick={() => removeTicketHandler(ticket.id)}
                             className="ml-5 rounded-xl border-[2.5px] border-red-500 px-5 py-2 text-red-500 hover:bg-red-500 hover:text-white"
                           >
                             حذف
@@ -114,6 +136,10 @@ export default function Ticket() {
               </div>
             </div>
           </div>
+        </div>
+      ) : context.allTicket.length == 0 ? (
+        <div className="mt-20 w-full text-center text-[24px]">
+          <span className="rounded-3xl bg-blue p-5">تیکتی وجود ندارد</span>
         </div>
       ) : (
         <Loader />

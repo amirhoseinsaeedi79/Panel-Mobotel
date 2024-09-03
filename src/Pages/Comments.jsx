@@ -1,11 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import AllContext from "../Context/Context";
-import ShowCommentModal from "../components/Modals/ShowCommentModal";
-import AnsswerModal from "../components/Modals/AnsswerModal";
-import { DeleteComment, GetComment } from "../Services/Axios/Requests/Comments";
-import { toast } from "react-toastify";
-import Loader from "../components/Loader";
-import axios from "axios";
+import {
+  useContext,
+  useState,
+} from 'react';
+
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+import Loader from '../components/Loader';
+import AnsswerModal from '../components/Modals/AnsswerModal';
+import ShowCommentModal from '../components/Modals/ShowCommentModal';
+import AllContext from '../Context/Context';
 
 export default function Comments() {
   const context = useContext(AllContext);
@@ -53,61 +57,61 @@ export default function Comments() {
 
   return (
     <>
-      <div className="w-full pt-24 md:w-[calc(100%_-_180px)] direction vazir bgimage">
-        <div className="w-full flex-row-center">
+      <div className="direction vazir bgimage w-full pt-24 md:w-[calc(100%_-_180px)]">
+        <div className="flex-row-center w-full">
           <span className="vazir-bold text-[25px]">نظرات کاربران </span>
         </div>
         {context.allcomment.length > 0 ? (
-          <div className="flex flex-col vazir pt-5">
-            <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
-              <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
-                <div className="overflow-hidden border-[3px] border-blue rounded-2xl">
-                  <table className="min-w-full ">
-                    <thead className="bg-white border-b-[2px] blue border-blue ">
+          <div className="vazir flex flex-col pt-5">
+            <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+              <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div className="overflow-hidden rounded-2xl border-[3px] border-blue">
+                  <table className="min-w-full">
+                    <thead className="blue border-b-[2px] border-blue bg-white">
                       <tr>
                         <th
                           scope="col"
-                          className="text-sm text-black pl-6 pr-3 py-4 text-right max-w-[80px] "
+                          className="max-w-[80px] py-4 pl-6 pr-3 text-right text-sm text-black"
                         >
                           شماره
                         </th>
                         <th
                           scope="col"
-                          className="text-sm text-black pr-6 py-4 text-right "
+                          className="py-4 pr-6 text-right text-sm text-black"
                         >
                           نام کاربری
                         </th>
                         <th
                           scope="col"
-                          className="text-sm text-black px-6 py-4 text-right "
+                          className="px-6 py-4 text-right text-sm text-black"
                         >
                           عنوان
                         </th>
                         <th
                           scope="col"
-                          className="text-sm text-black pr-4 py-4 text-right "
+                          className="py-4 pr-4 text-right text-sm text-black"
                         >
                           نمایش نظر
                         </th>
                         <th
                           scope="col"
-                          className="text-sm text-black px-6 py-4 text-center"
+                          className="px-6 py-4 text-center text-sm text-black"
                         ></th>
                       </tr>
                     </thead>
                     <tbody>
                       {context.allcomment.map((com, index) => (
-                        <tr key={com.id} className="bg-gray-100 vazir-bold ">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
+                        <tr key={com.id} className="vazir-bold bg-gray-100">
+                          <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                             {index + 1}
                           </td>
-                          <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                             {com.username}
                           </td>
-                          <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                             ادمین
                           </td>
-                          <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                          <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                             <svg
                               onClick={() => commentHandler(com.text)}
                               xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +119,7 @@ export default function Comments() {
                               viewBox="0 0 24 24"
                               strokeWidth={1.5}
                               stroke="currentColor"
-                              className="w-8 h-8 hover:text-blue cursor-pointer"
+                              className="h-8 w-8 cursor-pointer hover:text-blue"
                             >
                               <path
                                 strokeLinecap="round"
@@ -129,22 +133,22 @@ export default function Comments() {
                               />
                             </svg>
                           </td>
-                          <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold">
+                          <td className="flex-row-center vazir-bold whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                             <button
                               onClick={() => rejectHandler(com.id)}
-                              className="px-5 py-2  border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white mr-5 rounded-xl"
+                              className="mr-5 rounded-xl border-[2.5px] border-red-500 px-5 py-2 text-red-500 hover:bg-red-500 hover:text-white"
                             >
                               رد
                             </button>
                             <button
                               onClick={() => answerHandler(com.text)}
-                              className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl mr-5  "
+                              className="mr-5 rounded-xl border-[2.5px] border-blue px-5 py-2 text-blue hover:bg-blue hover:text-white"
                             >
                               پاسخ
                             </button>
                             <button
                               onClick={() => accepttHandler()}
-                              className="px-5 py-2 border-[2.5px] border-green-500 text-green-500  hover:bg-green-500 hover:text-white rounded-xl  mr-5 "
+                              className="mr-5 rounded-xl border-[2.5px] border-green-500 px-5 py-2 text-green-500 hover:bg-green-500 hover:text-white"
                             >
                               تایید
                             </button>
@@ -158,8 +162,8 @@ export default function Comments() {
             </div>
           </div>
         ) : context.allcomment == 0 ? (
-          <div className="w-full  text-center text-[24px]  mt-20   ">
-            <span className="bg-blue p-5 rounded-3xl">نظری وجود ندارد</span>
+          <div className="mt-20 w-full text-center text-[24px]">
+            <span className="rounded-3xl bg-blue p-5">نظری وجود ندارد</span>
           </div>
         ) : (
           <Loader />
