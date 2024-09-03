@@ -1,19 +1,36 @@
-import { useEffect, useState, useContext } from "react";
-import { useForm } from "react-hook-form";
-import AllContext from "../Context/Context";
-import RemoveModal from "../components/Modals/RemoveModal";
-import EditModal from "../components/Modals/EditModal";
-import InfoModal from "../components/Modals/InfoModal";
-import { GetProduct, PostProduct } from "../Services/Axios/Requests/Products";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import { Autoplay, FreeMode, Pagination } from "swiper/modules";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import axios from "axios";
-import Loader from "../components/Loader";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+
+import {
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import {
+  Autoplay,
+  FreeMode,
+  Pagination,
+} from 'swiper/modules';
+import {
+  Swiper,
+  SwiperSlide,
+} from 'swiper/react';
+
+import Loader from '../components/Loader';
+import EditModal from '../components/Modals/EditModal';
+import InfoModal from '../components/Modals/InfoModal';
+import RemoveModal from '../components/Modals/RemoveModal';
+import AllContext from '../Context/Context';
+import {
+  GetProduct,
+  PostProduct,
+} from '../Services/Axios/Requests/Products';
 
 export default function Product() {
   const context = useContext(AllContext);
@@ -85,27 +102,27 @@ export default function Product() {
   }
 
   return (
-    <div className="w-full pt-24  md:w-[calc(100%_-_180px)]">
+    <div className="w-full pt-24 md:w-[calc(100%_-_180px)]">
       {/* ===================================================== start newUser */}
-      <div className=" vazir direction ">
+      <div className="vazir direction">
         <form
           onSubmit={handleSubmit(registerHandler)}
           className="flex-col-center border-b-2 border-blue pb-3"
         >
           {/* =================================================== username */}
-          <div className="flex-row-center text-[20px] md:text-[22px] mb-5 vazir-bold">
+          <div className="flex-row-center vazir-bold mb-5 text-[20px] md:text-[22px]">
             <p>افزودن محصول جدید</p>
           </div>
-          <div className="max-w-[600px] xl:max-w-[1300px] flex-col-center md:grid md:grid-cols-2 xl:md:grid-rows-2 md:items-end gap-x-10 lg:gap-x-[100px] xl:gap-x-[150px]">
+          <div className="flex-col-center max-w-[600px] gap-x-10 md:grid md:grid-cols-2 md:items-end lg:gap-x-[100px] xl:md:grid-rows-2 xl:max-w-[1300px] xl:gap-x-[150px]">
             <div className="flex flex-col items-center">
               <label
-                className="text-black text-lg vazir-bold relative left-[82px] lg:left-[120px] xl:left-[179px] mb-2 pt-2"
+                className="vazir-bold relative left-[82px] mb-2 pt-2 text-lg text-black lg:left-[120px] xl:left-[179px]"
                 htmlFor="#username"
               >
                 نام محصول :
               </label>
               <input
-                className="w-[250px] lg:w-[330px] xl:w-[450px]   shadow-xl h-12 rounded-2xl  border-2 border-blue focus:outline-0 px-4 text-xl "
+                className="h-12 w-[250px] rounded-2xl border-2 border-blue px-4 text-xl shadow-xl focus:outline-0 lg:w-[330px] xl:w-[450px]"
                 id="username"
                 type="text"
                 {...register("name", {
@@ -116,38 +133,38 @@ export default function Product() {
                   },
                 })}
               />
-              <div className="error ">{errors.name && errors.name.message}</div>
+              <div className="error">{errors.name && errors.name.message}</div>
             </div>
             {/* ===================================================email */}
             <div className="flex flex-col items-center">
               <label
-                className="text-black text-lg vazir-bold relative left-[98px] lg:left-[135px] xl:left-[196px] mb-2 pt-2"
+                className="vazir-bold relative left-[98px] mb-2 pt-2 text-lg text-black lg:left-[135px] xl:left-[196px]"
                 htmlFor="#price"
               >
                 قیمت :
               </label>
               <input
-                className="w-[250px] lg:w-[330px] xl:w-[450px]  shadow-xl h-12 rounded-2xl border-2 border-blue focus:outline-0 px-4 text-xl "
+                className="h-12 w-[250px] rounded-2xl border-2 border-blue px-4 text-xl shadow-xl focus:outline-0 lg:w-[330px] xl:w-[450px]"
                 id="price"
                 type="text"
                 {...register("price", {
                   required: "وارد کردن قیمت اجباریست",
                 })}
               />
-              <div className="error ">
+              <div className="error">
                 {errors.price && errors.price.message}
               </div>
             </div>
             {/* ===================================================phone */}
             <div className="flex flex-col items-center">
               <label
-                className="text-black text-lg vazir-bold relative left-[73px] lg:left-[110px] xl:left-[172px] mb-2 pt-2"
+                className="vazir-bold relative left-[73px] mb-2 pt-2 text-lg text-black lg:left-[110px] xl:left-[172px]"
                 htmlFor="#phone"
               >
                 دسته بندی :
               </label>
               <input
-                className="w-[250px] lg:w-[330px] xl:w-[450px]  shadow-xl h-12 rounded-2xl  border-2 border-blue focus:outline-0 px-4 text-xl "
+                className="h-12 w-[250px] rounded-2xl border-2 border-blue px-4 text-xl shadow-xl focus:outline-0 lg:w-[330px] xl:w-[450px]"
                 id="ctg"
                 type="text"
                 {...register("ctg", {
@@ -158,66 +175,66 @@ export default function Product() {
                   },
                 })}
               />
-              <div className="error ">{errors.ctg && errors.ctg.message}</div>
+              <div className="error">{errors.ctg && errors.ctg.message}</div>
             </div>
             {/* ===================================================password */}
             <div className="flex flex-col items-center">
               <label
-                className="text-black text-lg vazir-bold relative left-[89px] lg:left-[128px] xl:left-[187px] mb-2 pt-2"
+                className="vazir-bold relative left-[89px] mb-2 pt-2 text-lg text-black lg:left-[128px] xl:left-[187px]"
                 htmlFor="#numberItem"
               >
                 تعداد موجود :
               </label>
               <input
-                className="w-[250px] lg:w-[330px] xl:w-[450px]  shadow-xl h-12 rounded-2xl  border-2 border-blue focus:outline-0 px-4 text-xl "
+                className="h-12 w-[250px] rounded-2xl border-2 border-blue px-4 text-xl shadow-xl focus:outline-0 lg:w-[330px] xl:w-[450px]"
                 id="numberItem"
                 type="text"
                 {...register("numberItem", {
                   required: "وارد تعداد  اجباریست",
                 })}
               />
-              <div className="error ">
+              <div className="error">
                 {errors.numberItem && errors.numberItem.message}
               </div>
             </div>
             {/* ===================================================repeat password */}
             <div className="flex flex-col items-center">
               <label
-                className="text-black text-lg vazir-bold relative left-[72px] lg:left-[110px] xl:left-[172px] mb-2 pt-2"
+                className="vazir-bold relative left-[72px] mb-2 pt-2 text-lg text-black lg:left-[110px] xl:left-[172px]"
                 htmlFor="#code"
               >
                 کد محصول :
               </label>
               <input
-                className="w-[250px] lg:w-[330px] xl:w-[450px]  shadow-xl h-12 rounded-2xl  border-2 border-blue focus:outline-0 px-4 text-xl "
+                className="h-12 w-[250px] rounded-2xl border-2 border-blue px-4 text-xl shadow-xl focus:outline-0 lg:w-[330px] xl:w-[450px]"
                 id="code"
                 type="text"
                 {...register("code", {})}
               />
-              <div className="error ">{errors.code && errors.code.message}</div>
+              <div className="error">{errors.code && errors.code.message}</div>
             </div>
             {/* ===================================================rasteh */}
             <div className="flex flex-col items-center">
               <label
-                className="text-black  text-lg vazir-bold lg:mt-3 relative left-[80px] lg:left-[117px] xl:left-[177px] mb-3 pt-2 "
+                className="vazir-bold relative left-[80px] mb-3 pt-2 text-lg text-black lg:left-[117px] lg:mt-3 xl:left-[177px]"
                 htmlFor="#rasteh"
               >
                 افزودن تصویر :
               </label>
               <input
-                className="w-[250px] lg:w-[330px] xl:w-[450px]   h-12 rounded-2xl   focus:outline-0 px-4 text-xl "
+                className="h-12 w-[250px] rounded-2xl px-4 text-xl focus:outline-0 lg:w-[330px] xl:w-[450px]"
                 id="rasteh"
                 type="file"
                 {...register("rasteh", {})}
               />
-              <div className="error ">
+              <div className="error">
                 {errors.rasteh && errors.rasteh.message}
               </div>
             </div>
           </div>
-          <div className="w-full flex-row-center mt-5 md:mt-12">
+          <div className="flex-row-center mt-5 w-full md:mt-12">
             <input
-              className="py-2 w-[110px] mb-5 shadow-xl bg-white rounded-xl text-xl vazir-bold cursor-pointer border-2 border-blue hover:bg-hover"
+              className="vazir-bold mb-5 w-[110px] cursor-pointer rounded-xl border-2 border-blue bg-white py-2 text-xl shadow-xl hover:bg-hover"
               type="submit"
               value={"ثبت"}
             />
@@ -226,9 +243,9 @@ export default function Product() {
       </div>
       {/* ==================================================== end newUser */}
 
-      <div className="pt-7  direction">
-        <div className="alltopbarProduct flex flex-col md:flex-row justify-center  items-center">
-          <span className="text-[20px] md:text-[22px] vazir-bold flex-row-center pt-1  md:ml-10">
+      <div className="direction pt-7">
+        <div className="alltopbarProduct flex flex-col items-center justify-center md:flex-row">
+          <span className="vazir-bold flex-row-center pt-1 text-[20px] md:ml-10 md:text-[22px]">
             لیست محصولات
           </span>
           <form
@@ -236,9 +253,9 @@ export default function Product() {
             className="mt-5 md:mt-0"
           >
             <div className="relative px-3">
-              <button className="flex absolute inset-y-0 left-2 items-center pl-3 ">
+              <button className="absolute inset-y-0 left-2 flex items-center pl-3">
                 <svg
-                  className="w-6 h-6 "
+                  className="h-6 w-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -252,7 +269,7 @@ export default function Product() {
                 value={search}
                 type="text"
                 id="default-search"
-                className="block direction px-7 py-2 pl-10 w-full rounded-xl border-[3px] border-blue focus:outline-none"
+                className="direction block w-full rounded-xl border-[3px] border-blue px-7 py-2 pl-10 focus:outline-none"
                 placeholder="جستجوی محصول ..."
               />
             </div>
@@ -295,96 +312,96 @@ export default function Product() {
                   },
                 }}
                 modules={[FreeMode, Pagination, Autoplay]}
-                className="mySwiper text-center px-3 max-h-[185px] mt-10 mb-5"
+                className="mySwiper mb-5 mt-10 max-h-[185px] px-3 text-center"
               >
                 <SwiperSlide
                   onClick={() => sortHandler("ساعت")}
-                  className="flex-row-center "
+                  className=""
                 >
-                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
-                    <img src="images/watch.webp" alt="" className="mb-2" />
+                  <Link className="flex w-[150px] flex-col items-center rounded-xl px-5 py-3 text-[18px]">
+                    <img src="images/watch.webp" alt="" className="mb-2 h-[105px] w-[105px] rounded-full" />
                     <span className="max-h-[30px]">ساعت</span>
                   </Link>
                 </SwiperSlide>
                 <SwiperSlide
                   onClick={() => sortHandler("ایرپاد")}
-                  className="flex-row-center "
+                  className=""
                 >
-                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
-                    <img src="images/airpod.webp" alt="" className="mb-2" />
+                  <Link className="flex w-[150px] flex-col items-center rounded-xl px-5 py-3 text-[18px]">
+                    <img src="images/airpod.webp" alt="" className="mb-2 h-[105px] w-[105px] rounded-full" />
                     <span>ایرپاد</span>
                   </Link>
                 </SwiperSlide>
                 <SwiperSlide
                   onClick={() => sortHandler("شارژر")}
-                  className="flex-row-center "
+                  className=""
                 >
-                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
-                    <img src="images/charger.webp" alt="" className="mb-2" />
+                  <Link className="flex w-[150px] flex-col items-center rounded-xl px-5 py-3 text-[18px]">
+                    <img src="images/charger.webp" alt="" className="mb-2 h-[105px] w-[105px] rounded-full" />
                     <span>شارژر</span>
                   </Link>
                 </SwiperSlide>
                 <SwiperSlide
                   onClick={() => sortHandler("قاب")}
-                  className="flex-row-center "
+                  className=""
                 >
-                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                  <Link className="flex w-[150px] flex-col items-center rounded-xl px-5 py-3 text-[18px]">
                     <img
                       src="images/cover.jpeg"
                       alt=""
-                      className="rounded-full h-[105px] w-[105px] mb-2"
+                      className="mb-2 h-[105px] w-[105px] rounded-full"
                     />
                     <span>قاب</span>
                   </Link>
                 </SwiperSlide>
                 <SwiperSlide
                   onClick={() => sortHandler("فلش")}
-                  className="flex-row-center "
+                  className=""
                 >
-                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                  <Link className="flex w-[150px] flex-col items-center rounded-xl px-5 py-3 text-[18px]">
                     <img
                       src="images/flash.webp"
                       alt=""
-                      className="rounded-full h-[105px] w-[105px] mb-2"
+                      className="mb-2 h-[105px] w-[105px] rounded-full"
                     />
                     <span>فلش</span>
                   </Link>
                 </SwiperSlide>
                 <SwiperSlide
                   onClick={() => sortHandler("مموری")}
-                  className="flex-row-center "
+                  className=""
                 >
-                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                  <Link className="flex w-[150px] flex-col items-center rounded-xl px-5 py-3 text-[18px]">
                     <img
                       src="images/memori.jpg"
                       alt=""
-                      className="rounded-full h-[105px] w-[105px] mb-2"
+                      className="mb-2 h-[105px] w-[105px] rounded-full"
                     />
                     <span>مموری</span>
                   </Link>
                 </SwiperSlide>
                 <SwiperSlide
                   onClick={() => sortHandler("پاوربانک")}
-                  className="flex-row-center "
+                  className=""
                 >
-                  <Link className=" px-5 py-3  text-[18px] rounded-xl w-[150px]">
+                  <Link className="flex w-[150px] flex-col items-center rounded-xl px-5 py-3 text-[18px]">
                     <img
                       src="images/power.webp"
                       alt=""
-                      className="rounded-full h-[105px] w-[105px] mb-2"
+                      className="mb-2 h-[105px] w-[105px] rounded-full"
                     />
                     <span>پاوربانک</span>
                   </Link>
                 </SwiperSlide>
                 <SwiperSlide
                   onClick={() => sortHandler("هدفون")}
-                  className="flex-row-center "
+                  className=""
                 >
-                  <Link className=" px-5 py-3 text-[18px] rounded-xl w-[150px]">
+                  <Link className="flex w-[150px] flex-col items-center rounded-xl px-5 py-3 text-[18px]">
                     <img
                       src="images/headphone.webp"
                       alt=""
-                      className="rounded-full h-[105px] w-[105px] mb-2"
+                      className="mb-2 h-[105px] w-[105px] rounded-full"
                     />
                     <span>هدفون</span>
                   </Link>
@@ -394,79 +411,79 @@ export default function Product() {
 
             {/* ==================================================== */}
 
-            <div className="flex flex-col vazir">
-              <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
-                <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
-                  <div className="overflow-hidden  border-[2px] border-blue rounded-2xl">
+            <div className="vazir flex flex-col">
+              <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+                <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                  <div className="overflow-hidden rounded-2xl border-[2px] border-blue">
                     <table className="min-w-full bg-white">
-                      <thead className="bg-white border-b-[2px] blue border-blue ">
+                      <thead className="blue border-b-[2px] border-blue bg-white">
                         <tr>
                           <th
                             scope="col"
-                            className="text-sm text-black pr-4 py-4 text-right max-w-[100px] "
+                            className="max-w-[100px] py-4 pr-4 text-right text-sm text-black"
                           >
                             شماره
                           </th>
                           <th
                             scope="col"
-                            className="text-sm text-black pr-5 py-4 text-right"
+                            className="py-4 pr-5 text-right text-sm text-black"
                           >
                             تصویر محصول
                           </th>
                           <th
                             scope="col"
-                            className="text-sm text-black px-6 py-4 text-right"
+                            className="px-6 py-4 text-right text-sm text-black"
                           >
                             نام محصول
                           </th>
                           <th
                             scope="col"
-                            className="text-sm text-black pr-5 py-4 text-right"
+                            className="py-4 pr-5 text-right text-sm text-black"
                           >
                             دسته بندی
                           </th>
                           <th
                             scope="col"
-                            className="text-sm text-black pr-10 py-4 text-right"
+                            className="py-4 pr-10 text-right text-sm text-black"
                           ></th>
                         </tr>
                       </thead>
 
                       {context.AllProduct.map((item, index) => (
                         <tbody key={item.id}>
-                          <tr className="bg-gray-100 vazir-bold ">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
+                          <tr className="vazir-bold bg-gray-100">
+                            <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                               {index + 1}
                             </td>
-                            <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                            <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                               <img
                                 src={`images/${item.imgae}`}
                                 alt="airpod1"
-                                className="w-[100px] h-[75px] rounded-xl"
+                                className="h-[75px] w-[100px] rounded-xl"
                               />
                             </td>
-                            <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                            <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                               {item.name}
                             </td>
-                            <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                            <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                               {item.ctg}
                             </td>
-                            <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold pt-7">
+                            <td className="flex-row-center vazir-bold whitespace-nowrap px-6 py-4 pt-7 text-sm text-gray-900">
                               <button
                                 onClick={() => removeHandler(item.id)}
-                                className="px-5 py-2 border-[2.5px] border-red-500 text-red-500  hover:bg-red-500 hover:text-white ml-5 rounded-xl"
+                                className="ml-5 rounded-xl border-[2.5px] border-red-500 px-5 py-2 text-red-500 hover:bg-red-500 hover:text-white"
                               >
                                 حذف
                               </button>
                               <button
                                 onClick={() => editHandler(item)}
-                                className="px-5 py-2 border-[2.5px] border-blue text-blue  hover:bg-blue hover:text-white rounded-xl ml-5"
+                                className="ml-5 rounded-xl border-[2.5px] border-blue px-5 py-2 text-blue hover:bg-blue hover:text-white"
                               >
                                 ویرایش
                               </button>
                               <button
                                 onClick={() => InfoHandler(item)}
-                                className="px-5 py-2 border-[2.5px] border-gray-500 text-gray-500  hover:bg-gray-500 hover:text-white rounded-xl ml-5"
+                                className="ml-5 rounded-xl border-[2.5px] border-gray-500 px-5 py-2 text-gray-500 hover:bg-gray-500 hover:text-white"
                               >
                                 مشاهده
                               </button>

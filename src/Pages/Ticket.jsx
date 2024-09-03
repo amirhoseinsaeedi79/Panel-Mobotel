@@ -1,8 +1,12 @@
-import { useContext, useState } from "react";
-import AllContext from "../Context/Context";
-import AnswerTicketModal from "../components/Modals/AnswerTicketModal";
-import ShowTicketModal from "../components/Modals/showTicketModal";
-import Loader from "../components/Loader";
+import {
+  useContext,
+  useState,
+} from 'react';
+
+import Loader from '../components/Loader';
+import AnswerTicketModal from '../components/Modals/AnswerTicketModal';
+import ShowTicketModal from '../components/Modals/showTicketModal';
+import AllContext from '../Context/Context';
 
 export default function Ticket() {
   const [tickets, setTickets] = useState();
@@ -13,61 +17,61 @@ export default function Ticket() {
     context.showTicket(true);
   }
   return (
-    <div className="w-full pt-24  md:w-[calc(100%_-_180px)] direction vazir">
-      <div className="w-full flex-row-center">
+    <div className="direction vazir w-full pt-24 md:w-[calc(100%_-_180px)]">
+      <div className="flex-row-center w-full">
         <span className="vazir-bold text-[22px]">تیکت های کاربران </span>
       </div>
       {context.allTicket.length != 0 ? (
-        <div className="flex flex-col vazir pt-5">
-          <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5 ">
-            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 ">
-              <div className="overflow-hidden border-[3px] border-blue rounded-2xl">
-                <table className="min-w-full ">
-                  <thead className="bg-white border-b-[2px] blue border-blue ">
+        <div className="vazir flex flex-col pt-5">
+          <div className="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+            <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+              <div className="overflow-hidden rounded-2xl border-[3px] border-blue">
+                <table className="min-w-full">
+                  <thead className="blue border-b-[2px] border-blue bg-white">
                     <tr>
                       <th
                         scope="col"
-                        className="text-sm text-black pl-6 pr-3 py-4 text-right max-w-[80px] "
+                        className="max-w-[80px] py-4 pl-6 pr-3 text-right text-sm text-black"
                       >
                         شماره
                       </th>
                       <th
                         scope="col"
-                        className="text-sm text-black pr-14 py-4 text-right "
+                        className="py-4 pr-14 text-right text-sm text-black"
                       >
                         نام کاربری
                       </th>
                       <th
                         scope="col"
-                        className="text-sm text-black px-6 py-4 text-right "
+                        className="px-6 py-4 text-right text-sm text-black"
                       >
                         عنوان
                       </th>
                       <th
                         scope="col"
-                        className="text-sm text-black pr-3 py-4 text-right "
+                        className="py-4 pr-3 text-right text-sm text-black"
                       >
                         نمایش تیکت{" "}
                       </th>
                       <th
                         scope="col"
-                        className="text-sm text-black px-6 py-4 text-center"
+                        className="px-6 py-4 text-center text-sm text-black"
                       ></th>
                     </tr>
                   </thead>
                   <tbody>
                     {context.allTicket.map((ticket, index) => (
-                      <tr key={ticket.id} className="bg-gray-100 vazir-bold ">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900">
+                      <tr key={ticket.id} className="vazir-bold bg-gray-100">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                           {index + 1}
                         </td>
-                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                           {ticket.username}
                         </td>
-                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                           کاربر عادی
                         </td>
-                        <td className="text-[15px] text-gray-900  px-6 py-4 whitespace-nowrap">
+                        <td className="whitespace-nowrap px-6 py-4 text-[15px] text-gray-900">
                           <svg
                             onClick={() => editHandler(ticket.text)}
                             xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +79,7 @@ export default function Ticket() {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-8 h-8 hover:text-blue cursor-pointer"
+                            className="h-8 w-8 cursor-pointer hover:text-blue"
                           >
                             <path
                               strokeLinecap="round"
@@ -89,12 +93,18 @@ export default function Ticket() {
                             />
                           </svg>
                         </td>
-                        <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap flex-row-center vazir-bold">
+                        <td className="flex-row-center vazir-bold whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                           <button
                             onClick={() => context.answerTicket(true)}
-                            className="px-5 py-2 border-[2.5px] border-green-500 text-green-500  hover:bg-green-500 hover:text-white ml-5  rounded-xl"
+                            className="ml-5 rounded-xl border-[2.5px] border-green-500 px-5 py-2 text-green-500 hover:bg-green-500 hover:text-white"
                           >
                             پاسخ
+                          </button>
+                          <button
+                            // onClick={() => context.answerTicket(true)}
+                            className="ml-5 rounded-xl border-[2.5px] border-red-500 px-5 py-2 text-red-500 hover:bg-red-500 hover:text-white"
+                          >
+                            حذف
                           </button>
                         </td>
                       </tr>
